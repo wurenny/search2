@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="option_page">
+    <head>
+        <title>Options</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf8" />
+        <link href="options.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="/opt/option-data.js" charset="utf8"></script>
+        <script type="text/javascript" src="/inc/comm.js" charset="utf8"></script>
+        <script type="text/javascript" src="/inc/util.js" charset="utf8"></script>
+        <script type="text/javascript" src="/opt/options.js" charset="utf8"></script>
+    </head>
+    <body>
+        <div id="main">
+            <div id="header">
+            	<div id="optiontitle"><h1 id="__op_title"></h1></div>
+                <div id="optionbtns">
+	                <ul>
+	                    <li><div id="__op_reset" class="optionbtn"></div></li>
+	                    <li><div id="__op_import" class="optionbtn"></div></li>
+	                    <li><div id="__op_export" class="optionbtn"></div></li>
+	                    <li><div id="__op_cancel" class="optionbtn"></div></li>
+	                    <li><div id="__op_save" class="optionbtn"></div></li>
+	                </ul>
+              	</div>
+                <div id="__op_close"></div>
+            </div>
+            <div id="options">
+                <fieldset>
+                    <legend id="__op_config"></legend>
+                    <table id="setting_table">
+                            <tbody id="search_setting">
+                            <tr>
+                                    <td>
+                                    	<li><input type="checkbox" name="newwindow" id="newwindow" /><label for="newwindow" id="__op_config_newwindow"></label></li>
+                                    </td>
+                                    <td>
+                                    	<li>
+	                                    	<label id="__op_config_pos"></label>
+		                                    <input type="radio" name="searchposition" id="searchposition1" value="left" />
+		                                    <label for="searchposition1" id="__op_config_pos_left"></label>
+		                                    <input type="radio" name="searchposition" id="searchposition2" value="top" />
+		                                    <label for="searchposition2" id="__op_config_pos_top"></label>
+		                                    <input type="radio" name="searchposition" id="searchposition3" value="bottom" />
+		                                    <label for="searchposition3" id="__op_config_pos_bottom"></label>
+		                                    <input type="radio" name="searchposition" id="searchposition4" value="right" />
+		                                    <label for="searchposition4" id="__op_config_pos_right"><a ></label>
+		                                    <img id="searchposition_right_tip" name="minitipicon" class="minitipicon" ></img>
+	                                  	</li>
+	                                </td>
+                            </tr>
+                            <tr>
+                                    <td>
+                                    	<li>
+	                                    	<input type="checkbox" name="searchselected" id="searchselected" />
+	                                    	<label for="searchselected" id="__op_config_selected"></label>
+                                    	</li>
+                                    </td>
+                                    <td>
+                                    	<li>
+	                                    	<label id="__op_config_display"></label>
+		                                    <input type="radio" name="searchnamedisplay" id="searchnamedisplay1" value="auto" />
+		                                    <label for="searchnamedisplay1" id="__op_config_display_auto"></label>
+		                                    <img id="searchname_auto_tip" name="minitipicon" class="minitipicon" ></img>
+		                                    <input type="radio" name="searchnamedisplay" id="searchnamedisplay2" value="onlytype" />
+		                                    <label for="searchnamedisplay2" id="__op_config_display_onlytype"></label>
+		                                    <input type="radio" name="searchnamedisplay" id="searchnamedisplay3" value="onlyicon" />
+		                                    <label for="searchnamedisplay3" id="__op_config_display_onlyicon"></label>
+		                                    <input type="radio" name="searchnamedisplay" id="searchnamedisplay4" value="fullname" />
+		                                    <label for="searchnamedisplay4" id="__op_config_display_fullname"></label>
+	                                  	</li>
+	                                </td>
+                            </tr>
+                            <tr>
+                                    <td><li><input type="checkbox" name="cmenu" id="cmenu" /><label for="cmenu" id="__op_config_cmenu"></label></td></li>
+                                    <td>
+                                    	<li>
+                                    		<label id="__op_config_right_indentdistance"></label>
+                                    		<input id="right_indentdistance" size="5" />
+                                    		<label id="__op_config_percent"></label>
+                                    		<img id="right_indentdistance_tip" name="minitipicon" class="minitipicon" ></img>
+                                    	</li>
+                                    </td>
+                            </tr>
+                            <tr>
+                                    <td><li><input type="checkbox" name="autohide" id="autohide" /><label for="autohide" id="__op_config_autohide"></label></td></li>
+                                    <td>
+                                    	<li>
+                                    		<label id="__op_config_indentdistance"></label>
+                                    		<input id="indentdistance" size="5" />
+                                    		<label id="__op_config_px1"></label>
+                                    	</li>
+                                    </td>
+                            </tr>
+                            <tr>
+                            	<td><li><input type="checkbox" name="searchlisttiled" id="searchlisttiled" /><label for="searchlisttiled" id="__op_config_tiled"></label></td></li>
+                                <td>
+                                	<li>
+                                		<label id="__op_config_intervaldistance"></label>
+                                		<input id="intervaldistance" size="5" />
+                                		<label id="__op_config_px2"></label>
+                                		<img id="intervaldistance_tip" name="minitipicon" class="minitipicon" ></img>
+                                	</li>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                              	<li>
+                                  	<input type="checkbox" name="morecartoon" id="morecartoon" />
+                                  	<label for="morecartoon" id="__op_config_cartoon"></label>
+                                  	<img id="morecartoon_tip" name="minitipicon" class="minitipicon" ></img>
+                              	</li>
+                               </td>
+                               <td>
+                              	<li>
+                                  	<label for="" id="__op_config_bgcolor"></label>
+                                  	<div id="bgcolor_div" input="bgcolor" class="colordiv"></div>
+                                  	<input id="bgcolor" div="bgcolor_div" readonly="true" size="8"/>
+                              	</li>
+                               </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                <li>
+                                  	<input type="checkbox" name="morecartoonrandom" id="morecartoonrandom" />
+                                  	<label for="morecartoonrandom" id="__op_config_cartoon_rd"></label>
+                                  	<img id="morecartoonrandom_tip" name="minitipicon" class="minitipicon" ></img>
+                              	</li>
+                              </td>
+                              <td>
+                              	<li>
+                                  	<label for="" id="__op_config_fgcolor"></label>
+                                  	<div id="fgcolor_div" input="fgcolor" class="colordiv"></div>
+                                  	<input id="fgcolor" div="fgcolor_div" readonly="true" size="8"/>
+                              	</li>
+                               </td>
+                           	</tr>
+                           	<tr>
+                            	<td>
+                                <li>
+                                  	<input type="checkbox" name="borderline" id="borderline" />
+                                  	<label for="borderline" id="__op_config_borderline"></label>
+                                  	<img id="borderline_tip" name="minitipicon" class="minitipicon" ></img>
+                              	</li>
+                              </td>
+                              <td>
+                              	<li>
+                                  	<label for="" id="__op_config_bdcolor"></label>
+                                  	<div id="bdcolor_div" input="bdcolor" class="colordiv"></div>
+                                  	<input id="bdcolor" div="bdcolor_div" readonly="true" size="8"/>
+                              	</li>
+                               </td>
+                           	</tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <div id="tip"></div>
+                <fieldset>
+                    <legend id="__op_search"></legend>
+                    <div id="search_engine">
+                        <!--搜索分类标签-->
+                        <div id="search_category">
+                        	<ul id="search_category_tab" class="ul_one"></ul>
+                        </div>
+                        <!--搜索列表-->
+                        <div id="search_list" class="search_list"></div>
+                        <!--引擎属性-->
+                        <div id="search_att">
+                        	<table id="search_att_tab">
+                        		<tr>
+                        			<td id="__op_search_form_url"></td>
+                        			<td colspan="10">
+                        				<input id="att_url" type="text" size="105" disabled="disabled" />
+                        				<img id="att_url_tip" name="minitipicon" class="minitipicon" ></img>
+                        			</td>
+                        		</tr>
+                        		<tr>
+                        			<td id="__op_search_form_name"></td><td colspan="2"><input id="att_name" type="text" size="60" disabled="disabled" /></td>
+                        			<td id="__op_search_form_tf"></td>
+                        			<td>
+                        				<input id="att_tf" type="text" size="26" disabled="disabled" />
+                        				<img id="att_tf_tip" name="minitipicon" class="minitipicon" ></img>
+                        			</td>
+                        		</tr>
+                        		<tr>
+                        			<td id="__op_search_form_icon"></td><td colspan="2"><input id="att_icon" type="text" size="60" disabled="disabled" /></td>
+                        			<td id="__op_search_form_prkw"></td>
+                        			<td>
+                        				<input id="att_prkw" type="text" size="26" disabled="disabled" />
+                        				<img id="att_prkw_tip" name="minitipicon" class="minitipicon" ></img>
+                        			</td>
+                        		</tr>
+                        		<tr>
+                        			<td id="__op_search_form_enc"></td>
+                        			<td>
+                        				<div id="att_enc_div">
+	                        				<select id="att_enc" disabled="disabled">
+	                        					<option id="__op_search_form_enc_default" value=""></option>
+	                        				</select>
+                        				</div>
+                        				<img id="att_enc_tip" name="minitipicon" class="minitipicon" ></img>
+                        			</td>
+                        			<td>
+                        				<input id="googleico" type="checkbox" disabled="disabled"/>
+                        				<label for="googleico" id="__op_search_form_googleico"></label>
+                        				<img id="googleico_tip" name="minitipicon" class="minitipicon" ></img>
+                        			</td>
+                        			
+                        			<td></td>
+                        			<td colspan="1">
+                        				<input id="pathkw" type="checkbox" disabled="disabled"/>
+                        				<label for="pathkw" id="__op_search_form_pathkw"></label>
+                        				<img id="pathkw_tip" name="minitipicon" class="minitipicon" ></img>
+                        			</td>
+                        		</tr>
+                        	</table>
+                        </div>
+                        <!--操作提示-->
+                        <div id="optip">
+                            <label id="__op_search_tip1"></label>
+                            <img id="tipimgup" class="tipsimg"/>
+                            <img id="tipimgdown" class="tipsimg"/>
+                            <label id="__op_search_tip2"></label>
+                            <a id="__op_search_add"></a>
+                            <label id="__op_search_tip3"></label>
+                            <a id="__op_search_cancel"></a>
+                            <label id="__op_search_tip4"></label>
+                        </div>
+                        
+                    </div>
+                </fieldset>   
+                             
+				<fieldset style="display:block">
+                    <legend id="__oth_readme"></legend>
+                    <div id="readme">
+                        <ul>
+                            <li id="__oth_readme1"></li>
+                            <li id="__oth_readme2"></li>
+                            <li id="__oth_readme3"></li>
+                            <li id="__oth_readme4"></li>
+                            <li id="__oth_readme5"></li>
+                            <li id="__oth_readme6"></li>
+                        </ul>
+                    </div>
+                 </fieldset>
+            </div>
+            
+            <div id="footer">
+            	<label id="footertxt">
+            		<label id="__oth_ipr1"></label>
+            		<img id="configicon"></img>
+            		<label id="__oth_ipr2"></label>
+            		<img id="moreicon"></img>
+            		<label id="__oth_ipr3"></label>
+            	</label>
+            </div>
+           
+        </div>
+        
+        <input type="file" id="importfile" />
+        
+        <div id="minitip" class="minitip_bg"> 
+					<div class="minitip_fg">
+						<p id="minitiptxt"></p>
+						<div class="minitip_rhb1">&#9670</div>
+						<div class="minitip_rhb2">&#9670</div>
+					</div> 
+				</div>
+			
+				<div id="colorpane" tabindex="999"></div>
+				
+				<div id="foricon"></div>
+	      <div id="txt"></div>
+        
+    </body>
+    
+</html>
