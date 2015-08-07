@@ -1,3 +1,22 @@
+/*-------------------------------------------------------------------------
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
+ *
+ * IDENTIFICATION
+ *     inc/comm.js
+ *
+ * This file is part of search2 project
+ * comm is the commonly used for any other invoker, including some prototype
+ * functions and small tools
+ *
+ *-------------------------------------------------------------------------
+ */
+
+
 var COM={};
 var config, favtypes, favlist, iconurls, icondatas, nohslist;
 

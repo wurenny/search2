@@ -1,3 +1,20 @@
+/*-------------------------------------------------------------------------
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
+ *
+ * IDENTIFICATION
+ *     _locales/en/messages.json
+ *
+ * This file is part of search2 project
+ * en/messages is the the English launguage file
+ *
+ *-------------------------------------------------------------------------
+ */
+
 {
 "app_title": {"message": "search2"},
 "app_description": {"message": "Create a good search habit by yourself !"},

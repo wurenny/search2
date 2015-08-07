@@ -1,3 +1,20 @@
+/*-------------------------------------------------------------------------
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
+ *
+ * IDENTIFICATION
+ *     more/more.js
+ *
+ * This file is part of search2 project
+ * more.js sets dynamic url links for all table cells in more color box
+ *
+ *-------------------------------------------------------------------------
+ */
+
 var initI18n =function(){
 	document.getElementById("__more_autoclose").innerText =chrome.i18n.getMessage("more_autoclose");
 	document.getElementById("__more_newwindow").innerText =chrome.i18n.getMessage("more_newwindow");

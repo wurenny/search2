@@ -1,11 +1,20 @@
-/**
-	@name										search2
-	@forhelp									wurenny@gmail.com
-	@description							search engine switch extension.
-	@version									V1 Release1
-	@release date							May 2014
----------------------------------------------------------------
-**/
+/*-------------------------------------------------------------------------
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
+ *
+ * IDENTIFICATION
+ *     cts/contentScript.js
+ *
+ * This file is part of search2 project
+ * contentScript is the core runtime content script of search2
+ *
+ *-------------------------------------------------------------------------
+ */
+
 var CTS ={}, i18n ={}, favrect ={};
 var hashSearch, septr;
 var keywords, enc, enckeywords;

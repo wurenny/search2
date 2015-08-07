@@ -1,3 +1,20 @@
+/*-------------------------------------------------------------------------
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
+ *
+ * IDENTIFICATION
+ *     more/more.css
+ *
+ * This file is part of search2 project
+ * more.css is the stylesheet for search2's more color box
+ *
+ *-------------------------------------------------------------------------
+ */
+
 #search2colorbox {
 	position:fixed;
 	z-index:999999999;

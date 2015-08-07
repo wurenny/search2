@@ -1,4 +1,21 @@
-﻿var IDATA={};
+﻿/*-------------------------------------------------------------------------
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
+ *
+ * IDENTIFICATION
+ *     opt/option-data.js
+ *
+ * This file is part of search2 project
+ * option-data is the initial config data for search2
+ *
+ *-------------------------------------------------------------------------
+ */
+
+var IDATA={};
 
 IDATA.search2_config ={
 	newwindow: 0
@@ -196,7 +213,7 @@ IDATA.search2_favlist =[
 	,{on:1, type:3, sno:10,cm:0,name:'酷6网', icon:'so_ku6_com', enc:'', prkw:'q=', host:'so.ku6.com', urltf:'', url:'http://so.ku6.com/search/?q=%s'}
 	
 	,{on:1, type:2, sno:8, cm:1, name:'谷歌右键图片', icon:'www_google_com', enc:'', prkw:'image_url=', host:'www.google.com', urltf:'', url:'https://www.google.com/searchbyimage?image_url=%p'}
-	,{on:1, type:2, sno:9, cm:1, name:'百度右键图片', icon:'image_baidu_com', enc:'', prkw:'objurl=', host:'image.baidu.com', urltf:'', url:'http://image.baidu.com/i?rainbow=1&ftn=wantu&ct=1&stt=0&tn=shituresultpc&objurl=%p'}
+	,{on:1, type:2, sno:9, cm:1, name:'百度右键图片', icon:'image_baidu_com', enc:'', prkw:'queryImageUrl=', host:'image.baidu.com', urltf:'', url:'http://image.baidu.com/n/pc_search?queryImageUrl=%p'}
 	,{on:1, type:2, sno:10, cm:0, name:'搜狗右键图片', icon:'pic_sogou_com', enc:'', prkw:'query=', host:'pic.sogou.com', urltf:'', url:'http://pic.sogou.com/ris?query=%p'}
 	,{on:1, type:2, sno:11, cm:1, name:'必应右键图片', icon:'cn_bing_com', enc:'', prkw:'imgurl=', host:'cn.bing.com', urltf:'', url:'http://cn.bing.com/images/searchbyimage?cbir=sbi&imgurl=%p'}
 

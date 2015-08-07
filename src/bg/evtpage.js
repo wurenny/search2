@@ -1,3 +1,20 @@
+/*-------------------------------------------------------------------------
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
+ *
+ * IDENTIFICATION
+ *     bg/evtpage.js
+ *
+ * This file is part of search2 project
+ * evtpage works when search2's context menu trigged
+ *
+ *-------------------------------------------------------------------------
+ */
+
 var EVPG ={};
 var favlist;
 var cmstate;
