@@ -567,6 +567,8 @@ CTS.runLsnr =function(){
 	chrome.extension.onMessage.addListener(
 	  function(request, sender, sendResponse) {
 	    if (request.action == "search2popmore") {
+				CTS.setFavrect();
+				CTS.initI18n();
 				CTS.popMore();
 	    }
 	    else{
@@ -632,12 +634,13 @@ CTS.getKeywords =function(hashSearch, septr){
 
 CTS.setFavrect =function() {
 	var rectw =recth =0;
+	var rect ={};
 	for(var i =0; i<favlist.length; i++){
-		if(favlist[i].on ==1 && favlist[i].url.indexOf("%s")!=-1) favrect[favlist[i].type] =favrect[favlist[i].type] ? favrect[favlist[i].type] +1 : 1;
+		if(favlist[i].on ==1 && favlist[i].url.indexOf("%s")!=-1) rect[favlist[i].type] =rect[favlist[i].type] ? rect[favlist[i].type] +1 : 1;
 	}
 	/*calculate lines and columns*/
-	for (n in favrect) {
-		rectw =rectw>favrect[n] ? rectw : favrect[n];
+	for (n in rect) {
+		rectw =rectw>rect[n] ? rectw : rect[n];
 		recth +=1;
 	}
 	favrect.rectw =rectw;
