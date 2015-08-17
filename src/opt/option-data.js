@@ -162,10 +162,10 @@ IDATA.search2_favlist =[
 	,{on:1, type:2, sno:1, cm:0, name:'谷歌图片', icon:'www_google_com', enc:'', prkw:'q=', host:'www.google.com', urltf:'&tbm=isch', url:'https://www.google.com/search?newwindow=1&q=%s&tbm=isch'}
 	,{on:0, type:3, sno:1, cm:0, name:'谷歌视频', icon:'www_google_com', enc:'', prkw:'q=', host:'www.google.com', urltf:'&tbm=vid', url:'https://www.google.com/search?newwindow=1&q=%s&tbm=vid'}
 
-	,{on:1, type:0, sno:2, cm:0, name:'360新闻', icon:'news_haosou_com', enc:'', prkw:'q=', host:'news.haosou.com', urltf:'', url:'http://news.haosou.com/ns?ie=utf-8&q=%s'}
-	,{on:1, type:1, sno:2, cm:0, name:'360网页', icon:'www_haosou_com', enc:'', prkw:'q=', host:'www.haosou.com', urltf:'', url:'http://www.haosou.com/s?ie=utf-8&q=%s'}
-	,{on:1, type:2, sno:2, cm:0, name:'360图片', icon:'image_haosou_com', enc:'', prkw:'q=', host:'image.haosou.com', urltf:'', url:'http://image.haosou.com/i?ie=utf-8&q=%s'}
-	,{on:1, type:3, sno:2, cm:0, name:'360视频', icon:'video_haosou_com', enc:'', prkw:'kw=', host:'video.haosou.com', urltf:'', url:'http://video.haosou.com/v?ie=utf-8&kw=%s'}		
+	,{on:1, type:0, sno:2, cm:0, name:'好搜新闻', icon:'news_haosou_com', enc:'', prkw:'q=', host:'news.haosou.com', urltf:'', url:'http://news.haosou.com/ns?ie=utf-8&q=%s'}
+	,{on:1, type:1, sno:2, cm:0, name:'好搜网页', icon:'www_haosou_com', enc:'', prkw:'q=', host:'www.haosou.com', urltf:'', url:'http://www.haosou.com/s?ie=utf-8&q=%s'}
+	,{on:1, type:2, sno:2, cm:0, name:'好搜图片', icon:'image_haosou_com', enc:'', prkw:'q=', host:'image.haosou.com', urltf:'', url:'http://image.haosou.com/i?ie=utf-8&q=%s'}
+	,{on:1, type:3, sno:2, cm:0, name:'好搜视频', icon:'video_haosou_com', enc:'', prkw:'kw=', host:'video.haosou.com', urltf:'', url:'http://video.haosou.com/v?ie=utf-8&kw=%s'}		
 
 	,{on:1, type:0, sno:3, cm:0, name:'百度新闻', icon:'news_baidu_com', enc:'', prkw:'word=', host:'news.baidu.com', urltf:'', url:'http://news.baidu.com/ns?word=%s&ie=utf-8'}
 	,{on:1, type:1, sno:3, cm:1, name:'百度网页', icon:'www_baidu_com', enc:'', prkw:'wd=', host:'www.baidu.com', urltf:'', url:'http://www.baidu.com/#ie=utf-8&wd=%s'}
@@ -194,7 +194,7 @@ IDATA.search2_favlist =[
 	,{on:1, type:4, sno:1, cm:0, name:'网易云音乐', icon:'music_163_com', enc:'', prkw:'/search/m/?s=', host:'music.163.com', urltf:'&type=1', url:'http://music.163.com/#/search/m/?s=%s&type=1'}
 	,{on:1, type:4, sno:2, cm:0, name:'SongTaste', icon:'www_songtaste_com', enc:'gbk', prkw:'keyword=', host:'www.songtaste.com', urltf:'', url:'http://www.songtaste.com/search.php?keyword=%s'}
 	,{on:1, type:4, sno:3, cm:0, name:'百度音乐', icon:'music_baidu_com', enc:'', prkw:'key=', host:'music.baidu.com', urltf:'', url:'http://music.baidu.com/search?key=%s'}
-	,{on:1, type:4, sno:4, cm:0, name:'360音乐', icon:'s_music_haosou_com', enc:'', prkw:'q=', host:'s.music.haosou.com', urltf:'', url:'http://s.music.haosou.com/s?ie=utf-8&q=%s'}
+	,{on:1, type:4, sno:4, cm:0, name:'好搜音乐', icon:'s_music_haosou_com', enc:'', prkw:'q=', host:'s.music.haosou.com', urltf:'', url:'http://s.music.haosou.com/s?ie=utf-8&q=%s'}
 	,{on:1, type:4, sno:5, cm:0, name:'搜狗音乐', icon:'mp3_sogou_com', enc:'', prkw:'query=', host:'mp3.sogou.com', urltf:'', url:'http://mp3.sogou.com/music.so?ie=utf8&query=%s'}
 	,{on:1, type:4, sno:6, cm:0, name:'酷我音乐', icon:'sou_kuwo_cn', enc:'', prkw:'key=', host:'sou.kuwo.cn', urltf:'', url:'http://sou.kuwo.cn/ws/NSearch?type=all&key=%s'}
 	,{on:1, type:4, sno:7, cm:0, name:'虾米音乐', icon:'www_xiami_com', enc:'', prkw:'key=', host:'www.xiami.com', urltf:'', url:'http://www.xiami.com/search?key=%s'}
