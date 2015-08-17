@@ -305,6 +305,39 @@ String.prototype.colorHex = function(){
 	}
 };
 
+String.prototype.colorRgba = function(a){
+	return "rgba(" +parseInt("0x" +this.substr(1,2)) +"," +
+		parseInt("0x" +this.substr(3,2)) +"," +
+		parseInt("0x" +this.substr(5,2)) +
+		(a&&a>=0&&a<=1?(","+a):"") +")";
+};
+
 String.prototype.isColorHex =function(){
 	return /^#([0-9a-fA-f]{6})$/.test(this);
+};
+
+COM.getContrastColor =function(color,factor) {
+	var HX=["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"];
+	var n, rcolor =["#","#","#"];
+	for(var i=1; i<7; i++){
+		n =color.substr(i,1);
+		n =parseInt("0x" +(n ? n : i));
+	  n =(n +factor*i)%16;
+	  rcolor[0] +=HX[n];
+	  rcolor[1] +=HX[n+2>15?15:n+2];
+	  rcolor[2] +=HX[n+4>15?15:n+4];
+	}
+	return rcolor;
+};
+
+
+COM.getSelectedText =function(){
+	return selectedtext =window.getSelection().toString().replace(/\n/g," ").trim().substr(0, 64);
+};
+
+HTMLElement.prototype.setbg =function(gdt){
+	this.style.background =this.style.background ="-webkit-gradient(linear,left bottom,left top," +
+		"color-stop(0.15," +gdt[0] +
+		"),color-stop(0.5," +gdt[1] +
+		"),color-stop(1," +gdt[2] +"))";
 };

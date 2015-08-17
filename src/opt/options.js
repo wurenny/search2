@@ -44,7 +44,7 @@ HTML.initI18n =function(){
 	document.getElementById("__op_export").innerText=chrome.i18n.getMessage("op_export");
 	document.getElementById("__op_cancel").innerText=chrome.i18n.getMessage("op_cancel");
 	document.getElementById("__op_save").innerText=chrome.i18n.getMessage("op_save");
-	document.getElementById("__op_close").innerText=chrome.i18n.getMessage("com_close");
+	document.getElementById("__op_close").innerText="X";/*chrome.i18n.getMessage("com_close");*/
 	document.getElementById("__op_config").innerText=chrome.i18n.getMessage("op_config");
 	document.getElementById("__op_config_newwindow").innerText=chrome.i18n.getMessage("op_config_newwindow");
 	document.getElementById("__op_config_selected").innerText=chrome.i18n.getMessage("op_config_selected");
@@ -884,11 +884,12 @@ HTML.showTip =function(msg, sec) {
 };
 
 HTML.showMiniTip =function(e, msg, sec) {
+	if(typeof evt !="undefined") clearTimeout(evt);
 	var tip =document.getElementById("minitip");
 	var tiptxt =document.getElementById("minitiptxt");
 	var x,y;
-	var rect =e.getBoundingClientRect()		;
-	if (!rect) { /*client rect is not correct sometime*/
+	var rect =e.getBoundingClientRect();
+	if (rect) { /*client rect is not correct sometime*/
 		//console.log("browser support rect.");
 		x =rect.left;
 		y =rect.top +rect.height;
@@ -901,17 +902,16 @@ HTML.showMiniTip =function(e, msg, sec) {
 		while (current !== null) {
 			x += current.offsetLeft;
 			y += current.offsetTop;
-		　current = current.offsetParent;
+			current = current.offsetParent;
 		}
 		y =y +e.offsetHeight;
 	}
 	//console.log(x +"," +y);
 	tip.style.left =(x -30)<0?0:(x-30)+"px";
-	tip.style.top =y +10 +"px";
+	tip.style.top =y +5 +"px";
 	tiptxt.innerText =msg;
 	tip.style.display ="block";
 	evt =setTimeout("minitip.style.display ='none';minitiptxt.innerText='';clearTimeout(evt);", (sec?sec:2000));
-	
 };
 
 HTML.exportOption =function(){
@@ -926,7 +926,6 @@ HTML.exportOption =function(){
 				IDATA.search2_config =storages.search2_config;
 				storages =IDATA;
 			}
-			//console.log(UTIL.option2str(storages,"\n"));
 			UTIL.fileSaveAs(UTIL.option2str(storages,""),"search2-config.bak");
 		}
 	)
@@ -1021,7 +1020,7 @@ HTML.showColorPane =function(e){
 	colorpane_target =e;
 	var x,y;
 	var rect =e.getBoundingClientRect();
-	if (!rect) {
+	if (rect) {
 		x =rect.left;
 		y =rect.top +rect.height;
 	}
@@ -1032,7 +1031,7 @@ HTML.showColorPane =function(e){
 		while (current !== null) {
 			x += current.offsetLeft;
 			y += current.offsetTop;
-		　current = current.offsetParent;
+			current = current.offsetParent;
 		}
 		y +=e.offsetHeight;
 	}

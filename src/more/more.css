@@ -37,15 +37,15 @@
 	font-size:12px;
 	font-weight:bold;
 	color:white;
-	background:#5f5f5f;
-	cursor:move;
-	height:24px;
+	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.09, rgb(59,63,65)), color-stop(0.55, rgb(72,76,77)), color-stop(0.78, rgb(75,77,77)) );
+	cursor:move !important;
 }
 #search2boxhead>label {
-	line-height:26px;
+	line-height:24px;
 	padding:0 !important;
 	margin:0 !important;
 	margin-left:5px !important;
+	font-family: microsoft YaHei, arial, sans-serif !important;
 }
 #search2boxiframe {
 	border:0;
@@ -53,14 +53,20 @@
 }
 #search2boxclose {
 	width:40px;
-	line-height:22px;
 	float:right;
 	background-color:#e54028;
-	border: 1px solid #d4d4d4;
-	border-width: 2px;
-	border-color: #c22d18;
+	border: thin solid #c22d18;
 	text-align:center;
 	cursor:pointer;
+}
+#search2boxclose:hover {
+	cursor:pointer;
+	background-color: #bc2c16;
+	background: linear-gradient(top, #eb6855, #d9331a);
+}
+#search2boxclose:active {
+  background: #cd5240;
+  color: #952312;
 }
 #search2boxhead,#search2boxclose,#search2boxiframe {
 	border-radius:2px !important;
@@ -72,11 +78,11 @@
 	background:#EFEFEF !important;
 	overflow:hidden !important;
 	width:100% !important;
-	border-radius:2px !important;
+	border-radius:0 0 2px 2px !important;
 	border-spacing:2px !important;
 	border-collapse:separate !important;
 	margin-bottom:3px;
-	padding-left:2px;
+	padding-left:1px;
 
 }
 input[type=checkbox].search2morecheckbox{

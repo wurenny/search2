@@ -33,6 +33,7 @@ a.search2HrefSkin {
 	color:#EFEFEF;
 	color:#CCC !important;
 	*/
+	font-family: "Microsoft Yahei" !important;
 	font-size:12px !important;
 }
 
@@ -50,20 +51,22 @@ a.search2HrefSkin2 {
 	float:left;
 }
 
-#configBtn>img, #moresearch>img {
+#search2_configbtn>img, #search2_moresearch>img {
 	width:16px;
 	height:16px;
 	text-align:center;
 	vertical-align:middle;
 }
 
-#moresearch {
+#search2_moresearch {
 	text-decoration:none;
 	display:block;
 	color:#FFA500;
 	font-size:12px;
 	outline:none;
+	width:100% !important;
 }
+
 #search2>table {
 	width:auto;
 	border-spacing:0px;
@@ -71,7 +74,8 @@ a.search2HrefSkin2 {
 /*left & top & bottom*/
 #search2>table>tr>td{
 	text-align:center;
-	line-height:16px;
+	line-height:12px;
+	padding:0px;
 }
 #search2>table>tr>td>a{
 	cursor:pointer;
@@ -88,33 +92,33 @@ a.search2HrefSkin2 {
 	vertical-align:middle;
 }
 /*right*/
-#search2Body>tr>td{
+#search2_sublist>tr>td{
 	text-align:center;
 	line-height:16px;
 }
-#search2Body>tr>td>a{
+#search2_sublist>tr>td>a{
 	cursor:pointer;
 	display:block;
 	text-decoration:none;
 }
-#search2Body>tr>td>a>img{
+#search2_sublist>tr>td>a>img{
 	height:16px;
 	width:16px;
 	vertical-align:middle;
 	text-align:center;
 }
-#search2Body>tr>td>a>span {
+#search2_sublist>tr>td>a>span {
 	vertical-align:middle;
 }
 
-#search2.search2_AtLEFT {
+#search2.search2_Atleft {
 	left:0;
 	height:100%;
 	/*border-right:1px  solid orange;*/
 	display:block !important;
 }
 
-#search2.search2_AtRIGHT {
+#search2.search2_Atright {
 	right:5%;
 	padding:0 10px;
 	top:150px;
@@ -123,7 +127,7 @@ a.search2HrefSkin2 {
 	display:block !important;
 }
 
-#search2.search2_AtTOP {
+#search2.search2_Attop {
 	height:18px;
 	top:0;
 	width:100%;
@@ -132,7 +136,7 @@ a.search2HrefSkin2 {
 	display:block !important;
 }
 
-div.search2_AtBOTTOM {
+div.search2_Atbottom {
 	height:18px;
 	bottom:0;
 	width:100%;
@@ -141,29 +145,21 @@ div.search2_AtBOTTOM {
 	display:block !important;
 }
 
-#search2.search2AutoHide_AtLEFT {
-	left:-16px;
+#search2.search2AutoHide_Atleft:hover {
+	left:0px !important;
 }
-#search2.search2AutoHide_AtTOP {
-	top:-16px;
+#search2.search2AutoHide_Attop:hover {
+	top:0px !important;
 }
-#search2.search2AutoHide_AtBOTTOM {
-	bottom:-16px;
-}
-#search2.search2AutoHide_AtLEFT:hover {
-	left:0px;
-}
-#search2.search2AutoHide_AtTOP:hover {
-	top:0px;
-}
-#search2.search2AutoHide_AtBOTTOM:hover {
-	bottom:0px;
+#search2.search2AutoHide_Atbottom:hover {
+	bottom:0px !important;
 }
 
-span.search2Text_AtTOP span.search2Text_AtBOTTOM {
+span.search2Text_AtTOP span.search2Text_Atbottom {
 	height:16px;
 	line-height:16px;
 }
-span.search2Text_AtLEFT {
+span.search2Text_Atleft {
 	width:16px;
 }
+

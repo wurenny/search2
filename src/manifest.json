@@ -19,7 +19,7 @@
  *-------------------------------------------------------------------------
 ",
 
-	"web_accessible_resources":["cts/contentScript.js","css/css.css","more/more.css","opt/options.html"],
+	"web_accessible_resources":["cts/contentScript.js","css/css.css","css/pull.css","more/more.css","opt/options.html"],
 	"background":{
 		"persistent":false,
 		"page":"bg/evtpage.html"
@@ -40,5 +40,5 @@
 	"description":"__MSG_app_description__",
 	"options_page":"opt/options.html",
 	"permissions":["http://*/*","https://*/*","storage","contextMenus"],
-	"version":"1.1.2"
+	"version":"1.1.3"
 }

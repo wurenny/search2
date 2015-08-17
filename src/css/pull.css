@@ -1,0 +1,96 @@
+/*-------------------------------------------------------------------------
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
+ *
+ * IDENTIFICATION
+ *     css/pull.css
+ *
+ * This file is part of search2 project
+ * pull.css is the stylesheet for pulldown more search list
+ *
+ *-------------------------------------------------------------------------
+ */
+
+
+/*pulldown list*/
+#search2_pulldowndiv {
+	float: left;
+	font: 12px Microsoft Yahei, Arial, Helvetica, Sans-serif;
+	z-index: 999999997;
+	position: fixed;
+}
+
+#search2_pulldowndiv li {
+	overflow: hidden;
+}
+
+#search2_pulldowndiv>ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+#search2_pulldowndiv>ul>li {
+	display: block;
+	float:left;
+	width: 60px;
+	height: 18px;
+	line-height: 14px;
+}
+
+#search2_pulldowndiv ul li a {
+	float: left;
+	padding: 2px 0;
+	text-align: center;
+	text-decoration:none;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 0 5px rgba(0, 0, 0, 0.1) inset;
+	border-left: 1px solid rgba(255, 255, 255, 0.05);
+	border-right: 1px solid rgba(0,0,0,0.2);
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
+	width: 60px;
+	overflow: hidden;
+}
+
+#search2_pulldowndiv ul li a:hover, #search2_pulldowndiv ul li:hover > a {
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), 0 -1px #000;
+	cursor: default;
+}
+
+#search2_pulldowndiv li ul {
+	position: absolute;
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.4) inset; 
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	width:100px;
+	overflow: hidden;
+	visibility:hidden;
+}
+
+#search2_pulldowndiv li ul li {
+	display: block;
+	float: right;
+	width:100px;
+}
+
+#search2_pulldowndiv li ul a {
+	background: none;
+	border: 0 none;
+	margin-right: 0;
+	width: 100px;
+	box-shadow: none;
+	border-bottom: 1px solid transparent;
+	text-align: center;
+}
+
+#search2_pulldowndiv li ul a:hover, #search2_pulldowndiv ul li li:hover > a  {
+	border-bottom: 1px solid rgba(0,0,0,0.6);
+	text-shadow: 0 1px rgba(255, 255, 255, 0.3);
+	cursor: pointer;
+}
+
+#search2_pulldowndiv li:hover ul {
+	visibility:visible;
+}
