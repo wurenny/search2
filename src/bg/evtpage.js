@@ -31,7 +31,7 @@ EVPG.msgLsnr =function(){
 	  		return true;
 	  	}
 	    if (request.action == "search2encodekw") {
-			UTIL.encodeURL(sendResponse,request.enc, request.kw).submit();
+			EVPG.encodeURL(sendResponse,request.enc, request.kw).submit();
 			return true;
 	    }
 	    else{
@@ -104,7 +104,7 @@ EVPG.initCM =function() {
 							if (url) window.open(url, "_blank");
 						}
 						else {
-							UTIL.encodeURL(
+							EVPG.encodeURL(
 								function(response){
 									url =favlist[i].url.replace(esckw, response.enckw);
 									if (url) window.open(url, "_blank");
@@ -122,6 +122,50 @@ EVPG.initCM =function() {
 		}
 	);
 	cmstate =1;
+};
+
+EVPG.encodeURL = function(cb, charset, str){
+	var iframeId ="search2enc_iframe", formId ="search2enc_form", inputName ="search2enc_input";
+	
+	var iframe = document.getElementById(iframeId);
+	if(!iframe){
+		iframe = document.createElement("iframe");
+		iframe.id =iframeId;
+		iframe.name =iframeId;
+		iframe.src ="/oth/blank.html";
+		iframe.style.display ="none";
+		document.documentElement.appendChild(iframe);
+	}
+	
+	iframe.onload =function(){
+		//console.log("url: " +iframe.contentWindow.location);
+		var enckw =iframe.contentWindow.location.search.split("=")[1];
+		cb({enckw:enckw});
+		document.documentElement.removeChild(iframe);
+		document.documentElement.removeChild(form);
+	}
+	
+	var form = document.getElementById(formId);
+	if(form){
+		document.getElementById("search2enc_textinput").value =str;
+		return form;
+	}
+	form = document.createElement("form");
+	form.acceptCharset =charset;
+	form.id =formId;
+	form.method = "get";
+	//form.action =chrome.extension.getURL("/oth/blank.html");
+	form.target = iframeId;
+	form.style.display = "none";
+	var input = document.createElement("input");
+	input.id ="search2enc_textinput";
+	input.type = "hidden";
+	input.name = inputName;
+	input.value = str;
+	form.appendChild(input);
+	document.documentElement.appendChild(form);
+	
+	return form;
 };
 
 EVPG.main =function() {

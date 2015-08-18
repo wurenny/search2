@@ -176,7 +176,7 @@ HTMLElement.prototype.dopopup =function(width, height, vector, rotate, cartoon){
 		if (cartoon) e.style.top ="0px";
 		e.style.display="block";
 		itv=setInterval(function(){aspr("Y")}, 2);
-	 }
+	}
 	else {
 		itv=setInterval(function(){aspr("N")}, 2);
 	}
@@ -217,59 +217,19 @@ COM.decodeURL =function(cb, charset, str){
 	div.style.display ="none";
 	script.onload = cb;
 	var src ="data:text/javascript;charset=" + charset + ",";
-	src +="document.getElementById('search2kwdiv').innerHTML='"+str+"';";
+	src +="document.getElementById('search2kwdiv').innerText='"+str+"';";
 	src += 'document.getElementById("search2kwscript").parentNode.removeChild(document.getElementById("search2kwscript"));';
 	script.src = src;
 	
 };
 
-COM.readyForm =function(form, url, charset){
-	form.acceptCharset =charset;
-	var inputs =form.children;
-	for(var i =inputs.length-1; i>=0; i--) form.removeChild(inputs[i]);
-	
-	var urlarr =url.split("?");
-	if(urlarr.length <2) {
-		urlarr =url.split("#");
-		if(urlarr.length==2) form.action =url;
-		return form;
-	}
-	
-	form.action =urlarr[0];
-	var params =urlarr[1].split("&");
-	var param, input;
-	
-	for(var i=0; i<params.length; i++){
-		param =params[i].split("=");
-		if(param.length==2){
-			input =form.appendChild(document.createElement("input"));
-			input.type ="hidden";
-			input.name =param[0];
-			input.value =param[1];
-		}
-	}
-	return form;
-};
-
-COM.alterObj =function() {
+COM.removeObjdata =function() {
 	if(document.location.host.indexOf("bing.com")==-1) return;
 	var objs =document.getElementsByTagName("object");
 	if(!objs) return;
 	for(var i =0; i<objs.length; i++) { 
 		if(objs[i].getAttribute("data")) objs[i].removeAttribute("data");
 	}
-};
-
-COM.openMoreURL =function(url, target) {
-	if(document.getElementById("search2_more_autoclose").checked) {
-		var morediv =document.getElementById("search2more");
-		var overlay =document.getElementById("search2overlay");
-		var colorbox =document.getElementById("search2colorbox");
-		document.documentElement.style.overflow ="auto";
-		morediv.removeChild(overlay);
-		morediv.removeChild(colorbox);
-	}
-	window.open(url,target);
 };
 
 String.prototype.colorHex = function(){

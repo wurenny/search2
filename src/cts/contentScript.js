@@ -20,7 +20,7 @@ var favnum ={}, favrect ={};
 var hashSearch, septr;
 var keywords, enc, enckeywords;
 var favindex, pos, stype, prkw;
-var whmargin, itv, msovered =0;
+var whmargin, msovered =0;
 
 CTS.initI18n =function(){
 	i18n.chrome_nls =chrome.i18n.getMessage("@@ui_locale");
@@ -56,36 +56,16 @@ CTS.init =function(){
 				(favlist[i].urltf && (thisurl.indexOf(favlist[i].urltf) !=-1)) ||
 				(favlist[i].urltf=='&tbm=web' && (thisurl.indexOf('&tbm=') ==-1))
 			)
-		) {
+		){
 			favindex = i;
 			prkw =favlist[i].prkw;
 			stype =favlist[i].type;
-			
-			/*hash change listener ,but while history.pushState invoked for ajax in HTML5, it will donot work*/
-			/*
-			window.addEventListener('hashchange', function () {
-				console.log("hash change.");
-				CTS.runUrlChange();
-			}, false);
-			*/
-			if (!itv) {
-				var url1 =thisurl, url2;
-				itv =setInterval(function(){
-					url2 =document.location.href;
-					if (url1!=url2) {
-						//console.log(">>>location.href change, " +location.href);
-						url1 =url2;
-						CTS.runUrlChange();
-					}
-				}, 100);
-			}
 			break;
 		}
 	}
 		
 	/*transfer link?*/
 	if (thisurl.indexOf("/link?")!=-1) return;
-	
 	if(!prkw) return;
 	
 	//action for keywords
@@ -109,6 +89,23 @@ CTS.init =function(){
 		CTS.getKeywords(hashSearch, septr);
 	}
 	
+	/*hash change listener ,but while history.pushState was invoked use ajax in HTML5, it will donot work*/
+	/*
+	window.addEventListener('hashchange', function () {
+		CTS.runUrlChange();
+	}, false);
+	*/
+	var url1 =thisurl, url2;
+	setInterval(
+		function(){
+			url2 =document.location.href;
+			if (url1!=url2) {
+				url1 =url2;
+				CTS.runUrlChange();
+			}
+		},100
+	);
+	
 };
 
 CTS.ready =function(start){	
@@ -120,24 +117,21 @@ CTS.ready =function(start){
 	//original doc position
 	whmargin =18;
 	if (i18n.chrome_nls!="zh_CN" && pos=="left") whmargin =34;
-	if (config.autohide) {
-		CTS.loadCss(cssdiv, "css/css.css", "search2BarCss", start);
-		return;
-	}
-	
-	document.documentElement.style.position='absolute';
-	if (pos=="left") {
-		document.documentElement.style.marginLeft=whmargin +"px";
-		document.documentElement.style.width=(document.documentElement.clientWidth-whmargin-whmargin) +"px";
-		//resize listener
-		window.onresize =function(event) {
-			document.documentElement.style.width=(document.documentElement.clientWidth-whmargin) +"px";
-		};
-	}
-	else {
-		if (pos=="top") document.documentElement.style.marginTop=whmargin +"px";
-		if (pos=="bottom") document.documentElement.style.paddingBottom=whmargin +"px";
-		document.documentElement.style.width='100%';
+	if (!config.autohide) {
+		document.documentElement.style.position='absolute';
+		if (pos=="left") {
+			document.documentElement.style.marginLeft=whmargin +"px";
+			document.documentElement.style.width=(document.documentElement.clientWidth-whmargin-whmargin) +"px";
+			//resize listener
+			window.onresize =function(event) {
+				document.documentElement.style.width=(document.documentElement.clientWidth-whmargin) +"px";
+			};
+		}
+		else {
+			if (pos=="top") document.documentElement.style.marginTop=whmargin +"px";
+			if (pos=="bottom") document.documentElement.style.paddingBottom=whmargin +"px";
+			document.documentElement.style.width='100%';
+		}
 	}
 	CTS.loadCss(cssdiv, "css/css.css", "search2BarCss", start);
 
@@ -154,7 +148,7 @@ CTS.start =function(){
 	}
 	if(!enc) CTS.run();
 	else {
-		console.log("search2: url encoding is not utf-8 and auto changed to :" +enc);
+		console.log("search2: url encoding is not utf-8 and change to :" +enc);
 		COM.decodeURL(CTS.runNotUTF, enc, keywords);
 	}
 };
@@ -253,17 +247,18 @@ CTS.rightHideTable =function(bar,tb) {
 
 CTS.favMainLoop =function(stb,tr,sp,fn,bgc,fgc){
 	var gdt =COM.getContrastColor(bgc,10);
-	
+	var host,url,enc;
+	var pdcg,li,pullItem,searchItem;
 	for (var i = 0; i < favlist.length; i++) {
-		var host =favlist[i].host;
-		var url =favlist[i].url;
-		var enc =favlist[i].enc?favlist[i].enc:"";
+		host =favlist[i].host;
+		url =favlist[i].url;
+		enc =favlist[i].enc?favlist[i].enc:"";
 		
 		/*pull down 2th item*/
-		var pdcg =document.getElementById("pulldown_category" +favlist[i].type);
+		pdcg =document.getElementById("pulldown_category" +favlist[i].type);
 		if(pdcg && favlist[i].on && favlist[i].url.indexOf("%p")==-1) {
-			var li =pdcg.appendChild(document.createElement("li"));
-			var pullItem =li.appendChild(document.createElement("a"));
+			li =pdcg.appendChild(document.createElement("li"));
+			pullItem =li.appendChild(document.createElement("a"));
 			pullItem.innerText =favlist[i].name;
 			pullItem.style.background =bgc;
 			pullItem.setAttribute("style","color:" +fgc +" !important");
@@ -283,7 +278,7 @@ CTS.favMainLoop =function(stb,tr,sp,fn,bgc,fgc){
 		if (pos =="top" || pos =="bottom") td.style.paddingLeft =td.style.paddingRight =sp +"px";
 		else td.style.paddingTop =td.style.paddingBottom =sp +"px";
 		/*engines*/
-		var searchItem = td.appendChild(document.createElement("a"));
+		searchItem = td.appendChild(document.createElement("a"));
 		searchItem.charset ="UTF-8";
 		searchItem.className =(i==favindex) ? "search2HrefSkin search2HrefSkin2" : "search2HrefSkin";
 		searchItem.setAttribute("style","color:" +fgc +" !important");
@@ -437,24 +432,14 @@ CTS.popMore =function() {
 		morediv =document.documentElement.insertBefore(document.createElement("div"), document.documentElement.firstChild);
 		morediv.id ="search2more";
 	}
+	CTS.loadCss(morediv,"more/more.css","search2MoreCSS",null);
 	
-	var css =document.getElementById("search2MoreCSS");
-	if(!css) {
-		css =document.createElement("link");
-		css.id='search2MoreCSS';
-		css.type ='text/css';
-		css.rel ='stylesheet';
-		css.charset ='utf8';
-		css.href = chrome.extension.getURL("more/more.css");
-		morediv.appendChild(css);
-	}
-
 	var w =favrect.rectw * 85, h =favrect.recth * 50 +65;
 	var pbl =config.morecartoon;
 	var ctrd =config.morecartoonrandom;
 	var stxt =COM.getSelectedText();
 	var kw =(config.searchselected && stxt!="")? stxt : (keywords?keywords:"");
-	COM.alterObj();
+	COM.removeObjdata();
 	CTS.colorBox(i18n.__more_title, null, kw, w, h, true, pbl, ctrd);
 	
 	/*hide pull down menu*/
@@ -505,14 +490,7 @@ CTS.colorBox =function(title, url, kw, w, h, cartoon, parabola, cartoonrandom) {
 	}
 	
 	boxhead.onmousedown =function(){box.domove()};
-	
-	var closeCB =function(){
-		document.documentElement.style.overflow ="auto";
-		var morediv =document.getElementById("search2more");
-		morediv.removeChild(overlay);
-		morediv.removeChild(box);
-	};
-	boxclose.onclick =closeCB;
+	boxclose.onclick =CTS.removeOverlay;
 	
 	//box.style.width =width +"px";
 	//box.style.height =height +"px";
@@ -520,14 +498,12 @@ CTS.colorBox =function(title, url, kw, w, h, cartoon, parabola, cartoonrandom) {
 		iframe.style.width =w +"px";
 		iframe.style.height =h +"px";
 	}
-	
 	var vectors =["TB","BT","LR","RL","TR","BR","TL","BL","CE"];
 	var vt;
 	if (!parabola && !cartoonrandom)  vt ="CE";
 	else if (parabola && !cartoonrandom) vt ="BL";
 	else vt =vectors[parseInt(Math.random()*9)];
 	if(cartoon) box.dopopup(w, h+24, vt, cartoonrandom, parabola);
-		
 };
 
 CTS.makeMore =function(kw) {
@@ -576,13 +552,7 @@ CTS.makeMore =function(kw) {
 	var div =td.appendChild(document.createElement("div"));
 	div.id ="search2_more_remember";
 	div.innerText =i18n.__more_remember;
-	
-	div.onclick =function() {
-		config.morenewwindow =document.getElementById("search2_more_newwindow").checked ? 1 : 0;
-		config.moreautoclose =document.getElementById("search2_more_autoclose").checked ? 1 : 0;
-		chrome.storage.local.set({search2_config : config});
-		alert(i18n.__more_savesuccess);
-	};
+	div.onclick =CTS.moreRemember;
 	
 	/*full favorate search list*/
 	tbd =t.appendChild(document.createElement("tbody"));
@@ -596,6 +566,7 @@ CTS.makeMore =function(kw) {
 		td =trs[favlist[i].type].appendChild(document.createElement("td"));
 		searchItem = td.appendChild(document.createElement("a"));
 		searchItem.title = favlist[i].name;
+		td.setAttribute("atmore", "true");
 		td.setAttribute("host", favlist[i].host);
 		td.setAttribute("url", favlist[i].url);
 		td.setAttribute("enc", (favlist[i].enc?favlist[i].enc:""));
@@ -603,39 +574,9 @@ CTS.makeMore =function(kw) {
 		searchItemImg.src =icondatas[favlist[i].icon];
 		searchItemText =searchItem.appendChild(document.createElement("span"));
 		searchItemText.innerText =favlist[i].name;
-		
-		td.onclick=function(){
-			var target =document.getElementById("search2_more_newwindow").checked ? "_blank" : "_top";
-			var kw =document.getElementById("search2_more_searchInput").value.trim();
-			if(kw=="") return;
-			var host =this.getAttribute("host");
-			var url =this.getAttribute("url");
-			var enc =this.getAttribute("enc");
-			
-			if(!enc) {
-				enckeywords =encodeURIComponent(kw);
-				enckeywords_nhs =enckeywords.replace(/\%(26|2B|2d|2E)/g,"%25$1").replace(/-/g, "%252d").replace(/\./g, "%252E");
-				url =url.replace("%s", nohslist.containOf(host) ? enckeywords_nhs : enckeywords);
-				COM.openMoreURL(url, target);
-			}
-			else {
-				chrome.extension.sendMessage(
-					{action:"search2encodekw", enc:enc, kw:kw},
-					function(response) {
-						enckeywords =response.enckw;
-						//console.log(enc +": " +enckeywords);
-						enckeywords_nhs =enckeywords.replace(/\%(26|2B|2d|2E)/g,"%25$1").replace(/-/g, "%252d").replace(/\./g, "%252E");
-						url =url.replace("%s", nohslist.containOf(host) ? enckeywords_nhs : enckeywords);
-						COM.openMoreURL(url, target);
-					}
-				);
-			}
-		};
-		
+		td.onclick =CTS.clickAslink;
 	}
-	
 	return t;
-	
 };
 
 CTS.runUrlChange =function(){
@@ -652,17 +593,6 @@ CTS.runUrlChange =function(){
 		}
 		//console.log("kw: " +keywords);
 		keywords =(septr=="/")?decodeURIComponent(keywords).replace(/\%25(26|2B|2d|2E)/g, "%$1"):decodeURIComponent(keywords);
-		
-		/*
-		enckeywords =encodeURIComponent(decodeURIComponent(keywords));
-		if(kw==enckeywords) return;
-		var enckeywords_nhs =enckeywords.replace(/\%(26|2B|2d|2E)/g,"%25$1").replace(/-/g, "%252d").replace(/\./g, "%252E");
-		for(var i =0; i<links.length; i++){
-			var host =links[i].getAttribute("host");
-			var url =links[i].getAttribute("url");
-			if(host && url) links[i].href =url.replace("%s", nohslist.containOf(host) ? enckeywords_nhs : enckeywords);
-		}
-		*/
 	}
 };
 
@@ -670,10 +600,7 @@ CTS.runNotUTF =function(){
 	var kwdiv =document.getElementById("search2kwdiv");
 	keywords =kwdiv.innerText;
 	kwdiv.parentNode.removeChild(kwdiv);
-	
-	//CTS.getKeywords(hashSearch, septr);
 	CTS.run();
-	
 };
 
 CTS.runLsnr =function(){
@@ -766,12 +693,20 @@ CTS.getKeywords =function(hashSearch, septr){
 };
 
 CTS.clickAslink =function(){
-	var nw =config.newwindow;
+	var kw,nw;
 	var host =this.getAttribute("host");
 	var url =this.getAttribute("url");
+	var enc =this.getAttribute("enc");
 	var stxt =COM.getSelectedText();
-	var kw =(config.searchselected && stxt!="")? stxt : (keywords?keywords:"");
-	if(!this.getAttribute("enc")) CTS.openURL(host,url,encodeURIComponent(kw),nw);
+	if(this.getAttribute("atmore")){
+		nw =document.getElementById("search2_more_newwindow").checked;
+		kw =document.getElementById("search2_more_searchInput").value.trim();
+		if(document.getElementById("search2_more_autoclose").checked) CTS.removeOverlay();
+	}else{
+		kw =(config.searchselected && stxt!="")? stxt : (keywords?keywords:"");
+		nw =config.newwindow;
+	}
+	if(!enc) CTS.openURL(host,url,encodeURIComponent(kw),nw);
 	else {
 		chrome.extension.sendMessage(
 			{action:"search2encodekw", enc:enc, kw:kw},
@@ -779,11 +714,27 @@ CTS.clickAslink =function(){
 		);
 	}
 };
-		
+
 CTS.openURL =function(host,url,ekw,nw){
 	if(nohslist.containOf(host)) ekw =ekw.replace(/\%(26|2B|2d|2E)/g,"%25$1").replace(/-/g, "%252d").replace(/\./g, "%252E");
 	url =url.replace("%s", ekw);
 	window.open(url, (nw)?"_blank":"_top");
+};
+
+CTS.moreRemember =function() {
+	config.morenewwindow =document.getElementById("search2_more_newwindow").checked ? 1 : 0;
+	config.moreautoclose =document.getElementById("search2_more_autoclose").checked ? 1 : 0;
+	chrome.storage.local.set({search2_config : config});
+	alert(i18n.__more_savesuccess);
+};
+
+CTS.removeOverlay =function(){
+	document.documentElement.style.overflow ="auto";
+	var morediv =document.getElementById("search2more");
+	var overlay =document.getElementById("search2overlay");
+	var colorbox =document.getElementById("search2colorbox");
+	morediv.removeChild(overlay);
+	morediv.removeChild(colorbox);
 };
 
 CTS.setFavrect =function() {
