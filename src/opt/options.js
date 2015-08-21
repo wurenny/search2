@@ -356,9 +356,8 @@ HTML.searchTabSelected =function(){
 		if (lists[i]!=this) lists[i].style.backgroundColor ="";
 	}
 	
-	var searchLists =document.getElementById("search_list");
-	var searchListItems =searchLists.getElementsByTagName("div");
-	for(k=0; k<searchListItems.length; k++){
+	var searchListItems =document.getElementById("search_list").childNodes;
+	for(var k=0; k<searchListItems.length; k++){
 		var searchItem =searchListItems[k];
 		searchItem.id==target?(searchItem.style.setProperty("display","block")):(searchItem.style.setProperty("display","none"));
 	}

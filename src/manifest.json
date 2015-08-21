@@ -40,5 +40,5 @@
 	"description":"__MSG_app_description__",
 	"options_page":"opt/options.html",
 	"permissions":["http://*/*","https://*/*","storage","contextMenus"],
-	"version":"1.1.4"
+	"version":"1.1.5"
 }

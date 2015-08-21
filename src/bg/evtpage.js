@@ -39,7 +39,7 @@ EVPG.msgLsnr =function(){
 	    }
 	    
 	});
-		
+	
 };
 
 EVPG.createCM =function() {
