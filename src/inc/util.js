@@ -174,7 +174,7 @@ UTIL.json2str =function(o, br){
 		for(var i=0;i<o.length;i++) str +=UTIL.json2str(o[i], br);
 		str +="];" +br;
 	}
-	else str +="'" +o + "'" +br;
+	else str +="'" +o + "'," +br;
 	return str;
 };
 
