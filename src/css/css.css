@@ -45,7 +45,7 @@ a.search2HrefSkin2 {
 #search2 {
 	font-family: "Microsoft Yahei" !important;
 	overflow:hidden !important;
-	z-index:999999997;
+	z-index:9999999997;
 	opacity:1;
 	position:fixed;
 	float:left;

@@ -34,7 +34,7 @@ window.onload =function(){
 	HTML.initPageData();
 	HTML.initColorPane();
 	HTML.initClickEvent();
-	//UTIL.getFavicon2("ico","http://search.suning.com/favicon.ico");
+	//UTIL.getFavicon2("ico","http://www.google.com/favicon.ico");
 };
 
 HTML.initI18n =function(){

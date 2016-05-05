@@ -1,23 +1,26 @@
 {
 "description":
-"
- *-------------------------------------------------------------------------
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
- *
- * IDENTIFICATION
- *     manifest.json
- *
- * This file is part of search2 project
- * manifest is the global controllor which use json format, which content
- * is ruled by chrome extension development requirements
- *
- *-------------------------------------------------------------------------
-",
+ "-------------------------------------------------------------------------",
+ "author":
+ " This Source Code Form is subject to the terms of the Mozilla Public     ",
+ "author":
+ " License, v. 2.0. If a copy of the MPL was not distributed with this     ",
+ "author":
+ " file, You can obtain one at http://mozilla.org/MPL/2.0/.                ",
+ "author":
+ " Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved         ",
+ "author":
+ " IDENTIFICATION                                                          ",
+ "author":
+ "     manifest.json                                                       ",
+ "author":
+ " This file is part of search2 project                                    ",
+ "author":
+ " manifest is the global controllor which use json format, which content  ",
+ "author":
+ " is ruled by chrome extension development requirements                   ",
+ "author":
+ "-------------------------------------------------------------------------",
 
 	"web_accessible_resources":["cts/contentScript.js","css/css.css","css/pull.css","more/more.css","opt/options.html"],
 	"background":{
@@ -40,5 +43,5 @@
 	"description":"__MSG_app_description__",
 	"options_page":"opt/options.html",
 	"permissions":["http://*/*","https://*/*","storage","contextMenus"],
-	"version":"1.1.6"
+	"version":"1.1.8"
 }

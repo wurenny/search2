@@ -29,10 +29,10 @@ UTIL.searchListComperator =function(json1, json2){
 
 UTIL.validateURL =function(url) {
 	var strRegex = "^((https|http)?://)"  
-	+ "(([0-9]{1,3}\.){3}[0-9]{1,3}" + "|" + "([0-9a-z_!~*'()-]+\.)*"//ip | www
-	+ "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\." //2th domain
-	+ "[a-z]{2,6})" //1th domain
-	+ "(:[0-9]{1,4})?" //port
+	+ "(([0-9]{1,3}\.){3}[0-9]{1,3}" + "|" + "([0-9a-z_!~*'()-]+\.)*"/*ip | www*/
+	+ "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\." /*2th domain*/
+	+ "[a-z]{2,6})" /*1th domain*/
+	+ "(:[0-9]{1,4})?" /*port*/
 	+"((/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
 	var re=new RegExp(strRegex,"i");  
 	if (re.test(url)) return true;  
@@ -45,7 +45,7 @@ UTIL.getFavicon =function(img) {
 	cv.height =img.offsetHeight;
 	var ctx =cv.getContext("2d");
 	ctx.drawImage(img,0,0);
-	//console.log(img.offsetWidth +"," +img.offsetHeight);
+	/*console.log(img.offsetWidth +"," +img.offsetHeight);*/
 	return cv.toDataURL("image/x-icon");
 };
 
@@ -60,7 +60,7 @@ UTIL.getFavicon2 =function(hostname,url) {
 		cv.height =img.offsetHeight;
 		var ctx =cv.getContext("2d");
 		ctx.drawImage(img,0,0);
-		//txt.innerHTML =txt.innerHTML +"," +hostname.replace(/\./g, "_") +" : '" +cv.toDataURL("image/x-icon").toString() +"'<br>";
+		/*txt.innerHTML =txt.innerHTML +"," +hostname.replace(/\./g, "_") +" : '" +cv.toDataURL("image/x-icon").toString() +"'<br>";*/
 		console.log(hostname +": " +img.offsetWidth +"," +img.offsetHeight);
 		console.log(cv.toDataURL("image/x-icon").toString());
 		this.parentNode.removeChild(this);
@@ -163,7 +163,7 @@ UTIL.json2str =function(o, br){
 			}
 			else {
 				ov =/^\d+$/.test(ov) ? ov : "'" +ov +"'";
-				//ov ="'" +ov +"'";
+				/*ov ="'" +ov +"'";*/
 				str +=oo + ":" +ov +",";
 			}
 		}
@@ -183,7 +183,7 @@ UTIL.option2str =function(storages,br){
 	for(o in storages){
 		if(!/^search2_\w+/.test(o)) continue;
 		str +="BAKDATA." +o +" =" +UTIL.json2str(storages[o],br);
-		//str =str.replace(new RegExp("," +br +"}","g"),br +"}");
+		/*str =str.replace(new RegExp("," +br +"}","g"),br +"}");*/
 		str =str.replace(new RegExp("}," +br +"$"),"};" +br +br);
 	}
 	return str;
