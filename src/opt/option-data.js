@@ -171,7 +171,7 @@ IDATA.search2_favlist =[
 	,{on:1, type:3, sno:2, cm:0, name:'Youtube', icon:'www_youtube_com', enc:'', prkw:'search_query=', host:'www.youtube.com', urltf:'www.youtube.com/results', url:'https://www.youtube.com/results?search_query=%s'}
 
 	,{on:1, type:0, sno:3, cm:0, name:'搜狗新闻', icon:'news_sogou_com', enc:'', prkw:'query=', host:'news.sogou.com', urltf:'', url:'http://news.sogou.com/news?ie=utf8&query=%s'}
-	,{on:1, type:1, sno:3, cm:0, name:'搜狗网页', icon:'www_sogou_com', enc:'', prkw:'query=', host:'www.sogou.com', urltf:'', url:'http://www.sogou.com/web?ie=utf8&query=%s'}
+	,{on:1, type:1, sno:3, cm:0, name:'搜狗网页', icon:'www_sogou_com', enc:'', prkw:'query=', host:'www.sogou.com', urltf:'', url:'https://www.sogou.com/web?ie=utf8&query=%s'}
 	,{on:1, type:2, sno:3, cm:0, name:'搜狗图片', icon:'pic_sogou_com', enc:'', prkw:'query=', host:'pic.sogou.com', urltf:'', url:'http://pic.sogou.com/pics?ie=utf8&query=%s'}
 	,{on:0, type:3, sno:3, cm:0, name:'搜狗视频', icon:'v_sogou_com', enc:'', prkw:'query=', host:'v.sogou.com', urltf:'', url:'http://v.sogou.com/v?ie=utf8&query=%s'}
 
