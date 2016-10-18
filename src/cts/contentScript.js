@@ -691,7 +691,8 @@ CTS.getKeywords =function(hashSearch, septr){
 	}
 	else if("/"==septr){
 		if(hashSearch.indexOf('search.suning.com') >=0) keywords =hashSearch.split(prkw)[1].split("/")[1].split("?")[0].split("#")[0];
-		if(hashSearch.indexOf('so.iqiyi.com') >=0) keywords =hashSearch.split(prkw)[1].split("?")[0];
+        else if(hashSearch.indexOf('so.iqiyi.com') >=0) keywords =hashSearch.split(prkw)[1].split("?")[0];
+        else keywords =hashSearch.split(prkw)[1].split("/")[1];
 	}
 };
 
