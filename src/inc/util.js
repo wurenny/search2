@@ -155,6 +155,7 @@ UTIL.json2str =function(o, br){
 		str +="{" +br;
 		for(var oo in o){
 			var ov =o[oo];
+			oo =/^\d+$/.test(oo) ? oo : "'" +oo +"'";
 			if(UTIL.isJson(ov)) str +=oo +":" +UTIL.json2str(ov, br);
 			else if(ov instanceof Array) {
 				str +=oo + ":[" +br;
