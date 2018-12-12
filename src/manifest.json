@@ -28,5 +28,5 @@
 	"name": "__MSG_app_title__",
 	"options_page": "opt/options.html",
 	"permissions": ["http://*/*", "https://*/*", "storage", "contextMenus"],
-	"version": "1.1.10"
+	"version": "1.1.11"
 }

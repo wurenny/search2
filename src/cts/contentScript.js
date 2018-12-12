@@ -19,7 +19,7 @@ var CTS ={}, i18n ={};
 var favnum ={}, favrect ={};
 var hashSearch, septr;
 var keywords, enc, enckeywords;
-var favindex, pos, stype, prkw;
+var favindex, pos, stype, prkw, urltf;
 var whmargin, msovered =0;
 
 CTS.initI18n =function(){
@@ -58,6 +58,7 @@ CTS.init =function(){
 			)
 		){
 			favindex = i;
+			urltf =favlist[i].urltf;
 			prkw =favlist[i].prkw;
 			stype =favlist[i].type;
 			break;
@@ -66,18 +67,20 @@ CTS.init =function(){
 		
 	/*transfer link?*/
 	if (thisurl.indexOf("/link?")!=-1) return;
-	if(!prkw) return;
+	if (!prkw) return;
 	
-	//action for keywords
+	/*action for keywords*/
 	if (nohslist.containOf(hostname)) {
 		septr ="/";
 		var href =thisurl;
-		hashSearch =href.substr(href.indexOf("://")+3).replace(/\%25(26|2B|2d|2E)/g, "%$1");
+		hashSearch =href.substr(href.indexOf("://")+3);
+		if (urltf!=".") hashSearch =hashSearch.replace(/\%25(26|2B|2d|2E)/g, "%$1");
 		hashSearch =hashSearch.replace(/\+/g, " ");
 		CTS.getKeywords(hashSearch, septr);
 	}
 	else septr ="&";
-	//location hash | search
+    //console.log("urltf=" + urltf + " prkw=" + prkw + " septr=" + septr + " kws=" + keywords + " hs=" + hashSearch);
+	/*location hash | search*/
 	if (!keywords) {
 		hashSearch =document.location.search.slice(1);
 		hashSearch =hashSearch.replace(/\+/g, " ");
@@ -252,6 +255,7 @@ CTS.favMainLoop =function(stb,tr,sp,fn,bgc,fgc){
 	for (var i = 0; i < favlist.length; i++) {
 		host =favlist[i].host;
 		url =favlist[i].url;
+		urltf =favlist[i].urltf;
 		enc =favlist[i].enc?favlist[i].enc:"";
 		
 		/*pull down 2th item*/
@@ -264,6 +268,7 @@ CTS.favMainLoop =function(stb,tr,sp,fn,bgc,fgc){
 			pullItem.setAttribute("style","color:" +fgc +" !important");
 			pullItem.setAttribute("host",host);
 			pullItem.setAttribute("url",url);
+			pullItem.setAttribute("urltf",urltf);
 			pullItem.setAttribute("enc", enc);
 			/*mouse event*/
 			pullItem.onmouseover =function(){this.setbg(gdt)};
@@ -284,6 +289,7 @@ CTS.favMainLoop =function(stb,tr,sp,fn,bgc,fgc){
 		searchItem.setAttribute("style","color:" +fgc +" !important");
 		searchItem.setAttribute("host",host);
 		searchItem.setAttribute("url",url);
+		searchItem.setAttribute("urltf",urltf);
 		searchItem.setAttribute("enc", enc);
 		searchItem.title = favlist[i].name;
 		searchItemImg = searchItem.appendChild(document.createElement("img"));
@@ -569,6 +575,7 @@ CTS.makeMore =function(kw) {
 		td.setAttribute("atmore", "true");
 		td.setAttribute("host", favlist[i].host);
 		td.setAttribute("url", favlist[i].url);
+		td.setAttribute("urltf", favlist[i].urltf);
 		td.setAttribute("enc", (favlist[i].enc?favlist[i].enc:""));
 		searchItemImg = searchItem.appendChild(document.createElement("img"));
 		searchItemImg.src =icondatas[favlist[i].icon];
@@ -700,6 +707,7 @@ CTS.clickAslink =function(){
 	var kw,nw;
 	var host =this.getAttribute("host");
 	var url =this.getAttribute("url");
+	var urltf =this.getAttribute("urltf");
 	var enc =this.getAttribute("enc");
 	var stxt =COM.getSelectedText();
 	if(this.getAttribute("atmore")){
@@ -710,18 +718,19 @@ CTS.clickAslink =function(){
 		kw =(config.searchselected && stxt!="")? stxt : (keywords?keywords:"");
 		nw =config.newwindow;
 	}
-	if(!enc) CTS.openURL(host,url,encodeURIComponent(kw),nw);
+	if(!enc) CTS.openURL(host,url,encodeURIComponent(kw),urltf,nw);
 	else {
 		chrome.extension.sendMessage(
 			{action:"search2encodekw", enc:enc, kw:kw},
-			function(response) {CTS.openURL(host,url,response.enckw,nw)}
+			function(response) {CTS.openURL(host,url,response.enckw,urltf,nw)}
 		);
 	}
 };
 
-CTS.openURL =function(host,url,ekw,nw){
-	if(nohslist.containOf(host)) ekw =ekw.replace(/\%(26|2B|2d|2E)/g,"%25$1").replace(/-/g, "%252d").replace(/\./g, "%252E");
+CTS.openURL =function(host,url,ekw,urltf,nw){
+	if(nohslist.containOf(host) && urltf!=".") ekw =ekw.replace(/\%(26|2B|2d|2E)/g,"%25$1").replace(/-/g, "%252d").replace(/\./g, "%252E");
 	url =url.replace("%s", ekw);
+    //console.log("urltf=" + urltf + " url=" + url);
 	window.open(url, (nw)?"_blank":"_top");
 };
 
