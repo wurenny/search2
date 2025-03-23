@@ -2,7 +2,7 @@
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
  * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
  *
@@ -148,10 +148,10 @@
 "op_mtip_borderline":{"message":"put color on searchbar's border so that looks more beautiful"},
 "op_mtip_form_url":{"message":"use %s replace the text keywords and %p replace the url address of a picture please"},
 "op_mtip_form_tf":{"message":"some search engine identifies the search-type use url parameter, but not hostname, such as google, bing. you must input a typeflag here,for example: &tbm=isch, &tbm=web and so on"},
-"op_mtip_form_prkw":{"message":"a prefix of keywords is the key-name of %s, for example: q=; you should input url between http:// and keywords when [use path keywods] is checked"},
+"op_mtip_form_prkw":{"message":"a prefix of keywords is the key-name of %s, for example: q=; you should input url between https:// and keywords when [use path keywods] is checked"},
 "op_mtip_form_enc":{"message":"it's necessary only when the search engine is not supports utf-8 encoding. you can find the search engine's encoding with clicking: [chrome customize control menu]>[Tools]>[Encoding]"},
-"op_mtip_form_googleico":{"message":"Google provides a icon service for most of website, you can use it if you can't find the icon of search engine, the serviice url is: http://www.google.com/s2\n/favicons?domain=website-domain"},
-"op_mtip_form_pathkw":{"message":"this is a partiular option for compats few search engines, for example: http://search.suning.com/%s/；you should input [keywords prerix] cooperatively if checked"},
+"op_mtip_form_googleico":{"message":"Google provides a icon service for most of website, you can use it if you can't find the icon of search engine, the serviice url is: https://www.google.com/s2\n/favicons?domain=website-domain"},
+"op_mtip_form_pathkw":{"message":"this is a partiular option for compats few search engines, for example: https://search.suning.com/%s/；you should input [keywords prerix] cooperatively if checked"},
 
 "oth_readme":{"message":"readme"},
 "oth_readme1":{"message":"search2 has three principles in design, they are lightly, simply and easily"},
@@ -159,7 +159,7 @@
 "oth_readme3":{"message":"search2's UI is very consice, it take up only a small place, and you can even hide it, it keep a good web experience as soon as possible"},
 "oth_readme4":{"message":"search2 follows many Google-ideas also: Focus on the user and considers fully user habits; Fast is better than slow, responses quickly for web experiences; Democracy and fairness on the web works, search2 donot binds any search engine, even google self, you can define all search engines yourself"},
 "oth_readme5":{"message":"search2 needs that the chrome webkit version greater than 21"},
-"oth_readme6":{"message":"search2 love Google deeply"},
+"oth_readme6":{"message":"The past is not available, the present is not available, the future is not available"},
 "oth_ipr1":{"message":"Copyright：search2's icons"},
 "oth_ipr2":{"message":"and"},
 "oth_ipr3":{"message":"are owned by google corporation, Google is entitled to recover the right; search2's source code is owned by its author, it's not allowed for modification and release again on chrome market or third-party browser market which based chrome, search2 reserves the right to pursue legal responsibilities"},

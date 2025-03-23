@@ -2,7 +2,7 @@
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
  * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
  *
@@ -23,7 +23,7 @@ var initI18n =function(){
 
 window.onload =function(){
 	/**
-	chrome.extension.sendRequest(
+	chrome.runtime.sendRequest(
 		{action: "getkw"},
 		function(response){
 			var kw =response.utfkw;
@@ -57,7 +57,7 @@ window.onload =function(){
 					if(!nohslist) nohslist =IDATA.search2_nohslist;
 					
 					/*config */
-					chrome.extension.sendRequest(
+					chrome.runtime.sendRequest(
 						{action: "xCorlorBox"},
 						function(rep) {console.log(rep.overlay);}
 					);

@@ -2,7 +2,7 @@
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
  * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
  *
@@ -191,7 +191,7 @@ Array.prototype.containOf =function(e){
 
 COM.chromeCompatible =function(){
 	var chromeVersion = navigator.userAgent.toLowerCase().match(/chrome\/(\d+)/);
-	if ((typeof chrome == 'object') && (typeof chrome.extension == 'object')
+	if ((typeof chrome == 'object') && (typeof chrome.runtime == 'object')
 		&& chromeVersion.length > 1 && chromeVersion[1] >=21)
 		return true;
 	return false;

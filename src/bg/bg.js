@@ -1,4 +1,4 @@
-<!-------------------------------------------------------------------------
+/*-------------------------------------------------------------------------
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -10,17 +10,10 @@
  *     bg/evtpage.html
  *
  * This file is part of search2 project
- * evtpage is the background checkview page for search2
+ * bg.js is the background service worker for search2
  *
  *------------------------------------------------------------------------->
+*/
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <script type="text/javascript" src="/opt/option-data.js" charset="utf8"></script>
-    <script type="text/javascript" src="/bg/evtpage.js" charset="utf8"></script>
-</head>
-<body></body>
-</html>
+import '/opt/option-data.js'
+import '/bg/evtpage.js'

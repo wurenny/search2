@@ -2,7 +2,7 @@
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
  * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
  *
@@ -150,19 +150,19 @@
 "op_mtip_form_tf":{"message":"像Google一样的某些的搜索引擎，在网页、图片等不同的搜索类别，使用了相同的域名如www.google.com，他们在用URL参数来区分不同的搜索类别，这种情况下需要填写识别语，如&tbm=isch, &tbm=web等等"},
 "op_mtip_form_prkw":{"message":"关键词前缀顾名思义是指：%s左边那部分的参数名字，如q=；如果选择【使用目录作为关键词】，则此处应填写目录关键词路径前面的URL部分"},
 "op_mtip_form_enc":{"message":"仅用于某些不支持utf8编码的搜索引擎，你可以依次点击：【自定义设置菜单】>【工具】>【编码】查看搜索引擎使用的编码"},
-"op_mtip_form_googleico":{"message":"Google提供了一个在线的网站图标服务，如果你找不到搜索引擎的图标，可以使用这个服务，勾选此处会自动填写图标定义为：http://www.google.com/s2\n/favicons?domain=域名"},
-"op_mtip_form_pathkw":{"message":"这是一个为兼容极少数搜索引擎的特殊选项，因为这些搜索引擎并没有使用标准的URL参数传递关键词，而是采用了action的请求方式，如苏宁易购：http://search.suning.com/关键词/；勾选此外还应注意【关键词前缀】的定义方法"},
+"op_mtip_form_googleico":{"message":"Google提供了一个在线的网站图标服务，如果你找不到搜索引擎的图标，可以使用这个服务，勾选此处会自动填写图标定义为：https://www.google.com/s2\n/favicons?domain=域名"},
+"op_mtip_form_pathkw":{"message":"这是一个为兼容极少数搜索引擎的特殊选项，因为这些搜索引擎并没有使用标准的URL参数传递关键词，而是采用了action的请求方式，如苏宁易购：https://search.suning.com/关键词/；勾选此外还应注意【关键词前缀】的定义方法"},
 
 "oth_readme":{"message":"关于我"},
-"oth_readme1":{"message":"search2的设计遵循三个原则，它们是：轻快、极简、易用"},
+"oth_readme1":{"message":"search2的设计遵循四个原则，它们是：轻快、极简、易用、可扩展"},
 "oth_readme2":{"message":"search2没有引入任何第三方Javascript库，并只在用户指定的搜索引擎页面加载"},
 "oth_readme3":{"message":"search2的用户界面极其简单，只占用页面很小的位置，甚至可以将其靠边隐藏，尽量不干扰用户原本的web体验"},
 "oth_readme4":{"message":"search2同时也遵循Google信条：以用户为中心，充分考虑用户使用习惯；越快越好，响应快速，web体验再快也不为过；网络是公平、民主的，不捆绑任何搜索引擎，包括Google本身，所有搜索引擎是用户完全可自定义的"},
 "oth_readme5":{"message":"search2需要Chrome核心版本大于21才能正常使用"},
-"oth_readme6":{"message":"search2 love Google deeply"},
+"oth_readme6":{"message":"过去心不可得，现在心不可得，未来心不可得"},
 "oth_ipr1":{"message":"知识产权声明：search2的设置图标"},
 "oth_ipr2":{"message":"和更多图标"},
-"oth_ipr3":{"message":"归属Google公司所有，Google有权收回其使用权；search2的源代码产权归作者所有，	任何个人或组织不可对其修改并再次发布在Chrome市场或基于Chrome核心的浏览器市场，作者保留追究其法律责任的权利"},
+"oth_ipr3":{"message":"归属Google公司所有，Google有权收回其使用权；search2的源代码产权归作者所有，任何个人或组织不可对其修改并再次发布在Chrome市场或基于Chrome核心的浏览器市场，作者保留追究其法律责任的权利"},
 "oth_reset_confirm":{"message":"你正在恢复默认配置，这将丢失你当前的所有配置，确定要重置？"},
 "oth_tab_untitled":{"message":"未命名"},
 "oth_tab_rm_confirm":{"message":"确定要移除这个搜索类别，包括这个类别下的所有搜索引擎项吗？"},

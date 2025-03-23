@@ -2,7 +2,7 @@
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
  * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
  *
@@ -229,7 +229,7 @@ CTS.createConfigbtn =function(td){
 	
 	configBtn.addEventListener("click", 
 		function() {
-			var url =chrome.extension.getURL("opt/options.html") +"?s=cts";
+			var url =chrome.runtime.getURL("opt/options.html") +"?s=cts";
 			window.open(url, "_blank");
 		},
 	false);
@@ -613,11 +613,11 @@ CTS.runNotUTF =function(){
 CTS.runLsnr =function(){
 	if (config.cmenu) {
 		document.oncontextmenu =function(){
-			chrome.extension.sendMessage({action: "search2initcm"});
+			chrome.runtime.sendMessage({action: "search2initcm"});
 		};
 	}
 	
-	chrome.extension.onMessage.addListener(
+	chrome.runtime.onMessage.addListener(
 	  function(request, sender, sendResponse) {
 	    if (request.action == "search2popmore") {
 				CTS.setFavrect();
@@ -674,7 +674,7 @@ CTS.loadCss =function(e, f, id, cb) {
 		css.type ="text/css";
 		css.rel ="stylesheet";
 		css.charset ="utf8";
-		css.href = chrome.extension.getURL(f);
+		css.href = chrome.runtime.getURL(f);
 		e.appendChild(css);
 		if(cb) css.onload= cb;
 	}
@@ -720,7 +720,7 @@ CTS.clickAslink =function(){
 	}
 	if(!enc) CTS.openURL(host,url,encodeURIComponent(kw),urltf,nw);
 	else {
-		chrome.extension.sendMessage(
+		chrome.runtime.sendMessage(
 			{action:"search2encodekw", enc:enc, kw:kw},
 			function(response) {CTS.openURL(host,url,response.enckw,urltf,nw)}
 		);

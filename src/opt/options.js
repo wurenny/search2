@@ -2,7 +2,7 @@
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
  * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
  *
@@ -34,7 +34,7 @@ window.onload =function(){
 	HTML.initPageData();
 	HTML.initColorPane();
 	HTML.initClickEvent();
-	//UTIL.getFavicon2("ico","http://www.google.com/favicon.ico");
+	//UTIL.getFavicon2("ico","https://www.google.com/favicon.ico");
 };
 
 HTML.initI18n =function(){
@@ -198,7 +198,7 @@ HTML.injectSearchTab =function(favtypes) {
 		li.setAttribute("target", "search_list_" + k);
 		input.setAttribute("for", "search_category_" + k);
 		input.type ="text";
-		input.disabled =true;
+		input.readOnly =true;
 		input.value =v;
 		xdiv.innerText ="x";
 		
@@ -207,14 +207,14 @@ HTML.injectSearchTab =function(favtypes) {
 			var input =this.firstChild;
 			input.style.color ="red";
 			input.setAttribute("oname", input.value);
-			input.disabled =!input.disabled;
+			input.readOnly =!input.readOnly;
 			input.focus();
 		};
 		
 		input.onblur =function() {
 			if(this.value.trim()=="") this.value =this.getAttribute("oname");
 			this.style.color ="";
-			this.disabled =true;
+			this.readOnly =true;
 		};
 		
 		xdiv.onclick =function() {
@@ -304,8 +304,8 @@ HTML.injectSearchList =function(json){
 	cmCheckbox.type ="checkbox";
 	cmCheckbox.checked =json.cm;
 	cmLabel.innerText =i18n.__op_search_addcm;
-	inputName.disabled ="disabled";
-	inputHost.disabled ="disabled";
+	inputName.readOnly =true;
+	inputHost.readOnly =true;
 	inputName.size ="15";
 	inputHost.size ="45";
 	addcm.appendChild(cmCheckbox);
@@ -330,8 +330,8 @@ HTML.injectSearchList =function(json){
 	ul.appendChild(li);
 	for(var node in span.children) span.children[node].className ="searchListOp";
 	
-	inputName.onblur =function(){this.style.border ="0";this.disabled ="disabled";};
-	inputHost.onblur =function(){this.style.border ="0";this.disabled ="disabled";};
+	inputName.onblur =function(){this.style.border ="0";this.readOnly =true;};
+	inputHost.onblur =function(){this.style.border ="0";this.readOnly =true;};
 	li.onclick =HTML.searchListSelected;
 	cmCheckbox.onclick =HTML.searchListAcm;
 	op_edit.onclick =HTML.searchListEdit;
@@ -344,6 +344,7 @@ HTML.injectSearchList =function(json){
 };
 
 HTML.searchTabSelected =function(){
+	console.log("search list selected " + this);
 	var search_att =document.getElementById("search_att");
 	if(search_att.getAttribute("locked")) return;
 	search_att.setAttribute("ctype",this.getAttribute("ctype"));
@@ -391,7 +392,7 @@ HTML.searchListSelected =function(){
 	if (att_enc_option) att_enc_option.selected =true;
 	else document.getElementById("__op_search_form_enc_default").selected =true;
 	document.getElementById("att_enc").style.color ="#4C4C4C";
-	googleico.checked =(url.indexOf("http://www.google.com/s2/favicons?domain=")>-1);
+	googleico.checked =(url.indexOf("https://www.google.com/s2/favicons?domain=")>-1);
 	pathkw.checked =(prkw.substr(-1) !="=");
 	
 };
@@ -540,7 +541,13 @@ HTML.searchListConfirm =function(type, e) {
 	
 	/*if get icon timeout*/
 	iconloaded =false;
-	icoevt =setTimeout("if(!iconloaded) {HTML.showTip(i18n.__op_tip_fom_icon_timeout, 4000);foricon.innerHTML='';}clearTimeout(icoevt);", 5000);
+	//icoevt =setTimeout("if(!iconloaded) {HTML.showTip(i18n.__op_tip_fom_icon_timeout, 4000);foricon.innerHTML='';}clearTimeout(icoevt);", 5000);
+	setTimeout(() => {
+		if(!iconloaded) {
+			HTML.showTip(i18n.__op_tip_fom_icon_timeout, 4000);
+			foricon.innerHTML='';
+		}
+	}, 5000);
 	
 	img.onload =function() {
 		iconloaded =true;
@@ -765,7 +772,7 @@ HTML.saveOption =function(){
 	);
 	
 	if (!config.cmenu) chrome.contextMenus.removeAll();
-	else chrome.extension.sendMessage({action: "search2createcm"});
+	else chrome.runtime.sendMessage({action: "search2createcm"});
 		
 	HTML.showTip(i18n.__op_tip_save_success);
 };
@@ -866,7 +873,7 @@ HTML.googleIco =function() {
 	if (this.checked) {
 		att_icon.setAttribute("oico", att_icon.value);
 		var att_url =document.getElementById("att_url").value;
-		att_icon.value ="http://www.google.com/s2/favicons?domain=" +att_url.split("/")[2];
+		att_icon.value ="https://www.google.com/s2/favicons?domain=" +att_url.split("/")[2];
 	}
 	else {
 		att_icon.value =att_icon.getAttribute("oico");
@@ -878,8 +885,8 @@ HTML.showTip =function(msg, sec) {
 	tip.innerText =msg;
 	tip.style.display ="block";
 	tip.style.marginLeft =(tip.parentNode.getBoundingClientRect().width -tip.getBoundingClientRect().width) /2 +"px";
-	evt =setTimeout("tip.style.display ='none';tip.innerText='';clearTimeout(evt);", (sec?sec:2000));
-
+	//evt =setTimeout("tip.style.display ='none';tip.innerText='';clearTimeout(evt);", (sec?sec:2000));
+	setTimeout(() => {tip.style.display ='none';tip.innerText='';}, 1000);
 };
 
 HTML.showMiniTip =function(e, msg, sec) {
@@ -910,7 +917,8 @@ HTML.showMiniTip =function(e, msg, sec) {
 	tip.style.top =y +5 +"px";
 	tiptxt.innerText =msg;
 	tip.style.display ="block";
-	evt =setTimeout("minitip.style.display ='none';minitiptxt.innerText='';clearTimeout(evt);", (sec?sec:2000));
+	//evt =setTimeout("minitip.style.display ='none';minitiptxt.innerText='';clearTimeout(evt);", (sec?sec:2000));
+	setTimeout(() => {minitip.style.display ='none';minitiptxt.innerText='';}, 1000);
 };
 
 HTML.exportOption =function(){

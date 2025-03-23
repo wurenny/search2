@@ -2,7 +2,7 @@
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
  * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
  *
@@ -20,7 +20,7 @@ var favlist;
 var cmstate;
 
 EVPG.msgLsnr =function(){
-	chrome.extension.onMessage.addListener(
+	chrome.runtime.onMessage.addListener(
 	  function(request, sender, sendResponse) {
 	  	if (request.action =="search2createcm") {
 	  		EVPG.createCM();
@@ -154,7 +154,7 @@ EVPG.encodeURL = function(cb, charset, str){
 	form.acceptCharset =charset;
 	form.id =formId;
 	form.method = "get";
-	//form.action =chrome.extension.getURL("/oth/blank.html");
+	//form.action =chrome.runtime.getURL("/oth/blank.html");
 	form.target = iframeId;
 	form.style.display = "none";
 	var input = document.createElement("input");

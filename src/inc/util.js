@@ -2,7 +2,7 @@
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
  * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
  *
@@ -49,23 +49,41 @@ UTIL.getFavicon =function(img) {
 	return cv.toDataURL("image/x-icon");
 };
 
-UTIL.getFavicon2 =function(hostname,url) {
+UTIL.getFavicon2 =async function(hostname,url,mute) {
 	var img =document.getElementById("foricon").appendChild(document.createElement("img"));
 	var cv =document.createElement("canvas");
-	img.src =url;
-	var txt =document.getElementById("txt");
+	//var txt =document.getElementById("txt");
+	var response = await fetch(url, { method: "HEAD", redirect: "follow" });
+	if (url != response.url) console.log("redirect real icon url: " + url + " ==> " + response.url);
+	img.src = response.url;
 	
-	img.onload =function() {
-		cv.width =img.offsetWidth;
-		cv.height =img.offsetHeight;
-		var ctx =cv.getContext("2d");
-		ctx.drawImage(img,0,0);
-		/*txt.innerHTML =txt.innerHTML +"," +hostname.replace(/\./g, "_") +" : '" +cv.toDataURL("image/x-icon").toString() +"'<br>";*/
-		console.log(hostname +": " +img.offsetWidth +"," +img.offsetHeight);
-		console.log(cv.toDataURL("image/x-icon").toString());
-		this.parentNode.removeChild(this);
-	}
+	return new Promise((resolve) => {
+		img.onload =function() {
+			cv.width =img.offsetWidth;
+			cv.height =img.offsetHeight;
+			var ctx =cv.getContext("2d");
+			ctx.drawImage(img,0,0);
+			var imgstr = cv.toDataURL("image/x-icon").toString()
+			/*txt.innerHTML =txt.innerHTML +"," +hostname.replace(/\./g, "_") +" : '" +cv.toDataURL("image/x-icon").toString() +"'<br>";*/
+			if (!mute) console.log(hostname +": icon-width[" +img.offsetWidth +"],icon-height[" +img.offsetHeight + "], icon-strcode: " + imgstr);
+			this.parentNode.removeChild(this);
+			resolve(imgstr);
+		}
+	})
 };
+
+UTIL.genIconData =async function(iconurls) {
+	if (!iconurls) var iconurls = IDATA.search2_iconurls;
+	if (UTIL.isJson(iconurls)) {
+		var str ="";
+		for(let k in iconurls) {
+			//if (! (k == "s_taobao_com" || k == "y_qq_com")) continue;
+			str += ("  ," + k + " : '" + await UTIL.getFavicon2(null, iconurls[k], true) + "'\n");
+			//await new Promise(resolve => setTimeout(resolve, 1000));
+		}
+		console.log(str);
+	}
+}
 
 UTIL.onlyNumInput =function(e, minnum, maxnum) {
 	var n =e.value.replace(/[^0-9]/g, '');
@@ -179,7 +197,7 @@ UTIL.json2str =function(o, br){
 	return str;
 };
 
-UTIL.option2str =function(storages,br){
+UTIL.option2str =function(storages, br){
 	var str ="var BAKDATA ={};" +br +br;
 	for(o in storages){
 		if(!/^search2_\w+/.test(o)) continue;
@@ -190,13 +208,17 @@ UTIL.option2str =function(storages,br){
 	return str;
 };
 
-UTIL.fileSaveAs=function(blob,filename){
+UTIL.fileSaveAs=function(blob, filename){
   var url = URL.createObjectURL(new Blob([blob], {type:'application/octet-stream'}));
   var bloba = document.createElement('a');
   bloba.href = url;
   bloba.download = filename;
-  var e = document.createEvent('MouseEvents');
-  e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+  //var e = document.createEvent('MouseEvents');
+  //e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+  var e = new MouseEvent('click');
   bloba.dispatchEvent(e);
   URL.revokeObjectURL(url);
+	//chrome.downloads.download({url: url, filename: message.filename, saveAs: true});
+	// release URL delay so that download finished
+	setTimeout(() => URL.revokeObjectURL(url), 3000);
 } 
