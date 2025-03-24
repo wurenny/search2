@@ -9,7 +9,7 @@ search2 is a practical and extensible search assistant, here is about me：
 1. The past mind is unattainable, The present mind is unattainable, The future mind is unattainable
 
 ## Installation
-1. search2 has released to Chrome Webstore, [goto Webstore and install](https://chrome.google.com/webstore/detail/search2/godjlopkhiadfppdjhbekbppchinkmpi）
+1. search2 has released to Chrome Webstore, [goto Chrome Webstore and install](https://chrome.google.com/webstore/detail/search2/godjlopkhiadfppdjhbekbppchinkmpi)
 
 ## Developerment
 1. Clone this repository to your local machine and open the directory using a IDE. VSCode is recommended
