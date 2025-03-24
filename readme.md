@@ -1,4 +1,4 @@
-# search2
+# search2 | [[中文]](https://github.com/wurenny/search2/blob/master/readme_zh.md)
 ## Introduction
 search2 is a practical and extensible search assistant, here is about me：
 1. search2 follows four design principles: lightness, simplicity, ease of use, and scalability"
