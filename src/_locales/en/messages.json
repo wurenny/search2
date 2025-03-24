@@ -16,159 +16,157 @@
  */
 
 {
-"app_title": {"message": "search2"},
-"app_description": {"message": "Create a good search habit by yourself !"},
-"com_typename_news":{"message":"news"},
-"com_typename_web":{"message":"web"},
-"com_typename_picture":{"message":"pict"},
-"com_typename_video":{"message":"vido"},
-"com_typename_music":{"message":"musc"},
-"com_typename_shopping":{"message":"shop"},
-"com_moresearch":{"message":"more"},
-"com_close":{"message":"close"},
+ "app_title": {"message": "search2"}
+,"app_description": {"message": "Practical and extensible search assistant"}
+,"com_typename_news":{"message":"news"}
+,"com_typename_web":{"message":"web"}
+,"com_typename_picture":{"message":"pict"}
+,"com_typename_video":{"message":"vido"}
+,"com_typename_music":{"message":"musc"}
+,"com_typename_shopping":{"message":"shop"}
+,"com_moresearch":{"message":"more"}
+,"com_close":{"message":"close"}
 
-"cts_more_tip":{"message":"open all search engines"},
-"cts_config_tip":{"message":"open configure options"},
+,"cts_more_tip":{"message":"open all search engines"}
+,"cts_config_tip":{"message":"open configure options"}
 
-"more_title":{"message":"more search"},
-"more_autoclose":{"message":"close box after open link"},
-"more_newwindow":{"message":"open in new window"},
-"more_remember":{"message":"remember me"},
-"more_savesuccess":{"message":"Save successfully !"},
+,"more_title":{"message":"more search"}
+,"more_autoclose":{"message":"close box after open link"}
+,"more_newwindow":{"message":"open in new window"}
+,"more_remember":{"message":"remember me"}
+,"more_savesuccess":{"message":"Save successfully !"}
 
-"op_title":{"message":"Options"},
-"op_reset":{"message":"reset"},
-"op_import":{"message":"import"},
-"op_import_success":{"message":"Import configure success !"},
-"op_import_failed":{"message":"File format incorrect !"},
-"op_export":{"message":"export"},
-"op_cancel":{"message":"cancel"},
-"op_save":{"message":"save"},
-"op_config":{"message":"global config settings"},
-"op_config_newwindow":{"message":"open link in newwindow"},
-"op_config_selected":{"message":"search selected text"},
-"op_config_cmenu":{"message":"enable context search menu"},
-"op_config_autohide":{"message":"auto hide search2"},
-"op_config_tiled":{"message":"tile search2 bar"},
-"op_config_cartoon":{"message":"enable fly-disk cartoon"},
-"op_config_cartoon_rd":{"message":"enable cartoon randomly"},
-"op_config_right_indentdistance":{"message":"retract from right margin(5~50): "},
-"op_config_percent":{"message":" %(percentage)"},
-"op_config_indentdistance":{"message":"retract of first search engine(5~500): "},
-"op_config_intervaldistance":{"message":"interval among search engines(5~200): "},
-"op_config_px":{"message":" pixel"},
-"op_config_pos":{"message":"search2 position: "},
-"op_config_pos_left":{"message":"left"},
-"op_config_pos_right":{"message":"right/smart display"},
-"op_config_pos_top":{"message":"top"},
-"op_config_pos_bottom":{"message":"bottom"},
-"op_config_display":{"message":"search2 catagory display: "},
-"op_config_display_auto":{"message":"auto"},
-"op_config_display_onlytype":{"message":"onlytype"},
-"op_config_display_onlyicon":{"message":"onlyicon"},
-"op_config_display_fullname":{"message":"fullname"},
-"op_config_bgcolor":{"message":"background color: "},
-"op_config_fgcolor":{"message":"foreground color: "},
-"op_config_bdcolor":{"message":"borderline color: "},
-"op_config_borderline":{"message":"display borderline"},
-"op_search":{"message":"search engine settings"},
-"op_search_addcm":{"message":"addto context menu"},
-"op_search_edit":{"message":"eidt"},
-"op_search_rm":{"message":"remove"},
-"op_search_on":{"message":"ON"},
-"op_search_off":{"message":"OFF"},
-"op_search_form_url":{"message":"Url define: "},
-"op_search_form_name":{"message":"Name: "},
-"op_search_form_icon":{"message":"Icon: "},
-"op_search_form_tf":{"message":"search-type-flag: "},
-"op_search_form_prkw":{"message":"keywords-prefix: "},
-"op_search_form_googleico":{"message":"use google icon service"},
-"op_search_form_enc":{"message":"Charset: "},
-"op_search_form_enc_default":{"message":"default unicode(utf-8)"},
-"op_search_form_enc_gbk":{"message":"chinese simplified(gbk)"},
-"op_search_form_enc_gb18030":{"message":"chinese simplified(gb18030)"},
-"op_search_form_enc_big5":{"message":"chinese traditional(big5)"},
-"op_search_form_enc_big5_hkscs":{"message":"chinese traditional(big5-hkscs)"},
-"op_search_form_enc_utf_16le":{"message":"unicode(utf-16le)"},
-"op_search_form_enc_shift_jis":{"message":"japanese(shift_jis)"},
-"op_search_form_enc_euc_jp":{"message":"japanese(euc-jp)"},
-"op_search_form_enc_iso_2022_jp":{"message":"japanese(ios-2022-jp)"},
-"op_search_form_enc_euc_kr":{"message":"korean(euc-kr)"},
-"op_search_form_enc_iso_2022_kr":{"message":"korean(ios-2022-kr)"},
-"op_search_form_enc_windows_1250":{"message":"central european(windows-1250)"},
-"op_search_form_enc_windows_1251":{"message":"cyrillic(windows-1251)"},
-"op_search_form_enc_windows_1252":{"message":"western(windows-1252)"},
-"op_search_form_enc_windows_1253":{"message":"greek(windows-1253)"},
-"op_search_form_enc_windows_1254":{"message":"turkish(windows-1254)"},
-"op_search_form_enc_windows_1255":{"message":"hebrew(windows-1255)"},
-"op_search_form_enc_windows_1256":{"message":"arabic(windows-1256)"},
-"op_search_form_enc_windows_1257":{"message":"baltic(windows-1257)"},
-"op_search_form_enc_windows_1258":{"message":"vietnamese(windows-1258)"},
-"op_search_form_enc_iso_8859_1":{"message":"western(iso-8859-1)"},
-"op_search_form_enc_iso_8859_2":{"message":"central european(iso-8859-2)"},
-"op_search_form_enc_iso_8859_3":{"message":"south european(iso-8859-3)"},
-"op_search_form_enc_iso_8859_4":{"message":"baltic(iso-8859-4)"},
-"op_search_form_enc_iso_8859_5":{"message":"cyrillic(iso-8859-5)"},
-"op_search_form_enc_iso_8859_6":{"message":"arabic(iso-8859-6)"},
-"op_search_form_enc_iso_8859_7":{"message":"greek(iso-8859-7)"},
-"op_search_form_enc_iso_8859_8":{"message":"hebrew(iso-8859-8)"},
-"op_search_form_enc_iso_8859_8_i":{"message":"hebrew(iso-8859-8-i)"},
-"op_search_form_enc_iso_8859_9":{"message":"turkish(iso-8859-9)"},
-"op_search_form_enc_iso_8859_10":{"message":"nordic(iso-8859-10)"},
-"op_search_form_enc_iso_8859_11":{"message":"thai(iso-8859-11)"},
-"op_search_form_enc_iso_8859_13":{"message":"baltic(iso-8859-13)"},
-"op_search_form_enc_iso_8859_14":{"message":"celtic(iso-8859-14)"},
-"op_search_form_enc_iso_8859_15":{"message":"western(iso-8859-15)"},
-"op_search_form_enc_iso_8859_16":{"message":"romanian(iso-8859-16)"},
-"op_search_form_enc_macintosh":{"message":"western(Macintosh)"},
-"op_search_form_enc_koi8_r":{"message":"cyrillic(koi8-r)"},
-"op_search_form_enc_koi8_u":{"message":"cyrillic(koi8-u)"},
-"op_search_form_pathkw":{"message":"use path keywords"},
-"op_search_tip1":{"message":"Tips: click"},
-"op_search_tip2":{"message":"adjust engines sort, click here"},
-"op_search_add":{"message":"add"},
-"op_search_cancel":{"message":"cancel"},
-"op_search_confirm":{"message":"OK"},
-"op_search_tip3":{"message":"a new engine, orelse "},
-"op_search_tip4":{"message":"edit/add opration, double click a category tag and rename it"},
-"op_tip_fom_url":{"message":"invalid URL define !"},
-"op_tip_fom_name":{"message":"the name of search engine is necessary !"},
-"op_tip_fom_icon":{"message":"invalid icon define !"},
-"op_tip_fom_icon_timeout":{"message":"get icon timeout, confirm the icon url is accessable !"},
-"op_tip_fom_prkw":{"message":"invalid prefix-keywords !"},
-"op_tip_fom_pathkw":{"message":"the prefix-keywords is not matched with using path keywords !"},
-"op_tip_save_success":{"message":"save success, it will take effect in new page or flush a opened page"},
-"op_tip_notallow":{"message":"this operation is not allowed, because a search engine is being edited or added !"},
-"op_mtip_pos_right":{"message":"tips: the search2 bar will be located left while it work below picture or video type for a good user experience"},
-"op_mtip_display_auto":{"message":"display the search name smartly: when search2 bar is at left, it will show only search catagory name; when search2 bar is at top or bottom, it will show full search name"},
-"op_mtip_right_indentdistance":{"message":"be effective only when search2 bar's position is at right"},
-"op_mtip_intervaldistance":{"message":"when [tile search2 bar] is selected, this will not be effective"},
-"op_mtip_cartoon":{"message":"a animation will show when click the [more] on search2 bar"},
-"op_mtip_cartoon_rd":{"message":"show animation randomly"},
-"op_mtip_borderline":{"message":"put color on searchbar's border so that looks more beautiful"},
-"op_mtip_form_url":{"message":"use %s replace the text keywords and %p replace the url address of a picture please"},
-"op_mtip_form_tf":{"message":"some search engine identifies the search-type use url parameter, but not hostname, such as google, bing. you must input a typeflag here,for example: &tbm=isch, &tbm=web and so on"},
-"op_mtip_form_prkw":{"message":"a prefix of keywords is the key-name of %s, for example: q=; you should input url between https:// and keywords when [use path keywods] is checked"},
-"op_mtip_form_enc":{"message":"it's necessary only when the search engine is not supports utf-8 encoding. you can find the search engine's encoding with clicking: [chrome customize control menu]>[Tools]>[Encoding]"},
-"op_mtip_form_googleico":{"message":"Google provides a icon service for most of website, you can use it if you can't find the icon of search engine, the serviice url is: https://www.google.com/s2\n/favicons?domain=website-domain"},
-"op_mtip_form_pathkw":{"message":"this is a partiular option for compats few search engines, for example: https://search.suning.com/%s/；you should input [keywords prerix] cooperatively if checked"},
+,"op_title":{"message":"Options"}
+,"op_reset":{"message":"reset"}
+,"op_import":{"message":"import"}
+,"op_import_success":{"message":"Import configure success !"}
+,"op_import_failed":{"message":"File format incorrect !"}
+,"op_export":{"message":"export"}
+,"op_cancel":{"message":"cancel"}
+,"op_save":{"message":"save"}
+,"op_config":{"message":"global config settings"}
+,"op_config_newwindow":{"message":"open link in newwindow"}
+,"op_config_selected":{"message":"search selected text"}
+,"op_config_cmenu":{"message":"enable context search menu"}
+,"op_config_autohide":{"message":"auto hide search2"}
+,"op_config_tiled":{"message":"tile search2 bar"}
+,"op_config_cartoon":{"message":"enable fly-disk cartoon"}
+,"op_config_cartoon_rd":{"message":"enable cartoon randomly"}
+,"op_config_right_indentdistance":{"message":"retract from right margin(5~50): "}
+,"op_config_percent":{"message":" %(percentage)"}
+,"op_config_indentdistance":{"message":"retract of first search engine(5~500): "}
+,"op_config_intervaldistance":{"message":"interval among search engines(5~200): "}
+,"op_config_px":{"message":" pixel"}
+,"op_config_pos":{"message":"search2 position: "}
+,"op_config_pos_left":{"message":"left"}
+,"op_config_pos_right":{"message":"right/smart display"}
+,"op_config_pos_top":{"message":"top"}
+,"op_config_pos_bottom":{"message":"bottom"}
+,"op_config_display":{"message":"search2 catagory display: "}
+,"op_config_display_auto":{"message":"auto"}
+,"op_config_display_onlytype":{"message":"onlytype"}
+,"op_config_display_onlyicon":{"message":"onlyicon"}
+,"op_config_display_fullname":{"message":"fullname"}
+,"op_config_bgcolor":{"message":"background color: "}
+,"op_config_fgcolor":{"message":"foreground color: "}
+,"op_config_bdcolor":{"message":"borderline color: "}
+,"op_config_borderline":{"message":"display borderline"}
+,"op_search":{"message":"search engine settings"}
+,"op_search_addcm":{"message":"addto context menu"}
+,"op_search_edit":{"message":"eidt"}
+,"op_search_rm":{"message":"remove"}
+,"op_search_on":{"message":"ON"}
+,"op_search_off":{"message":"OFF"}
+,"op_search_form_url":{"message":"Url define: "}
+,"op_search_form_name":{"message":"Name: "}
+,"op_search_form_icon":{"message":"Icon: "}
+,"op_search_form_tf":{"message":"search-type-flag: "}
+,"op_search_form_prkw":{"message":"keywords-prefix: "}
+,"op_search_form_googleico":{"message":"use google icon service"}
+,"op_search_form_enc":{"message":"Charset: "}
+,"op_search_form_enc_default":{"message":"default unicode(utf-8)"}
+,"op_search_form_enc_gbk":{"message":"chinese simplified(gbk)"}
+,"op_search_form_enc_gb18030":{"message":"chinese simplified(gb18030)"}
+,"op_search_form_enc_big5":{"message":"chinese traditional(big5)"}
+,"op_search_form_enc_big5_hkscs":{"message":"chinese traditional(big5-hkscs)"}
+,"op_search_form_enc_utf_16le":{"message":"unicode(utf-16le)"}
+,"op_search_form_enc_shift_jis":{"message":"japanese(shift_jis)"}
+,"op_search_form_enc_euc_jp":{"message":"japanese(euc-jp)"}
+,"op_search_form_enc_iso_2022_jp":{"message":"japanese(ios-2022-jp)"}
+,"op_search_form_enc_euc_kr":{"message":"korean(euc-kr)"}
+,"op_search_form_enc_iso_2022_kr":{"message":"korean(ios-2022-kr)"}
+,"op_search_form_enc_windows_1250":{"message":"central european(windows-1250)"}
+,"op_search_form_enc_windows_1251":{"message":"cyrillic(windows-1251)"}
+,"op_search_form_enc_windows_1252":{"message":"western(windows-1252)"}
+,"op_search_form_enc_windows_1253":{"message":"greek(windows-1253)"}
+,"op_search_form_enc_windows_1254":{"message":"turkish(windows-1254)"}
+,"op_search_form_enc_windows_1255":{"message":"hebrew(windows-1255)"}
+,"op_search_form_enc_windows_1256":{"message":"arabic(windows-1256)"}
+,"op_search_form_enc_windows_1257":{"message":"baltic(windows-1257)"}
+,"op_search_form_enc_windows_1258":{"message":"vietnamese(windows-1258)"}
+,"op_search_form_enc_iso_8859_1":{"message":"western(iso-8859-1)"}
+,"op_search_form_enc_iso_8859_2":{"message":"central european(iso-8859-2)"}
+,"op_search_form_enc_iso_8859_3":{"message":"south european(iso-8859-3)"}
+,"op_search_form_enc_iso_8859_4":{"message":"baltic(iso-8859-4)"}
+,"op_search_form_enc_iso_8859_5":{"message":"cyrillic(iso-8859-5)"}
+,"op_search_form_enc_iso_8859_6":{"message":"arabic(iso-8859-6)"}
+,"op_search_form_enc_iso_8859_7":{"message":"greek(iso-8859-7)"}
+,"op_search_form_enc_iso_8859_8":{"message":"hebrew(iso-8859-8)"}
+,"op_search_form_enc_iso_8859_8_i":{"message":"hebrew(iso-8859-8-i)"}
+,"op_search_form_enc_iso_8859_9":{"message":"turkish(iso-8859-9)"}
+,"op_search_form_enc_iso_8859_10":{"message":"nordic(iso-8859-10)"}
+,"op_search_form_enc_iso_8859_11":{"message":"thai(iso-8859-11)"}
+,"op_search_form_enc_iso_8859_13":{"message":"baltic(iso-8859-13)"}
+,"op_search_form_enc_iso_8859_14":{"message":"celtic(iso-8859-14)"}
+,"op_search_form_enc_iso_8859_15":{"message":"western(iso-8859-15)"}
+,"op_search_form_enc_iso_8859_16":{"message":"romanian(iso-8859-16)"}
+,"op_search_form_enc_macintosh":{"message":"western(Macintosh)"}
+,"op_search_form_enc_koi8_r":{"message":"cyrillic(koi8-r)"}
+,"op_search_form_enc_koi8_u":{"message":"cyrillic(koi8-u)"}
+,"op_search_form_pathkw":{"message":"use path keywords"}
+,"op_search_tip1":{"message":"Tips: click"}
+,"op_search_tip2":{"message":"adjust engines sort, click here"}
+,"op_search_add":{"message":"add"}
+,"op_search_cancel":{"message":"cancel"}
+,"op_search_confirm":{"message":"OK"}
+,"op_search_tip3":{"message":"a new engine, orelse "}
+,"op_search_tip4":{"message":"edit/add opration, double click a category tag and rename it"}
+,"op_tip_fom_url":{"message":"invalid URL define !"}
+,"op_tip_fom_name":{"message":"the name of search engine is necessary !"}
+,"op_tip_fom_icon":{"message":"invalid icon define !"}
+,"op_tip_fom_icon_timeout":{"message":"get icon timeout, confirm the icon url is accessable !"}
+,"op_tip_fom_prkw":{"message":"invalid prefix-keywords !"}
+,"op_tip_fom_pathkw":{"message":"the prefix-keywords is not matched with using path keywords !"}
+,"op_tip_save_success":{"message":"save success, it will take effect in new page or flush a opened page"}
+,"op_tip_notallow":{"message":"this operation is not allowed, because a search engine is being edited or added !"}
+,"op_mtip_pos_right":{"message":"tips: the search2 bar will be located left while it work below picture or video type for a good user experience"}
+,"op_mtip_display_auto":{"message":"display the search name smartly: when search2 bar is at left, it will show only search catagory name; when search2 bar is at top or bottom, it will show full search name"}
+,"op_mtip_right_indentdistance":{"message":"be effective only when search2 bar's position is at right"}
+,"op_mtip_intervaldistance":{"message":"when [tile search2 bar] is selected, this will not be effective"}
+,"op_mtip_cartoon":{"message":"a animation will show when click the [more] on search2 bar"}
+,"op_mtip_cartoon_rd":{"message":"show animation randomly"}
+,"op_mtip_borderline":{"message":"put color on searchbar's border so that looks more beautiful"}
+,"op_mtip_form_url":{"message":"use %s replace the text keywords and %p replace the url address of a picture please"}
+,"op_mtip_form_tf":{"message":"some search engine identifies the search-type use url parameter, but not hostname, such as google, bing. you must input a typeflag here,for example: &tbm=isch, &tbm=web and so on"}
+,"op_mtip_form_prkw":{"message":"a prefix of keywords is the key-name of %s, for example: q=; you should input url between https:// and keywords when [use path keywods] is checked"}
+,"op_mtip_form_enc":{"message":"it's necessary only when the search engine is not supports utf-8 encoding. you can find the search engine's encoding with clicking: [chrome customize control menu]>[Tools]>[Encoding]"}
+,"op_mtip_form_googleico":{"message":"Google provides a icon service for most of website, you can use it if you can't find the icon of search engine, the serviice url is: https://www.google.com/s2\n/favicons?domain=website-domain"}
+,"op_mtip_form_pathkw":{"message":"this is a partiular option for compats few search engines, for example: https://search.suning.com/%s/；you should input [keywords prerix] cooperatively if checked"}
 
-"oth_readme":{"message":"readme"},
-"oth_readme1":{"message":"search2 has three principles in design, they are lightly, simply and easily"},
-"oth_readme2":{"message":"search2 has not imported any Javascript library third-party, and it's loaded only in a search website which you defined"},
-"oth_readme3":{"message":"search2's UI is very consice, it take up only a small place, and you can even hide it, it keep a good web experience as soon as possible"},
-"oth_readme4":{"message":"search2 follows many Google-ideas also: Focus on the user and considers fully user habits; Fast is better than slow, responses quickly for web experiences; Democracy and fairness on the web works, search2 donot binds any search engine, even google self, you can define all search engines yourself"},
-"oth_readme5":{"message":"search2 needs that the chrome webkit version greater than 21"},
-"oth_readme6":{"message":"The past is not available, the present is not available, the future is not available"},
-"oth_ipr1":{"message":"Copyright：search2's icons"},
-"oth_ipr2":{"message":"and"},
-"oth_ipr3":{"message":"are owned by google corporation, Google is entitled to recover the right; search2's source code is owned by its author, it's not allowed for modification and release again on chrome market or third-party browser market which based chrome, search2 reserves the right to pursue legal responsibilities"},
-"oth_reset_confirm":{"message":"you are reseting the configure to default, the previous config will be losed, you sure do?"},
-"oth_tab_untitled":{"message":"untitled"},
-"oth_tab_rm_confirm":{"message":"you are removing this search category including all search engine in the category, you sure do?"},
-
-
+,"oth_readme":{"message":"about me"}
+,"oth_readme1":{"message":"search2 follows four design principles: lightness, simplicity, ease of use, and scalability"}
+,"oth_readme2":{"message":"search2 does not introduce any third-party javascript libraries. It only loads on user-defined search engine pages"}
+,"oth_readme3":{"message":"search2 has extremely simple user interfaces, occupying only a small space on the page. It can even be hidden to the side to minimize interference with the user's original web experience"}
+,"oth_readme4":{"message":"search2 also adheres to Google's philosophy: a) user-centered, fully considering user habits; b) faster is better, with quick responses, as fast a web experience as possible; c) the web is fair and democratic, not bundling any search engines, including Google itself, and all search engines are fully customizable by users"}
+,"oth_readme5":{"message":"search2 requires a Chrome webkit version greater than 21 to function properly. Starting from version v2.0.0, it supports manifest v3"}
+,"oth_readme6":{"message":"The past mind is unattainable, The present mind is unattainable, The future mind is unattainable"}
+,"oth_ipr1":{"message":"Copyright： the icon"}
+,"oth_ipr2":{"message":"and"}
+,"oth_ipr3":{"message":"source code of search2 are copyrighted by the author (wurenny@gmail.com). No individual or organization is allowed to plagiarize, modify or distribute it, including but not limited to the Chrome webstore or other browser extension markets. the author reserves the right to pursue legal action against any infringement"}
+,"oth_reset_confirm":{"message":"you are reseting the configure to default, the previous config will be losed, you sure do it?"}
+,"oth_tab_untitled":{"message":"untitled"}
+,"oth_tab_rm_confirm":{"message":"you are removing this search category including all search engine in the category, you sure do it?"}
 
 
-"__________":{"message":"————————"}
+,"__________":{"message":"————————"}
 }

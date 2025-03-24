@@ -7,7 +7,7 @@
  * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
  *
  * IDENTIFICATION
- *     bg/evtpage.html
+ *     bg/bg.js
  *
  * This file is part of search2 project
  * bg.js is the background service worker for search2

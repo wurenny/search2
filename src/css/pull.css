@@ -37,9 +37,9 @@
 #search2_pulldowndiv>ul>li {
 	display: block;
 	float:left;
-	width: 60px;
-	height: 18px;
-	line-height: 14px;
+	width: 100px;
+	height: 28px;
+	line-height: 24px;
 }
 
 #search2_pulldowndiv ul li a {
@@ -51,7 +51,7 @@
 	border-left: 1px solid rgba(255, 255, 255, 0.05);
 	border-right: 1px solid rgba(0,0,0,0.2);
 	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
-	width: 60px;
+	width: 100px;
 	overflow: hidden;
 }
 
@@ -64,7 +64,7 @@
 	position: absolute;
 	box-shadow: 0 0 16px rgba(0, 0, 0, 0.4) inset; 
 	border: 1px solid rgba(0, 0, 0, 0.5);
-	width:100px;
+	width:120px;
 	overflow: hidden;
 	visibility:hidden;
 }
@@ -72,14 +72,16 @@
 #search2_pulldowndiv li ul li {
 	display: block;
 	float: right;
-	width:100px;
+	width:120px;
+	height: 28px;
+	line-height: 24px;
 }
 
 #search2_pulldowndiv li ul a {
 	background: none;
 	border: 0 none;
 	margin-right: 0;
-	width: 100px;
+	width: 120px;
 	box-shadow: none;
 	border-bottom: 1px solid transparent;
 	text-align: center;

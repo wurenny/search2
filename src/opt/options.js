@@ -205,9 +205,10 @@ HTML.injectSearchTab =function(favtypes) {
 		li.onmousedown =HTML.searchTabSelected;
 		li.ondblclick =function() {
 			var input =this.firstChild;
-			input.style.color ="red";
+			input.style.color ="darkred";
 			input.setAttribute("oname", input.value);
 			input.readOnly =!input.readOnly;
+			input.setSelectionRange(0, 0);
 			input.focus();
 		};
 		
@@ -344,7 +345,6 @@ HTML.injectSearchList =function(json){
 };
 
 HTML.searchTabSelected =function(){
-	console.log("search list selected " + this);
 	var search_att =document.getElementById("search_att");
 	if(search_att.getAttribute("locked")) return;
 	search_att.setAttribute("ctype",this.getAttribute("ctype"));
@@ -844,8 +844,8 @@ HTML.initIcon =function() {
 	for (var i=0; i<mt.length; i++) mt[i].src =icondatas.minitip_icon;
 	document.getElementById("tipimgup").src=icondatas.opup_icon;
 	document.getElementById("tipimgdown").src=icondatas.opdown_icon;
-	document.getElementById("configicon").src=icondatas.config_icon;
-	document.getElementById("moreicon").src=icondatas.more_icon;
+	document.getElementById("configicon").src=icondatas.search2_icon32;
+	//document.getElementById("moreicon").src=icondatas.more_icon;
 };
 
 HTML.cancelOp =function() {

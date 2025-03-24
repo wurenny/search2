@@ -204,7 +204,7 @@ CTS.createPullmenu =function(bgc,fgc) {
 		ul2.style.background =bgc;
 		ul2.style.color =fgc;
 		//ul2.style.opacity =0.95;
-		if(pos=="left") ul2.style.marginLeft ="60px";
+		if(pos=="left") ul2.style.marginLeft ="100px";
 		else if(pos=="right") ul2.style.marginLeft ="-102px";
 	}
 };
@@ -223,7 +223,7 @@ CTS.createConfigbtn =function(td){
 		if (pos=="left") td.style.paddingBottom =ret +"px";
 	}
 	var configBtnImg = configBtn.appendChild(document.createElement("img"));
-	configBtnImg.src =icondatas.config_icon;
+	configBtnImg.src =icondatas.search2_icon32;
 	configBtn.title =i18n.__cts_config_tip;
 	configBtn.target ="_blank";
 	
@@ -349,6 +349,7 @@ CTS.createMoreSearch =function(tr,sp,fn){
 	var more =td.appendChild(document.createElement("a"));
 	var moreImg = more.appendChild(document.createElement("img"));
 	var moreText =more.appendChild(document.createElement("span"));
+	var hoverTimer;
 	
 	if (pos =="top" || pos =="bottom") td.style.paddingLeft =sp +"px";
 	else if(pos =="left") td.style.paddingTop =sp +"px";
@@ -359,13 +360,14 @@ CTS.createMoreSearch =function(tr,sp,fn){
 	moreImg.src =icondatas.more_icon;
 	/*moreText.innerText =(fn!="onlyicon")?i18n.__com_moresearch :"";*/
 	
-	more.onmouseover =CTS.pullMore;
-	more.onmousedown =CTS.popMore;
+	//more.onmouseover =CTS.pullMore;
+	more.onmouseover = function() { hoverTimer = setTimeout(() => { CTS.pullMore(this); }, 500); }
+	more.onmouseout = function() { clearTimeout(hoverTimer); }
+	more.onmousedown = function() { clearTimeout(hoverTimer); CTS.popMore(); }
 };
 
-CTS.pullMore =function() {
+CTS.pullMore =function(e) {
 	if(msovered) return;
-	var e =this;
 	var athd =config.autohide;
 	if(athd && pos =="right") e =document.getElementById("search2_configbtn");
 	var pdiv =document.getElementById("search2_pulldowndiv");

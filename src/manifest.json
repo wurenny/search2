@@ -1,8 +1,8 @@
 {
-	"description": "Practical and extensible search assistant",
-	"author": "wurenny",
+	"description": "__MSG_app_description__",
+	"author": "wurenny@gmail.com",
 
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"minimum_chrome_version": "20",
 	"manifest_version": 3,
 	"name": "__MSG_app_title__",
@@ -15,7 +15,8 @@
 		}
 	],
 	"background": {
-		"service-worker": "bg/bg.js"
+		"service_worker": "bg/bg.js",
+		"type": "module"
 	},
 	"content_scripts": [{
 		"matches": ["http://*/*", "https://*/*", "file:///*"],

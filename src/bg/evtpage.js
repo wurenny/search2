@@ -101,13 +101,13 @@ EVPG.initCM =function() {
 					if (favlist[i].cm==1 && favlist[i].type==parseInt(params[2]) && favlist[i].sno==parseInt(params[3]) && favlist[i].on==1) {
 						if (!favlist[i].enc) {
 							url =favlist[i].url.replace(esckw, kw);
-							if (url) window.open(url, "_blank");
+							if (url) chrome.tabs.create({"url": url}); //window.open(url, "_blank");
 						}
 						else {
 							EVPG.encodeURL(
 								function(response){
 									url =favlist[i].url.replace(esckw, response.enckw);
-									if (url) window.open(url, "_blank");
+									if (url) chrome.tabs.create({"url": url}); //window.open(url, "_blank");
 								},
 								favlist[i].enc,
 								kw
