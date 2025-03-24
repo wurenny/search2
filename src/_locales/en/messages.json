@@ -1,22 +1,23 @@
-/*-------------------------------------------------------------------------
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at https://mozilla.org/MPL/2.0/.
- *
- * Copyright (c) 2014-2015, wurenny@gmail.com, All rights reserved
- *
- * IDENTIFICATION
- *     _locales/en/messages.json
- *
- * This file is part of search2 project
- * en/messages is the the English launguage file
- *
- *-------------------------------------------------------------------------
- */
-
 {
- "app_title": {"message": "search2"}
+  "____notice____": {
+"message": "---------------------------------------------------------------------------",
+"message01": " *                                                                       ",
+"message02": " * This Source Code Form is subject to the terms of the Mozilla Public   ",
+"message03": " * License, v. 2.0. If a copy of the MPL was not distributed with this   ",
+"message04": " * file, You can obtain one at https://mozilla.org/MPL/2.0/.             ",
+"message05": " *                                                                       ",
+"message06": " * Copyright (c) 2014-2025, wurenny@gmail.com, All rights reserved       ",
+"message07": " *                                                                       ",
+"message08": " * IDENTIFICATION                                                        ",
+"message09": " *     _locales/en/messages.json                                         ",
+"message10": " *                                                                       ",
+"message11": " * This file is part of search2 project                                  ",
+"message12": " * en/messages is the the English launguage file                         ",
+"message13": " *                                                                       ",
+"message14": " *------------------------------------------------------------------------"
+}
+
+,"app_title": {"message": "search2"}
 ,"app_description": {"message": "Practical and extensible search assistant"}
 ,"com_typename_news":{"message":"news"}
 ,"com_typename_web":{"message":"web"}

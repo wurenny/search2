@@ -2,8 +2,8 @@
 	"description": "__MSG_app_description__",
 	"author": "wurenny@gmail.com",
 
-	"version": "2.1.0",
-	"minimum_chrome_version": "20",
+	"version": "2.1.1",
+	"minimum_chrome_version": "88",
 	"manifest_version": 3,
 	"name": "__MSG_app_title__",
 	"options_page": "opt/options.html",
