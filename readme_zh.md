@@ -10,7 +10,7 @@ search2是一个实用可扩展的搜索助手，它有以下特性：
 
 
 ## 安装
-1. search2目前已发布至从Chrome Webstore，[点击跳转至Webstore安装](https://chrome.google.com/webstore/detail/search2/godjlopkhiadfppdjhbekbppchinkmpi）
+1. search2目前已发布至从Chrome Webstore，[点击跳转至Chrome Webstore安装](https://chrome.google.com/webstore/detail/search2/godjlopkhiadfppdjhbekbppchinkmpi)
 
 ## 贡献开发
 1. 克隆本仓库至本地，并使用前端IDE打开此目录，推荐使用vscode
