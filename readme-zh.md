@@ -12,10 +12,14 @@ search2是一个实用可扩展的搜索助手，它有以下特性：
 ## 安装
 1. search2目前已发布至从Chrome Webstore，[点击跳转至Chrome Webstore安装](https://chrome.google.com/webstore/detail/search2/godjlopkhiadfppdjhbekbppchinkmpi)
 
+## 版权
+1. 注意search2的版权是专有版权，详情请查看本项目中的license文件
+
 ## 贡献开发
 1. 克隆本仓库至本地，并使用前端IDE打开此目录，推荐使用vscode
 1. 打开Chrome扩展开发者模式
+1. 如果已经从Webstore安装了Search2，请先关闭原有Search2扩展
 1. 将[src]目录作为一个未打包的扩展程序加载到chrome浏览器中
-1. 修改本地代码，在扩展管理页面找到search2，重载刷新扩展
-1. 刷新或重新打开一个搜索页面，即可看到修改后的效果
+1. 修改本地代码，在扩展管理页面找到search2，刷新重载扩展
+1. 刷新或重新打开一个搜索页面，即可验证修改后的效果
 1. 如果是修改选项功能，重新打开选项页即可看到修改后的效果

@@ -1,4 +1,4 @@
-# search2 | [[中文]](https://github.com/wurenny/search2/blob/master/readme_zh.md)
+# search2 | [[中文]](https://github.com/wurenny/search2/blob/master/readme-zh.md)
 ## Introduction
 search2 is a practical and extensible search assistant, here is about me：
 1. search2 follows four design principles: lightness, simplicity, ease of use, and scalability"
@@ -11,10 +11,14 @@ search2 is a practical and extensible search assistant, here is about me：
 ## Installation
 1. search2 has released to Chrome Webstore, [goto Chrome Webstore and install](https://chrome.google.com/webstore/detail/search2/godjlopkhiadfppdjhbekbppchinkmpi)
 
+## copyright
+1. Note that the copyright of search2 is proprietary, see the license file in this project for details
+
 ## Developerment
 1. Clone this repository to your local machine and open the directory using a IDE. VSCode is recommended
 1. Enable Developer Mode in Chrome Extensions Management Page
+1. If Search2 has been installed from the Webstore, please close the original Search2 extension first
 1. Load the `[src]` directory as an unpacked extension in Chrome
 1. Modify the local code, find **search2** on the Extensions Management page, and reload the extension
-1. Refresh or reopen a search web page to see the updated effect
+1. Refresh or reopen a search web page to verify the updated effect
 1. If modifying the options feature, reopen the options page to see the changes

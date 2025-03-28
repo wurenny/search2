@@ -1,20 +1,23 @@
 {
   "____notice____": {
-"message": "---------------------------------------------------------------------------",
-"message01": " *                                                                       ",
-"message02": " * This Source Code Form is subject to the terms of the Mozilla Public   ",
-"message03": " * License, v. 2.0. If a copy of the MPL was not distributed with this   ",
-"message04": " * file, You can obtain one at https://mozilla.org/MPL/2.0/.             ",
-"message05": " *                                                                       ",
-"message06": " * Copyright (c) 2014-2025, wurenny@gmail.com, All rights reserved       ",
-"message07": " *                                                                       ",
-"message08": " * IDENTIFICATION                                                        ",
-"message09": " *     _locales/zh_CN/messages.json                                         ",
-"message10": " *                                                                       ",
-"message11": " * This file is part of search2 project                                  ",
-"message12": " * zh_CN/messages is the the chinese launguage file                         ",
-"message13": " *                                                                       ",
-"message14": " *------------------------------------------------------------------------"
+"message": "-------------------------------------------------------------------------------------",
+"message01": " *                                                                                *",
+"message02": " * This Source Code is subject to the Proprietary Software License.               *",
+"message03": " * You shall use it only in accordance with the terms of the license agreement.   *",
+"message04": " * You can contribute the source code by submitting pull request on Github:       *",
+"message05": " * https://github.com/wurenny/search2                                             *",
+"message06": " * But unauthorized copying, modification, distribution, or publication of this   *",
+"message07": " * software, in whole or in part, is strictly prohibited.                         *",
+"message08": " *                                                                                *",
+"message09": " * Copyright (c) 2014-2025, wurenny@gmail.com, All rights reserved                *",
+"message50": " *                                                                                *",
+"message51": " * IDENTIFICATION                                                                 *",
+"message52": " *     _locales/zh_CN/messages.json                                               *",
+"message53": " *                                                                                *",
+"message54": " * This file is part of search2 project                                           *",
+"message55": " * en/messages is the the Chinese launguage file                                  *",
+"message56": " *                                                                                *",
+"message57": " *---------------------------------------------------------------------------------"
 }
 
 ,"app_title": {"message": "search2"}
