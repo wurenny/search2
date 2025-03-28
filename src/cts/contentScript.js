@@ -38,6 +38,7 @@ CTS.initI18n =function(){
 	i18n.__com_typename_web =chrome.i18n.getMessage("com_typename_web");
 	i18n.__com_typename_picture =chrome.i18n.getMessage("com_typename_picture");
 	i18n.__com_typename_video =chrome.i18n.getMessage("com_typename_video");
+	i18n.__com_typename_shot_video =chrome.i18n.getMessage("com_typename_tv");
 	i18n.__com_typename_music =chrome.i18n.getMessage("com_typename_music");
 	i18n.__com_typename_shopping =chrome.i18n.getMessage("com_typename_shopping");
 	
@@ -656,6 +657,8 @@ CTS.main =function() {
 			if(!icondatas) icondatas =IDATA.search2_icondatas;
 			if(!nohslist) nohslist =IDATA.search2_nohslist;
 			
+			icondatas.search2_icon32 = IDATA.search2_icondatas.search2_icon32;
+			icondatas.more_icon = IDATA.search2_icondatas.more_icon;
 			pos =config.searchposition.toLowerCase();
 			
 			CTS.runLsnr();
@@ -702,9 +705,15 @@ CTS.getKeywords =function(hashSearch, septr){
 		}
 	}
 	else if("/"==septr){
-		if(hashSearch.indexOf('search.suning.com') >=0) keywords =hashSearch.split(prkw)[1].split("/")[1].split("?")[0].split("#")[0];
-        else if(hashSearch.indexOf('so.iqiyi.com') >=0) keywords =hashSearch.split(prkw)[1].split("?")[0];
-        else keywords =hashSearch.split(prkw)[1].split("/")[1];
+		//if(hashSearch.indexOf('search.suning.com') >=0) keywords =hashSearch.split(prkw)[1].split("/")[1].split("?")[0].split("#")[0];
+		//else if(hashSearch.indexOf('so.iqiyi.com') >=0) keywords =hashSearch.split(prkw)[1].split("?")[0];
+		//else {
+			//keywords =hashSearch.split(prkw)[1].split("/")[1];
+			let regex = new RegExp(prkw.replace(/\//g, '\\/'));
+			//console.log('==>', hashSearch, regex);
+			let match = hashSearch.match(regex);
+			if (match) keywords = match[1];
+		//}
 	}
 };
 

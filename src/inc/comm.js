@@ -205,8 +205,9 @@ COM.getTypeName =function(type){
 		case 1 : return i18n.__com_typename_web;
 		case 2 : return i18n.__com_typename_picture;
 		case 3 : return i18n.__com_typename_video;
-		case 4 : return i18n.__com_typename_music;
-		case 5 : return i18n.__com_typename_shopping;
+		case 4 : return i18n.__com_typename_tv;
+		case 5 : return i18n.__com_typename_music;
+		case 6 : return i18n.__com_typename_shopping;
 	}
 	
 };

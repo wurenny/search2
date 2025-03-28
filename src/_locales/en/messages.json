@@ -26,6 +26,7 @@
 ,"com_typename_web":{"message":"web"}
 ,"com_typename_picture":{"message":"pict"}
 ,"com_typename_video":{"message":"vido"}
+,"com_typename_tv":{"message":"TV"}
 ,"com_typename_music":{"message":"musc"}
 ,"com_typename_shopping":{"message":"shop"}
 ,"com_moresearch":{"message":"more"}
@@ -85,7 +86,7 @@
 ,"op_search_form_name":{"message":"Name: "}
 ,"op_search_form_icon":{"message":"Icon: "}
 ,"op_search_form_tf":{"message":"search-type-flag: "}
-,"op_search_form_prkw":{"message":"keywords-prefix: "}
+,"op_search_form_prkw":{"message":"keywords-ident: "}
 ,"op_search_form_googleico":{"message":"use google icon service"}
 ,"op_search_form_enc":{"message":"Charset: "}
 ,"op_search_form_enc_default":{"message":"default unicode(utf-8)"}
@@ -139,8 +140,8 @@
 ,"op_tip_fom_name":{"message":"the name of search engine is necessary !"}
 ,"op_tip_fom_icon":{"message":"invalid icon define !"}
 ,"op_tip_fom_icon_timeout":{"message":"get icon timeout, confirm the icon url is accessable !"}
-,"op_tip_fom_prkw":{"message":"invalid prefix-keywords !"}
-,"op_tip_fom_pathkw":{"message":"the prefix-keywords is not matched with using path keywords !"}
+,"op_tip_fom_prkw":{"message":"invalid keywords-ident !"}
+,"op_tip_fom_pathkw":{"message":"the keywords-ident is not matched with using path keywords !"}
 ,"op_tip_save_success":{"message":"save success, it will take effect in new page or flush a opened page"}
 ,"op_tip_notallow":{"message":"this operation is not allowed, because a search engine is being edited or added !"}
 ,"op_mtip_pos_right":{"message":"tips: the search2 bar will be located left while it work below picture or video type for a good user experience"}
@@ -152,10 +153,10 @@
 ,"op_mtip_borderline":{"message":"put color on searchbar's border so that looks more beautiful"}
 ,"op_mtip_form_url":{"message":"use %s replace the text keywords and %p replace the url address of a picture please"}
 ,"op_mtip_form_tf":{"message":"some search engine identifies the search-type use url parameter, but not hostname, such as google, bing. you must input a typeflag here,for example: &tbm=isch, &tbm=web and so on"}
-,"op_mtip_form_prkw":{"message":"a prefix of keywords is the key-name of %s, for example: q=; you should input url between https:// and keywords when [use path keywods] is checked"}
+,"op_mtip_form_prkw":{"message":"keywords-ident is the key-name of %s, for example: q=; you should input regex expression when [use path keywods] is checked"}
 ,"op_mtip_form_enc":{"message":"it's necessary only when the search engine is not supports utf-8 encoding. you can find the search engine's encoding with clicking: [chrome customize control menu]>[Tools]>[Encoding]"}
 ,"op_mtip_form_googleico":{"message":"Google provides a icon service for most of website, you can use it if you can't find the icon of search engine, the serviice url is: https://www.google.com/s2\n/favicons?domain=website-domain"}
-,"op_mtip_form_pathkw":{"message":"this is a partiular option for compats few search engines, for example: https://search.suning.com/%s/；you should input [keywords prerix] cooperatively if checked"}
+,"op_mtip_form_pathkw":{"message":"this is a partiular option for compats few search engines, for example: https://search.suning.com/%s/；you should input [keywords ident] cooperatively if checked"}
 
 ,"oth_readme":{"message":"about me"}
 ,"oth_readme1":{"message":"search2 follows four design principles: lightness, simplicity, ease of use, and scalability"}

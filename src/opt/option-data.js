@@ -41,15 +41,16 @@ IDATA.search2_config ={
 	,bdcolor: "#FFA500"
 };
 
-IDATA.search2_nohslist =['search.suning.com','so.iqiyi.com'];
+IDATA.search2_nohslist =['search.suning.com','www.iqiyi.com','www.douyin.com', 'so.youku.com'];
 
 IDATA.search2_favtypes ={
 	 0 : chrome.i18n.getMessage("com_typename_news")
 	,1 : chrome.i18n.getMessage("com_typename_web")
 	,2 : chrome.i18n.getMessage("com_typename_picture")
 	,3 : chrome.i18n.getMessage("com_typename_video")
-	,4 : chrome.i18n.getMessage("com_typename_music")
-	,5 : chrome.i18n.getMessage("com_typename_shopping")
+	,4 : chrome.i18n.getMessage("com_typename_tv")
+	,5 : chrome.i18n.getMessage("com_typename_music")
+	,6 : chrome.i18n.getMessage("com_typename_shopping")
 };
 
 IDATA.search2_iconurls ={
@@ -165,7 +166,6 @@ IDATA.search2_favlist =[
 	,{on:1, type:1, sno:1, cm:1, name:'谷歌网页', icon:'www_google_com', enc:'', prkw:'q=', host:'www.google.com', urltf:'', url:'https://www.google.com/search?newwindow=1&q=%s&safe=off&gws_rd=cr,ssl'}
 	,{on:1, type:2, sno:1, cm:0, name:'谷歌图片', icon:'www_google_com', enc:'', prkw:'q=', host:'www.google.com', urltf:'&udm=2', url:'https://www.google.com/search?newwindow=1&q=%s&udm=2&gws_rd=cr,ssl'}
 	,{on:0, type:3, sno:1, cm:0, name:'谷歌视频', icon:'www_google_com', enc:'', prkw:'q=', host:'www.google.com', urltf:'&udm=7', url:'https://www.google.com/search?newwindow=1&q=%s&udm=7&gws_rd=cr,ssl'}
-	,{on:1, type:3, sno:1, cm:0, name:'Youtube', icon:'www_youtube_com', enc:'', prkw:'search_query=', host:'www.youtube.com', urltf:'www.youtube.com/results', url:'https://www.youtube.com/results?search_query=%s'}
 
 	,{on:1, type:0, sno:2, cm:0, name:'百度新闻', icon:'www_baidu_com', enc:'', prkw:'word=', host:'www.baidu.com', urltf:'tn=news', url:'https://www.baidu.com/s?tn=news&ie=utf-8&word=%s'}
 	,{on:1, type:1, sno:2, cm:1, name:'百度网页', icon:'www_baidu_com', enc:'', prkw:'wd=', host:'www.baidu.com', urltf:'', url:'https://www.baidu.com/s?ie=utf-8&wd=%s'}
@@ -192,22 +192,22 @@ IDATA.search2_favlist =[
 	,{on:1, type:2, sno:6, cm:0, name:'搜狗图片', icon:'pic_sogou_com', enc:'', prkw:'query=', host:'pic.sogou.com', urltf:'', url:'https://pic.sogou.com/pics?ie=utf8&query=%s'}
 	,{on:0, type:3, sno:6, cm:0, name:'搜狗视频', icon:'v_sogou_com', enc:'', prkw:'query=', host:'v.sogou.com', urltf:'', url:'https://v.sogou.com/v?ie=utf8&query=%s'}
 
-	,{on:1, type:4, sno:1, cm:0, name:'QQ音乐', icon:'y_qq_com', enc:'', prkw:'s=', host:'y.qq.com', urltf:'', url:'https://y.qq.com/n/ryqq/search?w=%s'}
-	,{on:1, type:4, sno:2, cm:0, name:'云音乐', icon:'music_163_com', enc:'', prkw:'/search/m/?s=', host:'music.163.com', urltf:'', url:'https://music.163.com/#/search/m/?s=%s'}
-	,{on:1, type:4, sno:3, cm:0, name:'酷狗音乐', icon:'www_kugou_com', enc:'', prkw:'searchKeyWord=', host:'wwww.kugou.com', urltf:'', url:'https://www.kugou.com/yy/html/search.html#searchType=song&searchKeyWord=%s'}
-	,{on:1, type:4, sno:4, cm:0, name:'酷我音乐', icon:'www_kuwo_cn', enc:'', prkw:'key=', host:'www.kuwo.cn', urltf:'', url:'https://kuwo.cn/search/list?key=%s'}
-	,{on:1, type:4, sno:5, cm:0, name:'千千音乐', icon:'music_taihe_com', enc:'', prkw:'word=', host:'music.taihe.com', urltf:'', url:'https://music.taihe.com/search?word=%s'}
+	,{on:1, type:5, sno:1, cm:0, name:'QQ音乐', icon:'y_qq_com', enc:'', prkw:'s=', host:'y.qq.com', urltf:'', url:'https://y.qq.com/n/ryqq/search?w=%s'}
+	,{on:1, type:5, sno:2, cm:0, name:'云音乐', icon:'music_163_com', enc:'', prkw:'/search/m/?s=', host:'music.163.com', urltf:'', url:'https://music.163.com/#/search/m/?s=%s'}
+	,{on:1, type:5, sno:3, cm:0, name:'酷狗音乐', icon:'www_kugou_com', enc:'', prkw:'searchKeyWord=', host:'wwww.kugou.com', urltf:'', url:'https://www.kugou.com/yy/html/search.html#searchType=song&searchKeyWord=%s'}
+	,{on:1, type:5, sno:4, cm:0, name:'酷我音乐', icon:'www_kuwo_cn', enc:'', prkw:'key=', host:'www.kuwo.cn', urltf:'', url:'https://kuwo.cn/search/list?key=%s'}
+	,{on:1, type:5, sno:5, cm:0, name:'千千音乐', icon:'music_taihe_com', enc:'', prkw:'word=', host:'music.taihe.com', urltf:'', url:'https://music.taihe.com/search?word=%s'}
 
-	,{on:1, type:5, sno:1, cm:0, name:'淘宝购物', icon:'s_taobao_com', enc:'', prkw:'q=', host:'s.taobao.com', urltf:'', url:'https://s.taobao.com/search?q=%s'}
-	,{on:1, type:5, sno:2, cm:0, name:'京东商城', icon:'search_jd_com', enc:'', prkw:'keyword=', host:'search.jd.com', urltf:'', url:'https://search.jd.com/Search?enc=utf-8&keyword=%s'}
-	,{on:0, type:5, sno:3, cm:0, name:'当当购物', icon:'search_dangdang_com', enc:'', prkw:'key=', host:'search.dangdang.com', urltf:'', url:'https://search.dangdang.com/?key=%s'}
-	,{on:0, type:5, sno:4, cm:0, name:'苏宁易购', icon:'search_suning_com', enc:'', prkw:'search.suning.com', host:'search.suning.com', urltf:'', url:'https://search.suning.com/%s/'}
-	,{on:0, type:5, sno:5, cm:0, name:'国美在线', icon:'search_gome_com_cn', enc:'', prkw:'question=', host:'search.gome.com.cn', urltf:'', url:'https://search.gome.com.cn/search?question=%s'}
+	,{on:1, type:6, sno:1, cm:0, name:'淘宝购物', icon:'s_taobao_com', enc:'', prkw:'q=', host:'s.taobao.com', urltf:'', url:'https://s.taobao.com/search?q=%s'}
+	,{on:1, type:6, sno:2, cm:0, name:'京东商城', icon:'search_jd_com', enc:'', prkw:'keyword=', host:'search.jd.com', urltf:'', url:'https://search.jd.com/Search?enc=utf-8&keyword=%s'}
+	,{on:1, type:6, sno:3, cm:0, name:'当当购物', icon:'search_dangdang_com', enc:'', prkw:'key=', host:'search.dangdang.com', urltf:'', url:'https://search.dangdang.com/?key=%s'}
+	,{on:1, type:6, sno:4, cm:0, name:'苏宁易购', icon:'search_suning_com', enc:'', prkw:'search.suning.com/([^/|?]*)', host:'search.suning.com', urltf:'', url:'https://search.suning.com/%s/'}
+	,{on:1, type:6, sno:5, cm:0, name:'国美在线', icon:'search_gome_com_cn', enc:'', prkw:'question=', host:'search.gome.com.cn', urltf:'', url:'https://search.gome.com.cn/search?question=%s'}
 
 
 	,{on:1, type:0, sno:10, cm:0, name:'微博搜索', icon:'s_weibo_com', enc:'', prkw:'q=', host:'s.weibo.com', urltf:'', url:'https://s.weibo.com/weibo?q=%s'}
-	,{on:0, type:0, sno:11, cm:0, name:'腾讯热闻', icon:'news_qq_com', enc:'', prkw:'query=', host:'news.qq.com', urltf:'', url:'https://news.qq.com/search?query=%s'}
-	,{on:0, type:0, sno:12, cm:0, name:'搜狐新闻', icon:'search_sohu_com', enc:'', prkw:'keyword=', host:'search.sohu.com', urltf:'', url:'https://search.sohu.com/?keyword=%s'}
+	,{on:1, type:0, sno:11, cm:0, name:'腾讯热闻', icon:'news_qq_com', enc:'', prkw:'query=', host:'news.qq.com', urltf:'', url:'https://news.qq.com/search?query=%s'}
+	,{on:1, type:0, sno:12, cm:0, name:'搜狐新闻', icon:'search_sohu_com', enc:'', prkw:'keyword=', host:'search.sohu.com', urltf:'', url:'https://search.sohu.com/?keyword=%s'}
 
 	,{on:0, type:1, sno:10, cm:0, name:'有道翻译', icon:'www_youdao_com', enc:'', prkw:'q=', host:'www.youdao.com', urltf:'', url:'https://www.youdao.com/result?lang=en&word=%s'}
 	,{on:0, type:1, sno:11, cm:0, name:'鸭鸭网页', icon:'duckduckgo_com', enc:'', prkw:'q=', host:'duckduckgo.com', urltf:'', url:'https://duckduckgo.com/?q=%s'}
@@ -218,11 +218,15 @@ IDATA.search2_favlist =[
 	,{on:0, type:2, sno:12, cm:0, name:'搜狗右键图片', icon:'pic_sogou_com', enc:'', prkw:'query=', host:'pic.sogou.com', urltf:'', url:'https://pic.sogou.com/ris?query=%p'}
 	,{on:0, type:2, sno:13, cm:0, name:'必应右键图片', icon:'cn_bing_com', enc:'', prkw:'imgurl=', host:'cn.bing.com', urltf:'', url:'https://cn.bing.com/images/searchbyimage?cbir=sbi&imgurl=%p'}
 
-	,{on:1, type:3, sno:10, cm:0, name:'抖音', icon:'www_douyin_com', enc:'', prkw:'/search/', host:'www.douyin.com', urltf:'', url:'https://www.douyin.com/search/%s'}
-	,{on:1, type:3, sno:11, cm:0, name:'小红书', icon:'www_xiaohongshu_com', enc:'', prkw:'keyword=', host:'www.xiaohongshu.com', urltf:'', url:'https://www.xiaohongshu.com/search_result?keyword=%s'}
-	,{on:1, type:3, sno:12, cm:0, name:'腾讯视频', icon:'v_qq_com', enc:'', prkw:'q=', host:'v.qq.com', urltf:'', url:'https://v.qq.com/x/search/?q=%s'}
-	,{on:1, type:3, sno:13, cm:0, name:'爱奇艺', icon:'www_iqiyi_com', enc:'', prkw:'/search/', host:'www.iqiyi.com', urltf:'', url:'https://www.iqiyi.com/search/%s'}
-	,{on:1, type:3, sno:14, cm:0, name:'优酷视频', icon:'so_youku_com', enc:'', prkw:'q_', host:'so.youku.com', urltf:'', url:'https://so.youku.com/search/q_%s'}
-	,{on:1, type:3, sno:15, cm:0, name:'搜狐视频', icon:'tv_sohu_com', enc:'', prkw:'key=', host:'tv.sohu.com', urltf:'', url:'https://tv.sohu.com/mts?key=%s'}
-	,{on:1, type:3, sno:16, cm:0, name:'乐视视频', icon:'www_le_com', enc:'', prkw:'wd=', host:'so.le.com', urltf:'', url:'https://so.le.com/s?wd=%s'}
+	,{on:1, type:3, sno:-9, cm:0, name:'抖音', icon:'www_douyin_com', enc:'', prkw:'/search/([^/|?]*)', host:'www.douyin.com', urltf:'', url:'https://www.douyin.com/search/%s'}
+	,{on:1, type:3, sno:-8, cm:0, name:'小红书', icon:'www_xiaohongshu_com', enc:'', prkw:'keyword=', host:'www.xiaohongshu.com', urltf:'', url:'https://www.xiaohongshu.com/search_result?keyword=%s'}
+	,{on:1, type:3, sno:-7, cm:0, name:'Youtube', icon:'www_youtube_com', enc:'', prkw:'search_query=', host:'www.youtube.com', urltf:'www.youtube.com/results', url:'https://www.youtube.com/results?search_query=%s'}
+
+	,{on:1, type:4, sno:13, cm:0, name:'腾讯视频', icon:'v_qq_com', enc:'', prkw:'q=', host:'v.qq.com', urltf:'', url:'https://v.qq.com/x/search/?q=%s'}
+	,{on:1, type:4, sno:14, cm:0, name:'爱奇艺', icon:'www_iqiyi_com', enc:'', prkw:'/search/([^/|?]*)', host:'www.iqiyi.com', urltf:'', url:'https://www.iqiyi.com/search/%s'}
+	,{on:1, type:4, sno:15, cm:0, name:'优酷视频', icon:'so_youku_com', enc:'', prkw:'/search/q_([^/|?]*)', host:'so.youku.com', urltf:'', url:'https://so.youku.com/search/q_%s'}
+	,{on:1, type:4, sno:15, cm:0, name:'搜狐视频', icon:'tv_sohu_com', enc:'', prkw:'key=', host:'tv.sohu.com', urltf:'', url:'https://tv.sohu.com/mts?key=%s'}
+	,{on:1, type:4, sno:17, cm:0, name:'乐视视频', icon:'www_le_com', enc:'', prkw:'wd=', host:'so.le.com', urltf:'', url:'https://so.le.com/s?wd=%s'}
 ];
+
+IDATA.search2_favlist.sort((a, b) => (a.type != b.type) ? a.type - b.type : a.sno - b.sno);

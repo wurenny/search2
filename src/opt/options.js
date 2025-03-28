@@ -171,7 +171,6 @@ HTML.initPageData =function(){
 			mnw =config.morenewwindow;
 			mac =config.moreautoclose;
 			cm =config.cmenu;
-			favlist.sort(UTIL.searchListComperator);
 			
 			HTML.initIcon();
 			HTML.initConfig(config);
