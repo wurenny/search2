@@ -10,33 +10,33 @@
  * Copyright (c) 2014-2025, wurenny@gmail.com, All rights reserved                 *
  *                                                                                 *
  * IDENTIFICATION                                                                  *
- *     css/pull.css                                                                *
+ *     mod/more-search-menu.css                                                    *
  *                                                                                 *
  * This file is part of search2 project                                            *
- * pull.css is the stylesheet for pulldown more search list                        *
+ * more-search-menu.css is the stylesheet for more search menu list                *
  *                                                                                 *
  *---------------------------------------------------------------------------------*
  */
 
-/*pulldown list*/
-#search2_pulldowndiv {
+/*more search menu list*/
+#more_search_menu {
 	float: left;
 	font: 12px Microsoft Yahei, Arial, Helvetica, Sans-serif;
 	z-index: 9999999997;
 	position: fixed;
 }
 
-#search2_pulldowndiv li {
+#more_search_menu li {
 	overflow: hidden;
 }
 
-#search2_pulldowndiv>ul {
+#more_search_menu>ul {
 	margin:0;
 	padding:0;
 	list-style:none;
 }
 
-#search2_pulldowndiv>ul>li {
+#more_search_menu>ul>li {
 	display: block;
 	float:left;
 	width: 100px;
@@ -44,7 +44,7 @@
 	line-height: 24px;
 }
 
-#search2_pulldowndiv ul li a {
+#more_search_menu ul li a {
 	float: left;
 	padding: 2px 0;
 	text-align: center;
@@ -57,12 +57,17 @@
 	overflow: hidden;
 }
 
-#search2_pulldowndiv ul li a:hover, #search2_pulldowndiv ul li:hover > a {
+#more_search_menu ul.moreSearchMenuTop li:first-child a { border-radius: 0 0 0 6px; }
+#more_search_menu ul.moreSearchMenuTop li:last-child a { border-radius: 0 0 6px 0; }
+#more_search_menu ul.moreSearchMenuBottom li:first-child a { border-radius: 6px 0 0 0; }
+#more_search_menu ul.moreSearchMenuBottom li:last-child a { border-radius: 0 6px 0 0; }
+
+#more_search_menu ul li a:hover, #more_search_menu ul li:hover > a {
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), 0 -1px #000;
 	cursor: default;
 }
 
-#search2_pulldowndiv li ul {
+#more_search_menu li ul {
 	position: absolute;
 	box-shadow: 0 0 16px rgba(0, 0, 0, 0.4) inset; 
 	border: 1px solid rgba(0, 0, 0, 0.5);
@@ -71,7 +76,7 @@
 	visibility:hidden;
 }
 
-#search2_pulldowndiv li ul li {
+#more_search_menu li ul li {
 	display: block;
 	float: right;
 	width:120px;
@@ -79,7 +84,7 @@
 	line-height: 24px;
 }
 
-#search2_pulldowndiv li ul a {
+#more_search_menu li ul a {
 	background: none;
 	border: 0 none;
 	margin-right: 0;
@@ -89,12 +94,12 @@
 	text-align: center;
 }
 
-#search2_pulldowndiv li ul a:hover, #search2_pulldowndiv ul li li:hover > a  {
+#more_search_menu li ul a:hover, #more_search_menu ul li li:hover > a  {
 	border-bottom: 1px solid rgba(0,0,0,0.6);
 	text-shadow: 0 1px rgba(255, 255, 255, 0.3);
 	cursor: pointer;
 }
 
-#search2_pulldowndiv li:hover ul {
+#more_search_menu li:hover ul {
 	visibility:visible;
 }

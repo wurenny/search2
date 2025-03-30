@@ -10,10 +10,10 @@
  * Copyright (c) 2014-2025, wurenny@gmail.com, All rights reserved                 *
  *                                                                                 *
  * IDENTIFICATION                                                                  *
- *     css/css.css                                                                 *
+ *     css/cs.css                                                                  *
  *                                                                                 *
  * This file is part of search2 project                                            *
- * css.css is the stylesheet for search2 bar                                       *
+ * cs.css is the stylesheet for search2 bar                                        *
  *                                                                                 *
  *---------------------------------------------------------------------------------*
  */
@@ -83,6 +83,7 @@ a.search2HrefSkin2 {
 #search2>table>tr>td>a{
 	cursor:pointer;
 	display:block;
+	width: 100%;
 	text-decoration:none;
 }
 #search2>table>tr>td>a>img {

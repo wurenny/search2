@@ -6,11 +6,11 @@
 	"minimum_chrome_version": "88",
 	"manifest_version": 3,
 	"name": "__MSG_app_title__",
-	"options_page": "opt/options.html",
+	"options_page": "opt/opt.html",
 
 	"web_accessible_resources": [
 		{
-			"resources": ["cts/contentScript.js", "css/css.css", "css/pull.css", "more/more.css", "opt/options.html"],
+			"resources": ["cs/cs.js", "css/cs.css", "mod/more-search-menu.css", "mod/more-search-box.css", "opt/opt.html"],
 			"matches": ["<all_urls>"]
 		}
 	],
@@ -21,7 +21,12 @@
 	"content_scripts": [{
 		"matches": ["http://*/*", "https://*/*", "file:///*"],
 		"include_globs": ["http:*", "https:*"],
-		"js": ["opt/option-data.js", "inc/comm.js", "cts/contentScript.js"],
+		"js": [
+			"opt/opt-data.js", "inc/proto.js",
+			"inc/var.js", "inc/i18n.js", "inc/util.js", "inc/comm.js",
+			"mod/more-search-menu.js", "mod/more-search-box.js", "mod/main-search-bar.js",
+			"cs/cs.js"
+		],
 		"run_at": "document_start"
 	}],
 	"content_security_policy": {

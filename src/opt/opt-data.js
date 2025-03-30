@@ -10,15 +10,15 @@
  * Copyright (c) 2014-2025, wurenny@gmail.com, All rights reserved                 *
  *                                                                                 *
  * IDENTIFICATION                                                                  *
- *     opt/option-data.js                                                          *
+ *     opt/opt-data.js                                                             *
  *                                                                                 *
  * This file is part of search2 project                                            *
- * option-data is the initial config data for search2                              *
+ * opt-data is the initial config data for search2                                 *
  *                                                                                 *
  *---------------------------------------------------------------------------------*
  */
 
-globalThis.IDATA={};
+globalThis.IDATA ={};
 
 IDATA.search2_config ={
 	newwindow: 0

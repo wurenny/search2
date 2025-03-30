@@ -10,10 +10,10 @@
  * Copyright (c) 2014-2025, wurenny@gmail.com, All rights reserved                 *
  *                                                                                 *
  * IDENTIFICATION                                                                  *
- *     more/more.css                                                               *
+ *     mod/more-search-box.css                                                     *
  *                                                                                 *
  * This file is part of search2 project                                            *
- * more.css is the stylesheet for search2's more color box                         *
+ * this is the stylesheet for search2's more search box                            *
  *                                                                                 *
  *---------------------------------------------------------------------------------*
  */
@@ -94,7 +94,7 @@ input[type=checkbox].search2morecheckbox{
 input[type=checkbox].search2morecheckbox:checked{
 	content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAAY0lEQVR42mJsaGj4z0ACAAggFhBRX19PlOLGxkYGgABigXEMDQ3xKj5//jyYBgggJgYSAUAAkawBIIBI1gAQQCRrAAggkjUABBDJGgACiGQNAAHEgh7OhABAALHAYpBYABBgAEgzDI9ZhlsqAAAAAElFTkSuQmCC")
 }
-#search2_more_searchInput {
+#search2_more_searchBox {
      height:26px;
      color:#4c4c4c;
      font-family:microsoft YaHei !important;
@@ -107,7 +107,7 @@ input[type=checkbox].search2morecheckbox:checked{
      box-sizing:border-box;
      margin:0 !important;
 }
-#search2_more_searchInput:focus {
+#search2_more_searchBox:focus {
 	outline:none;
 }
 #search2_more_moreinput>tr>td {

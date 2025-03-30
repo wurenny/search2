@@ -1,4 +1,4 @@
-<!---------------------------------------------------------------------------------*
+/*---------------------------------------------------------------------------------*
  *                                                                                 *
  * This Source Code is subject to the Proprietary Software License.                *
  * You shall use it only in accordance with the terms of the license agreement.    *
@@ -10,20 +10,13 @@
  * Copyright (c) 2014-2025, wurenny@gmail.com, All rights reserved                 *
  *                                                                                 *
  * IDENTIFICATION                                                                  *
- *     bg/evtpage.html                                                             *
+ *     opt/opt-var.js                                                              *
  *                                                                                 *
  * This file is part of search2 project                                            *
- * evtpage is the background checkview page for search2                            *
+ * opt-var.js define option share variables                                        *
  *                                                                                 *
- *--------------------------------------------------------------------------------->
+ *---------------------------------------------------------------------------------*
+ */
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <script type="text/javascript" src="/opt/option-data.js" charset="utf8"></script>
-    <script type="text/javascript" src="/bg/evtpage.js" charset="utf8"></script>
-</head>
-<body></body>
-</html>
+var UTIL ={};
+var COMM ={};

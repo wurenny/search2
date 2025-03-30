@@ -10,10 +10,10 @@
  * Copyright (c) 2014-2025, wurenny@gmail.com, All rights reserved                 *
  *                                                                                 *
  * IDENTIFICATION                                                                  *
- *     opt/options.js                                                              *
+ *     opt/opt.js                                                                  *
  *                                                                                 *
  * This file is part of search2 project                                            *
- * options.js is used for building the option page                                 *
+ * opt.js is used for building the option page                                     *
  *                                                                                 *
  *---------------------------------------------------------------------------------*
  */
@@ -773,7 +773,7 @@ HTML.saveOption =function(){
 	);
 	
 	if (!config.cmenu) chrome.contextMenus.removeAll();
-	else chrome.runtime.sendMessage({action: "search2createcm"});
+	else chrome.runtime.sendMessage({action: "search2-createcm"});
 		
 	HTML.showTip(i18n.__op_tip_save_success);
 };

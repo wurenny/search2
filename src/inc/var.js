@@ -10,13 +10,32 @@
  * Copyright (c) 2014-2025, wurenny@gmail.com, All rights reserved                 *
  *                                                                                 *
  * IDENTIFICATION                                                                  *
- *     bg/bg.js                                                                    *
+ *     inc/var.js                                                                  *
  *                                                                                 *
  * This file is part of search2 project                                            *
- * bg.js is the background service worker for search2                              *
+ * var.js define content script share variables                                    *
  *                                                                                 *
  *---------------------------------------------------------------------------------*
-*/
+ */
 
-import '/opt/opt-data.js'
-import '/bg/evt.js'
+// public vars
+var UTIL ={};
+var COMM ={};
+var i18n ={};
+var config, favlist, favtypes;
+var iconurls, icondatas, nohslist;
+var favnum ={}, favrect ={};
+var hashSearch, septr;
+var keywords, enc, enckeywords;
+var favindex, pos, stype, prkw, urltf;
+var whmargin, msovered =0;
+
+// content script vars
+var CS ={};
+
+// search bar vars
+var SB ={};
+
+// more searchbox vars
+var MSMENU = {};
+var MSBOX = {};

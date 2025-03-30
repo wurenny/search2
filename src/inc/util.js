@@ -13,12 +13,18 @@
  *     inc/util.js                                                                 *
  *                                                                                 *
  * This file is part of search2 project                                            *
- * util serves to options script                                                   *
+ * util is general functions for other script                                      *
  *                                                                                 *
  *---------------------------------------------------------------------------------*
  */
 
-var UTIL ={};
+UTIL.chromeCompatible =function(){
+	var chromeVersion = navigator.userAgent.toLowerCase().match(/chrome\/(\d+)/);
+	if ((typeof chrome == 'object') && (typeof chrome.runtime == 'object')
+		&& chromeVersion.length > 1 && chromeVersion[1] >=88)
+		return true;
+	return false;
+};
 
 UTIL.searchListComperator =function(json1, json2){
 	var result;
@@ -40,6 +46,19 @@ UTIL.validateURL =function(url) {
 	var re=new RegExp(strRegex,"i");  
 	if (re.test(url)) return true;  
 	else return false;  
+};
+
+UTIL.decodeURL =function(cb, charset, str){
+	var script = document.documentElement.appendChild(document.createElement("script"));
+	var div = document.documentElement.appendChild(document.createElement("div"));
+	script.id = "search2kwscript";
+	div.id ="search2kwdiv";
+	div.style.display ="none";
+	script.onload = cb;
+	var src ="data:text/javascript;charset=" + charset + ",";
+	src +="document.getElementById('search2kwdiv').innerText='"+str+"';";
+	src += 'document.getElementById("search2kwscript").parentNode.removeChild(document.getElementById("search2kwscript"));';
+	script.src = src;
 };
 
 UTIL.getFavicon =function(img) {
