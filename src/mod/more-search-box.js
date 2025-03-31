@@ -18,7 +18,7 @@
  *---------------------------------------------------------------------------------*
  */
 
-MSBOX.popSearchBox =function() {
+MSBOX.popMoreSearchBox =function() {
 	var morediv =document.getElementById("search2more");
 	if(!morediv) {
 		morediv =document.documentElement.insertBefore(document.createElement("div"), document.documentElement.firstChild);
@@ -32,14 +32,14 @@ MSBOX.popSearchBox =function() {
 	var stxt =COMM.getSelectedText();
 	var kw =(config.searchselected && stxt!="")? stxt : (keywords?keywords:"");
 	COMM.removeObjdata();
-	MSBOX.createSearchBox(i18n.__more_title, null, kw, w, h, true, pbl, ctrd);
+	MSBOX.createMoreSearchBox(i18n.__more_title, null, kw, w, h, true, pbl, ctrd);
 	
 	/*hide search menu*/
 	var pdiv =document.getElementById("more_search_menu");
 	if(pdiv) pdiv.style.display ="none";
 };
 
-MSBOX.createSearchBox =function(title, url, kw, w, h, cartoon, parabola, cartoonrandom) {
+MSBOX.createMoreSearchBox =function(title, url, kw, w, h, cartoon, parabola, cartoonrandom) {
 	var box =document.getElementById("search2colorbox");
 	if(box) return;
 	
@@ -74,7 +74,7 @@ MSBOX.createSearchBox =function(title, url, kw, w, h, cartoon, parabola, cartoon
 	boxcontent =tb.appendChild(document.createElement("tr")).appendChild(document.createElement("td"));
 	boxcontent.id ="search2boxcontent";
 	
-	if(!url) boxcontent.appendChild(MSBOX.createSearchBoxContent(kw));
+	if(!url) boxcontent.appendChild(MSBOX.createMoreSearchBoxContent(kw));
 	else{
 		var iframe =boxcontent.appendChild(document.createElement("iframe"));
 		iframe.id ="search2boxiframe";
@@ -98,7 +98,7 @@ MSBOX.createSearchBox =function(title, url, kw, w, h, cartoon, parabola, cartoon
 	if(cartoon) box.dopopup(w, h+24, vt, cartoonrandom, parabola);
 };
 
-MSBOX.createSearchBoxContent =function(kw) {
+MSBOX.createMoreSearchBoxContent =function(kw) {
 	var t =document.createElement("table");
 	t.id ="search2_more";
 	var tbd =t.appendChild(document.createElement("tbody"));

@@ -34,6 +34,7 @@
 	margin:0;
 	padding:0;
 	list-style:none;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.4) inset; 
 }
 
 #more_search_menu>ul>li {
@@ -57,20 +58,20 @@
 	overflow: hidden;
 }
 
-#more_search_menu ul.moreSearchMenuTop li:first-child a { border-radius: 0 0 0 6px; }
-#more_search_menu ul.moreSearchMenuTop li:last-child a { border-radius: 0 0 6px 0; }
-#more_search_menu ul.moreSearchMenuBottom li:first-child a { border-radius: 6px 0 0 0; }
-#more_search_menu ul.moreSearchMenuBottom li:last-child a { border-radius: 0 6px 0 0; }
+/**
+#more_search_menu ul.moreSearchMenu_top li:last-child { border-radius: 0 0 0px 0px; }
+#more_search_menu ul.moreSearchMenu_bottom li:first-child { border-radius: 0px 0px 0 0; }
+**/
 
 #more_search_menu ul li a:hover, #more_search_menu ul li:hover > a {
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), 0 -1px #000;
+	/*text-shadow: 0 1px 0 rgba(255, 255, 255, 0), 0 -1px #000;*/
+	font-weight: bold;
 	cursor: default;
 }
 
 #more_search_menu li ul {
 	position: absolute;
-	box-shadow: 0 0 16px rgba(0, 0, 0, 0.4) inset; 
-	border: 1px solid rgba(0, 0, 0, 0.5);
+	border: 0px solid rgba(0, 0, 0, 0.5);
 	width:120px;
 	overflow: hidden;
 	visibility:hidden;
@@ -86,17 +87,19 @@
 
 #more_search_menu li ul a {
 	background: none;
-	border: 0 none;
+	border: 0px solid rgba(0, 0, 0, 0.5);
 	margin-right: 0;
 	width: 120px;
-	box-shadow: none;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 0 5px rgba(0, 0, 0, 0.1) inset;
+	border-left: 1px solid rgba(255, 255, 255, 0.05);
+	border-right: 1px solid rgba(0,0,0,0.2);
 	border-bottom: 1px solid transparent;
 	text-align: center;
 }
 
 #more_search_menu li ul a:hover, #more_search_menu ul li li:hover > a  {
 	border-bottom: 1px solid rgba(0,0,0,0.6);
-	text-shadow: 0 1px rgba(255, 255, 255, 0.3);
+	/*text-shadow: 0 1px rgba(255, 255, 255, 0);*/
 	cursor: pointer;
 }
 

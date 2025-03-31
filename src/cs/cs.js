@@ -31,7 +31,7 @@ CS.listen =function(){
 	    if (request.action == "pop-search-box") {
 				COMM.setFavrect();
 				CS.initI18n();
-				MSBOX.popSearchBox();
+				MSBOX.popMoreSearchBox();
 	    }
 	    else{
 	      sendResponse({});
@@ -147,18 +147,25 @@ CS.run =function(){
 	var fn=config.searchnamedisplay;
 	var tld =config.searchlisttiled;
 	var sp =(tld && pos!="right")?0:config.intervaldistance;
-	var bgc =config.bgcolor;
-	var fgc =config.fgcolor;
+	var fgh =COMM.getDiffColor(config.fgcolor, 0, 0, -100);
+	var cch =COMM.getContrastColor(config.bgcolor,5);
+	var ccb =COMM.getContrastColor(config.bgcolor,0);
+
+	/*color Palette*/
+	SB.palette = {};
+	SB.palette.bgc = config.bgcolor;
+	SB.palette.fgc = config.fgcolor;
+	SB.palette.fgh = fgh; //for hover
+	SB.palette.bgh = cch; //for hover
+	SB.palette.bgc1 = ccb[1];
+	SB.palette.bgc2 = ccb[2];
 	
 	/*triggered more than once ?*/
 	if (document.getElementById("search2")) return;
 	
 	/*create bar*/
-	var bar =SB.createBar(bgc);
+	var bar =SB.createBar(config.bgcolor);
 		
-	/*more search list*/
-	MSMENU.createSearchMenu(bgc,fgc);
-	
 	/*table layout*/
 	var tb =bar.appendChild(document.createElement("table"));
 	if (tld) {
@@ -169,17 +176,20 @@ CS.run =function(){
 	var td =tr.appendChild(document.createElement("td"));;
 	
 	/*config button*/
-	SB.createConfigbtn(td);
+	SB.createConfigButton(td);
 	
-	/*auto hide and at right ?*/
+	/*table body: auto hide and at right ?*/
 	var stb =(pos=="right" && config.autohide) ? SB.rightHideTable(bar,tb) : tb;
 	
-	/*fill search engines*/
-	SB.favMainLoop(stb,tr,sp,fn,bgc,fgc);
+	/*more search menu layout: L1 and L2*/
+	MSMENU.createMoreSearchMenu(SB.palette);
 	
-	/*more search box*/
+	/*fill search engines and  L2 more search menu*/
+	SB.favMainLoop(stb,tr,sp,fn, SB.palette);
+	
+	/*more search button: listen and display menu + box*/
 	if (pos =="left") tr =stb.appendChild(document.createElement("tr"));
-	SB.createMoreSearch(tr,sp,fn);
+	SB.createMoreSearchButton(tr,sp,fn);
 	
 	/*now display the search2 bar*/
 	bar.style.display ="block";

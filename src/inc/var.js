@@ -36,6 +36,6 @@ var CS ={};
 // search bar vars
 var SB ={};
 
-// more searchbox vars
+// more search vars
 var MSMENU = {};
 var MSBOX = {};

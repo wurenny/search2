@@ -19,10 +19,10 @@
  */
 
 HTMLElement.prototype.setbg =function(gdt){
-	this.style.background =this.style.background ="-webkit-gradient(linear,left bottom,left top," +
-		"color-stop(0.15," +gdt[0] +
-		"),color-stop(0.5," +gdt[1] +
-		"),color-stop(1," +gdt[2] +"))";
+	let style = "linear-gradient(to top," +
+		gdt[0] + " 25%" + "," +
+		gdt[1] + " 50%)";
+	this.style.background = style;
 };
 
 HTMLElement.prototype.domove =function() {

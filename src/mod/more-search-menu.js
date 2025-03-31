@@ -18,53 +18,57 @@
  *---------------------------------------------------------------------------------*
  */
 
-MSMENU.createSearchMenu =function(bgc,fgc) {
-	var gdt =COMM.getContrastColor(bgc,10);
-	var bgc2 =COMM.getContrastColor(bgc,0)[1];
-	var pulldowndiv =document.createElement("div");
-	pulldowndiv.id ="more_search_menu";
-	pulldowndiv.style.display ="none";
-	document.documentElement.insertBefore(pulldowndiv,document.head);
-	var ul =pulldowndiv.appendChild(document.createElement("ul"));
-	if(pos=="left" || pos =="right") ul.style.width ="60px";
-	else if(pos=="top") ul.classList.add("moreSearchMenuTop");
-	else if(pos=="bottom") ul.classList.add("moreSearchMenuBottom");
-	for(var t in favtypes) {
+MSMENU.createMoreSearchMenu =function(palette) {
+	let msmenudiv =document.createElement("div");
+	msmenudiv.id ="more_search_menu";
+	msmenudiv.style.display ="none";
+	document.documentElement.insertBefore(msmenudiv,document.head);
+	let ul =msmenudiv.appendChild(document.createElement("ul"));
+	//if(pos=="left" || pos =="right")
+	ul.style.width ="100px";
+	ul.classList.add("moreSearchMenu_" +pos);
+	for(let t in favtypes) {
 		if(t ==stype) continue;
-		var li =ul.appendChild(document.createElement("li"));
-		var a =li.appendChild(document.createElement("a"));
+		let li =ul.appendChild(document.createElement("li"));
+		let a =li.appendChild(document.createElement("a"));
 		a.innerText =favtypes[t];
-		a.style.background =bgc2;
-		a.onmouseover =function(){this.setbg(gdt)};
-		a.onmouseout =function(){this.style.background =bgc2};
-		a.style.color =fgc;
-		var ul2 =li.appendChild(document.createElement("ul"));
-		ul2.id ="pulldown_category" +t;
-		ul2.style.background =bgc;
-		ul2.style.color =fgc;
-		//ul2.style.opacity =0.95;
-		if(pos=="left") ul2.style.marginLeft ="100px";
-		else if(pos=="right") ul2.style.marginLeft ="-122px";
+		a.style.background =palette.bgc1;
+		/*mouse event*/
+		a.style.color =palette.fgc;
+		let ul2 =li.appendChild(document.createElement("ul"));
+		ul2.id ="more_search_menu_L2_" +t;
+		ul2.style.background =palette.bgc2;
+		ul2.style.color =palette.fgc;
+		a.onmouseover =function(){
+			console.log("offtop bottom:", this.offsetTop, "||", this.style.bottom);
+			if (pos != "top1") ul2.style.top = this.offsetTop - (this.offsetTop < 28 ? 0 : 28) + "px";
+			//if (pos == "bottom") ul2.style.bottom = this.offsetBottom - (this.offsetBottom < 28 ? 0 : 28) + "px";
+			this.style.color = palette.fgh;
+			this.setbg(palette.bgh)
+		};
+		a.onmouseout =function(){
+			this.style.color = palette.fgc;
+			this.style.background =palette.bgc1
+		};
 	}
 };
 
-MSMENU.popSearchMenu =function(e) {
+MSMENU.popMoreSearchMenu =function(e) {
 	if(msovered) return;
-	var athd =config.autohide;
+	let athd =config.autohide;
 	//if(athd && pos =="right") e =document.getElementById("search2_configbtn");
-	var pdiv =document.getElementById("more_search_menu");
-	var dw =document.documentElement.clientWidth;
-	var dh =document.documentElement.clientHeight;
-	var x,y;
-	var rect =e.getBoundingClientRect();
+	let pdiv =document.getElementById("more_search_menu");
+	let dw =document.documentElement.clientWidth;  // window width
+	let dh =document.documentElement.clientHeight; // window height
+	let x,y;
+	let rect =e.getBoundingClientRect();
 	if(rect){
 		x =rect.left;
 		y =rect.top +rect.height;
-	}
-	else{
+	} else{
 		x =e.offsetLeft;
 		y =e.offsetTop;
-		var current = e.offsetParent;
+		let current = e.offsetParent;
 		while (current !==null) {
 			x +=current.offsetLeft;
 			y +=current.offsetTop;
@@ -72,48 +76,65 @@ MSMENU.popSearchMenu =function(e) {
 		}
 		y =y +e.offsetHeight;
 	}
-	//console.log(dw +"," +dh +"||" +x +"," +y +"||" +event.clientX +"," +event.clientY);	
+	let isXoverflow = (x + 100 > dw);
+	//console.log("xoverflow, dw dh morex morey:", isXoverflow, dw, "||", dh, "||", x, "||", y);
 	
-	/*position:pdiv*/
+	/*position:L1 menu*/
 	if(pos =="top" || pos =="bottom") {
 		//pdiv.style.right =dw -x +"px";
-		pdiv.style.left =x + 15 +"px";
-		pos=="top" ? pdiv.style.top ="0px" : pdiv.style.bottom ="0px";
+		if (isXoverflow) pdiv.style.right ="0px";
+		else pdiv.style.left =x - 30 +"px";
+		pos=="top" ? pdiv.style.top ="18px" : pdiv.style.bottom ="18px";
 	}
 	else if(pos =="left") {
 		pdiv.style.left =x +whmargin +"px";
 		pdiv.style.bottom =dh -y +"px";
 	}
-	else {
+	else if(pos =="right") {
 		pdiv.style.left =x +(athd?-50:-50) +"px";
 		pdiv.style.top = y + 4 + "px";
 		//pdiv.style.bottom =dh -(athd?event.clientY:y-16) +"px";
 		//pdiv.style.bottom =dh -y -(athd?(config.intervaldistance*2+18)*favnum[stype] +44:0) +16 +"px";
 		msovered =1;
 	}
-	/*position:second menu list*/
-	var uls =pdiv.getElementsByTagName("ul");
-	for(var i=0;i<uls.length;i++) 
-		if(uls[i].id.indexOf("pulldown_category")!=-1) {
-			if(pos =="top") {
-				uls[i].style.top ="28px";
-				uls[i].style.borderRadius ="0px 0px 6px 6px";
-			}
-			else if(pos =="bottom") {
-				uls[i].style.bottom ="28px";
-				uls[i].style.borderRadius ="6px 6px 0px 0px";
+
+	/*position:L2 menu*/
+	//let ul2 =pdiv.getElementsByTagName("ul");
+	let ul2s =pdiv.querySelectorAll('[id^="more_search_menu_L2_"]');
+	for(let i=0;i<ul2s.length;i++) {
+		//if(ul2[i].id.indexOf("more_search_menu_L2")!=-1)
+		let ul2 = ul2s[i];
+		if(pos =="top" || pos =="bottom") {
+			if (isXoverflow) {
+				ul2.style.right ="100px";
+				ul2.style.borderRadius ="6px 0px 0px 6px";
 			}
 			else {
-				uls[i].style.bottom ="0px";
-				if(pos =="left") uls[i].style.borderRadius ="0px 6px 6px 0px";
-				if(pos =="right") uls[i].style.borderRadius ="6px 0px 0px 6px";
+				ul2.style.marginLeft ="100px";
+				ul2.style.borderRadius ="0px 6px 6px 0px";
 			}
 		}
+		if(pos =="left") {
+			ul2.style.marginLeft ="100px";
+			ul2.style.borderRadius ="0px 6px 6px 0px";
+		}
+		else if(pos =="top") {
+			ul2.style.top ="0px";
+		}
+		else if(pos =="right") {
+			ul2.style.marginLeft ="-120px";
+			//ul2.style.bottom ="0px";
+			ul2.style.borderRadius ="6px 0px 0px 6px";
+		}
+		else if(pos =="bottom") {
+			ul2.style.bottom ="0px";
+		}
+	}
 	
 	pdiv.style.display ="block";
-	document.body.onmouseover =function(){
+	document.body.onclick =function(){
 		pdiv.style.display ="none";
-		document.body.onmouseover =undefined;
+		document.body.onclick =undefined;
 		msovered =0;
 	}
 };
