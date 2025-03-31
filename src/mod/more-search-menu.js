@@ -24,7 +24,6 @@ MSMENU.createMoreSearchMenu =function(palette) {
 	msmenudiv.style.display ="none";
 	document.documentElement.insertBefore(msmenudiv,document.head);
 	let ul =msmenudiv.appendChild(document.createElement("ul"));
-	//if(pos=="left" || pos =="right")
 	ul.style.width ="100px";
 	ul.classList.add("moreSearchMenu_" +pos);
 	for(let t in favtypes) {
@@ -32,19 +31,28 @@ MSMENU.createMoreSearchMenu =function(palette) {
 		let li =ul.appendChild(document.createElement("li"));
 		let a =li.appendChild(document.createElement("a"));
 		a.innerText =favtypes[t];
+		/*style*/
 		a.style.background =palette.bgc1;
-		/*mouse event*/
 		a.style.color =palette.fgc;
 		let ul2 =li.appendChild(document.createElement("ul"));
 		ul2.id ="more_search_menu_L2_" +t;
 		ul2.style.background =palette.bgc2;
 		ul2.style.color =palette.fgc;
+		/*mouse event*/
 		a.onmouseover =function(){
-			console.log("offtop bottom:", this.offsetTop, "||", this.style.bottom);
-			if (pos != "top1") ul2.style.top = this.offsetTop - (this.offsetTop < 28 ? 0 : 28) + "px";
-			//if (pos == "bottom") ul2.style.bottom = this.offsetBottom - (this.offsetBottom < 28 ? 0 : 28) + "px";
 			this.style.color = palette.fgh;
 			this.setbg(palette.bgh)
+			let ra = this.getBoundingClientRect();
+			let ru = ul2.getBoundingClientRect();
+			let dh = document.documentElement.clientHeight; // window height
+			//console.log("dh a+h u+h r:", dh, ra.y+ru.height, ru.y+ru.height, ru);
+			if (pos == "bottom") {
+				if (ru.y + ru.height + 18 > dh) ul2.style.bottom = 0;
+			}
+			else {
+				if (pos == "left" && ra.y + ru.height > dh) ul2.style.bottom = 0;
+				else ul2.style.top = this.offsetTop - (this.offsetTop < 28 ? 0 : 28) + "px";
+			}
 		};
 		a.onmouseout =function(){
 			this.style.color = palette.fgc;
@@ -91,7 +99,7 @@ MSMENU.popMoreSearchMenu =function(e) {
 		pdiv.style.bottom =dh -y +"px";
 	}
 	else if(pos =="right") {
-		pdiv.style.left =x +(athd?-50:-50) +"px";
+		pdiv.style.left =x - 50 +"px";
 		pdiv.style.top = y + 4 + "px";
 		//pdiv.style.bottom =dh -(athd?event.clientY:y-16) +"px";
 		//pdiv.style.bottom =dh -y -(athd?(config.intervaldistance*2+18)*favnum[stype] +44:0) +16 +"px";
@@ -99,12 +107,11 @@ MSMENU.popMoreSearchMenu =function(e) {
 	}
 
 	/*position:L2 menu*/
-	//let ul2 =pdiv.getElementsByTagName("ul");
 	let ul2s =pdiv.querySelectorAll('[id^="more_search_menu_L2_"]');
 	for(let i=0;i<ul2s.length;i++) {
-		//if(ul2[i].id.indexOf("more_search_menu_L2")!=-1)
 		let ul2 = ul2s[i];
 		if(pos =="top" || pos =="bottom") {
+			//right overflow ?
 			if (isXoverflow) {
 				ul2.style.right ="100px";
 				ul2.style.borderRadius ="6px 0px 0px 6px";
@@ -114,21 +121,17 @@ MSMENU.popMoreSearchMenu =function(e) {
 				ul2.style.borderRadius ="0px 6px 6px 0px";
 			}
 		}
+		//position
 		if(pos =="left") {
 			ul2.style.marginLeft ="100px";
 			ul2.style.borderRadius ="0px 6px 6px 0px";
 		}
-		else if(pos =="top") {
-			ul2.style.top ="0px";
-		}
 		else if(pos =="right") {
 			ul2.style.marginLeft ="-120px";
-			//ul2.style.bottom ="0px";
 			ul2.style.borderRadius ="6px 0px 0px 6px";
 		}
-		else if(pos =="bottom") {
-			ul2.style.bottom ="0px";
-		}
+		else if(pos =="top") ul2.style.top ="0px";
+		//bottom need Real-time computing when mouseover
 	}
 	
 	pdiv.style.display ="block";
