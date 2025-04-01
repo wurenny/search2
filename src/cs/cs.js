@@ -45,18 +45,21 @@ CS.initkw =function(){
 	let hostname = document.location.host;
 	for (i = 0; i < favlist.length; i++) {
 		if (favlist[i].on != 1 || favlist[i].url.indexOf("%s")==-1) continue;
-		if( (hostname.indexOf(favlist[i].host) != -1) && 
-			(
-				(!favlist[i].urltf) || 
-				(favlist[i].urltf && (thisurl.indexOf(favlist[i].urltf) !=-1)) ||
-				(favlist[i].urltf=='&tbm=web' && (thisurl.indexOf('&tbm=') ==-1))
-			)
-		){
-			favindex = i;
-			urltf =favlist[i].urltf;
-			prkw =favlist[i].prkw;
-			stype =favlist[i].type;
-			break;
+		if (hostname.indexOf(favlist[i].host) != -1) {
+			if (!favlist[i].urltf) {
+				favindex = i;
+				urltf =favlist[i].urltf;
+				prkw =favlist[i].prkw;
+				stype =favlist[i].type;
+				continue;
+			}
+			else if (favlist[i].urltf && thisurl.indexOf(favlist[i].urltf) !=-1) {
+				favindex = i;
+				urltf =favlist[i].urltf;
+				prkw =favlist[i].prkw;
+				stype =favlist[i].type;
+				break;
+			}
 		}
 	}
 		
@@ -151,7 +154,7 @@ CS.run =function(){
 	var cch =COMM.getContrastColor(config.bgcolor,5);
 	var ccb =COMM.getContrastColor(config.bgcolor,0);
 
-	/*color Palette*/
+	/*color palette*/
 	SB.palette = {};
 	SB.palette.bgc = config.bgcolor;
 	SB.palette.fgc = config.fgcolor;

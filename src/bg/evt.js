@@ -55,6 +55,7 @@ EVT.createCM =function() {
 			}
 			let favlist =storages.search2_favlist;
 			if(!favlist) favlist =IDATA.search2_favlist;
+			EVT.favlist = favlist;
 			
 			chrome.contextMenus.removeAll();
 			chrome.contextMenus.create({
@@ -88,6 +89,7 @@ EVT.initCM =function() {
 		function(info, tab){
 			let url, params =info.menuItemId.split("_");
 			let esckw, kw;
+			let favlist = EVT.favlist;
 			if (info.menuItemId =="search2cmenu") chrome.tabs.sendMessage(tab.id, {action : "pop-search-box"});
 			else {
 				if (params[0] =="search2cmenu" && params[1]=="image") {
