@@ -92,6 +92,7 @@ COMM.tunePos =function(){
 };
 
 COMM.getKeywords =function(hashSearch, septr){
+	//console.log(`septr:${septr}, prkw:${prkw}, hashSearch:${hashSearch}`);
 	if("&"==septr) {
 		var params = hashSearch.split(septr);
 		for (var k = 0; k < params.length; k++) {
@@ -113,6 +114,19 @@ COMM.getKeywords =function(hashSearch, septr){
 		//}
 	}
 };
+
+COMM.urlChangeListener = function(thisurl, count, delay) {
+	//console.log(`===> url change time: ${count}， current delay：${delay}ms， septr=${septr}, keyword=${keywords}`);
+	if (count >= 30) return;
+	let url2 =document.location.href;
+	if (thisurl!=url2) { COMM.runUrlChange(); count++; }
+	if (count === 10) {
+			delay = 1000;
+	} else if (count === 20) {
+			delay = 2000;
+	}
+	setTimeout(() => COMM.urlChangeListener(url2, count, delay), delay);
+}
 
 COMM.runUrlChange =function(){
 	var bar =document.getElementById("search2");

@@ -43,8 +43,10 @@ CS.listen =function(){
 CS.initkw =function(){
 	let thisurl = document.location.href;
 	let hostname = document.location.host;
+	let prkwinurl = false;
 	for (i = 0; i < favlist.length; i++) {
-		if (favlist[i].on != 1 || favlist[i].url.indexOf("%s")==-1) continue;
+		prkwinurl = thisurl.match(new RegExp(favlist[i].prkw.replace(/\//g, '\\/'))) ? true : false;
+		if (favlist[i].on != 1 || favlist[i].url.indexOf("%s")==-1 || !prkwinurl) continue;
 		if (hostname.indexOf(favlist[i].host) != -1) {
 			if (!favlist[i].urltf) {
 				favindex = i;
@@ -68,7 +70,9 @@ CS.initkw =function(){
 	if (!prkw) return;
 	
 	/*action for keywords*/
-	if (nohslist.containOf(hostname)) {
+	//if (nohslist.containOf(hostname)) {
+	let ispathkw = prkw.substr(-1) != "=";
+	if (ispathkw) {
 		septr ="/";
 		var href =thisurl;
 		hashSearch =href.substr(href.indexOf("://")+3);
@@ -89,16 +93,19 @@ CS.initkw =function(){
 		hashSearch =hashSearch.replace(/\+/g, " ");
 		COMM.getKeywords(hashSearch, septr);
 	}
+	if (!keywords) return;
 	
 	/*hash change listener ,but while history.pushState was invoked use ajax in HTML5, it will donot work*/
 	// window.addEventListener('hashchange', function () { COMM.runUrlChange(); }, false);
-	var url1 =thisurl, url2;
-	setInterval(
+	COMM.urlChangeListener(thisurl, 0, 500);
+	/*
+	const urlChangeListener = setInterval(
 		function(){
 			url2 =document.location.href;
-			if (url1!=url2) { url1 =url2; COMM.runUrlChange(); }
+			if (thisurl!=url2) { thisurl=url2; COMM.runUrlChange(); }
 		}, 500
 	);
+	*/
 };
 
 CS.ready =function(start){	

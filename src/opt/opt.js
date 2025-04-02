@@ -515,7 +515,9 @@ HTML.searchListConfirm =function(type, e) {
 		HTML.showTip(i18n.__op_tip_fom_icon);
 		return;
 	}
-	if (!att_prkw || !att_prkw.trim() || att_url.indexOf(att_prkw)==-1 || (!pathkw && att_prkw.substr(-1)!="=")) {
+	if (!att_prkw || !att_prkw.trim() ||
+	(att_url.indexOf(att_prkw)==-1 && (pathkw && att_url.match(new RegExp(att_prkw.replace(/\//g, '\\/')))==null)) ||
+	(!pathkw && att_prkw.substr(-1)!="=")) {
 		HTML.showTip(i18n.__op_tip_fom_prkw);
 		return;
 	}

@@ -63,6 +63,7 @@ UTIL.decodeURL =function(cb, charset, str){
 
 UTIL.getFavicon =function(img) {
 	var cv =document.createElement("canvas");
+	img.crossOrigin = "anonymous";
 	cv.width =img.offsetWidth;
 	cv.height =img.offsetHeight;
 	var ctx =cv.getContext("2d");
