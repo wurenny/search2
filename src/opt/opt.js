@@ -18,25 +18,12 @@
  *---------------------------------------------------------------------------------*
  */
 
-var HTML={};
-var i18n ={};
-var SDATA ={};
-var mnw, mac;
-var iconurls, icondatas, iconloaded;
-
-SDATA.enclist =[
-	"gbk","gb18030","big5","big5-hkscs","utf-16le","shift-jis","euc-jp","iso-2022-jp","euc-kr","iso-2022-kr","macintosh","koi8-r","koi8-u",
-	"windows-1250","windows-1251","windows-1252","windows-1253","windows-1254","windows-1255","windows-1256","windows-1257","windows-1258",
-	"iso-8859-1","iso-8859-2","iso-8859-3","iso-8859-4","iso-8859-5","iso-8859-6","iso-8859-7","iso-8859-8","iso-8859-8-i","iso-8859-9","iso-8859-10","iso-8859-11","iso-8859-13","iso-8859-14","iso-8859-15","iso-8859-16"
-];
-
 window.onload =function(){
 	HTML.initI18n();
 	HTML.initEncList();
 	HTML.initPageData();
 	HTML.initColorPane();
 	HTML.initClickEvent();
-	//UTIL.getFavicon2("ico","https://www.google.com/favicon.ico");
 };
 
 HTML.initI18n =function(){
@@ -132,7 +119,7 @@ HTML.initI18n =function(){
 	document.getElementById("__oth_readme5").innerText=chrome.i18n.getMessage("oth_readme5");
 	document.getElementById("__oth_readme6").innerText=chrome.i18n.getMessage("oth_readme6");
 	document.getElementById("__oth_ipr1").innerText=chrome.i18n.getMessage("oth_ipr1");
-	document.getElementById("__oth_ipr2").innerText=chrome.i18n.getMessage("oth_ipr2");
+	//document.getElementById("__oth_ipr2").innerText=chrome.i18n.getMessage("oth_ipr2");
 	document.getElementById("__oth_ipr3").innerText=chrome.i18n.getMessage("oth_ipr3");
 	i18n.__oth_reset_confirm =chrome.i18n.getMessage("oth_reset_confirm");
 	i18n.__oth_tab_untitled =chrome.i18n.getMessage("oth_tab_untitled");
@@ -144,7 +131,6 @@ HTML.initI18n =function(){
 
 HTML.initEncList =function() {
 	var o, s =document.getElementById("att_enc");
-	var enclist =SDATA.enclist;
 	for (var i=0; i<enclist.length; i++) {
 		o =document.createElement("option");
 		o.id =o.value =enclist[i];
@@ -156,17 +142,13 @@ HTML.initEncList =function() {
 HTML.initPageData =function(){
 	chrome.storage.local.get(
 		function(storages){
-			var config =storages.search2_config;
-			var favtypes =storages.search2_favtypes;
-			var favlist =storages.search2_favlist;
-			iconurls =storages.search2_iconurls;
-			icondatas =storages.search2_icondatas;
-			
-			if(!config) config =IDATA.search2_config;
-			if(!favtypes) favtypes =IDATA.search2_favtypes;
-			if(!favlist) favlist =IDATA.search2_favlist;
-			if(!iconurls) iconurls =IDATA.search2_iconurls;
-			if(!icondatas) icondatas =IDATA.search2_icondatas;
+			optdata = storages.search2;
+			if(!optdata) optdata =OPT.data;
+			config = optdata.config;
+			favtypes = optdata.favtypes;
+			favlist = optdata.favlist;
+			iconurls =optdata.iconurls;
+			icondatas =optdata.icondatas;
 			
 			mnw =config.morenewwindow;
 			mac =config.moreautoclose;
@@ -182,7 +164,7 @@ HTML.initPageData =function(){
 				//UTIL.getFavicon(favlist[i].url1, favlist[i].icon);
 			}
 			
-			//if (iconflush) chrome.storage.local.set({search2_icondatas : icondatas});
+			//if (iconflush) optdata.icondatas = icondatas; chrome.storage.local.set({search2 : optdata});
 			document.getElementById("search_category_tab").firstChild.onmousedown();
 		}
 	);
@@ -494,6 +476,25 @@ HTML.searchListAdd =function(){
 	}
 };
 
+HTML.searchListCancelOp =function() {
+	var current_edit =document.getElementById("current_edit");
+	if (current_edit) {
+		current_edit.innerHTML =i18n.__op_search_edit;
+		current_edit.style.color ="#388F73";
+		current_edit.style.backgroundColor ="";
+		current_edit.id ="";
+	}
+	var addsearch =document.getElementById("__op_search_add");
+	if (addsearch.innerHTML !=i18n.__op_search_add)  
+	{
+		addsearch.innerHTML =i18n.__op_search_add;
+		addsearch.style.color ="#FFA500";
+		addsearch.style.backgroundColor ="";
+	}
+	HTML.searchAttEditable("c");
+	
+};
+
 HTML.searchListConfirm =function(type, e) {
 	var att_url =document.getElementById("att_url").value;
 	var att_name=document.getElementById("att_name").value;
@@ -502,7 +503,14 @@ HTML.searchListConfirm =function(type, e) {
 	var att_enc=document.getElementById("att_enc").value;
 	var att_tf =document.getElementById("att_tf").value;
 	var pathkw =document.getElementById("pathkw").checked;
+	var url;
 	//validate
+	try {
+		url = new URL(att_url);
+	} catch(e) {
+		HTML.showTip(i18n.__op_tip_fom_url);
+		return;
+	}
 	if ((att_url.indexOf("%s")==-1 && att_url.indexOf("%p")==-1) || !UTIL.validateURL(att_url)) {
 		HTML.showTip(i18n.__op_tip_fom_url);
 		return;
@@ -535,7 +543,7 @@ HTML.searchListConfirm =function(type, e) {
 	json.urltf =att_tf;
 	json.url =att_url;
 	json.enc =att_enc;
-	json.host =att_url.split("/")[2];
+	json.host =url.hostname;
 	json.icon =json.host.replace(/\./g, "_");
 	
 	var foricon =document.getElementById("foricon");
@@ -552,9 +560,9 @@ HTML.searchListConfirm =function(type, e) {
 		}
 	}, 5000);
 	
-	img.onload =function() {
+	img.onload = async function() {
 		iconloaded =true;
-		var li, icondata =icondatas[json.icon] =UTIL.getFavicon(img);
+		var li, icondata =icondatas[json.icon] =await UTIL.getIconBase64(url.hostname, att_icon, true);
 		if (type=="edit") {
 			li =e.parentNode.parentNode;
 			li.childNodes[0].src =icondata;
@@ -613,6 +621,14 @@ HTML.searchAttEditable =function(flag) {
 	}
 };
 
+HTML.searchListtiled =function() {
+	var intervaldistance =document.getElementById("intervaldistance").disabled =this.checked;
+};
+
+HTML.searchPositionRight =function() {
+	document.getElementById("right_indentdistance").disabled =!(this.value=="right")
+};
+
 HTML.initClickEvent =function(){
 	var resetbtn =document.getElementById("__op_reset");
 	var importbtn =document.getElementById("__op_import");
@@ -667,7 +683,7 @@ HTML.initClickEvent =function(){
 	indentdistance.onkeyup =function(){UTIL.onlyNumInput(this, 5, 500)};
 	intervaldistance.onkeyup =function(){UTIL.onlyNumInput(this, 5, 200)};
 	addsearch.onclick =HTML.searchListAdd;
-	cancelop.onclick =HTML.cancelOp;
+	cancelop.onclick =HTML.searchListCancelOp;
 	googleico.onclick =HTML.googleIco;
 	searchposition_right_tip.onclick =function(){HTML.showMiniTip(this,i18n.__op_mtip_pos_right,6000)};
 	searchname_auto_tip.onclick =function(){HTML.showMiniTip(this,i18n.__op_mtip_display_auto,4000)};
@@ -704,6 +720,7 @@ HTML.resetOption =function() {
 	if (!confirm(i18n.__oth_reset_confirm)) return;
 	chrome.storage.local.remove(
 		[
+			"search2",
 			"search2_config",
 			"search2_favtypes",
 			"search2_favlist",
@@ -740,7 +757,7 @@ HTML.saveOption =function(){
 		
 	var searchListDiv =document.getElementById("search_list");
 	var searchList =searchListDiv.getElementsByTagName("li");
-	var favlist =[], nohslist =[];
+	var favlist =[]; //, nohslist =[];
 	
 	for(var i=0; i<searchList.length; i++){
 		var listItem =searchList[i];
@@ -751,7 +768,7 @@ HTML.saveOption =function(){
 			var value =fields[k].value;
 			if (key=="on" || key=="type" || key=="cm" || key=="name" || key=="host" || key=="icon" || key=="enc" || key=="prkw" || key=="urltf" || key=="url") 
 				json[key] =value;
-			if(key=="prkw" && value.substr(-1) !="=") nohslist.push(listItem.getAttribute("host"));
+			//if(key=="prkw" && value.substr(-1) !="=") nohslist.push(listItem.getAttribute("host"));
 			json.sno =i+1;
 		}
 		json.type =parseInt(json.type);
@@ -759,25 +776,75 @@ HTML.saveOption =function(){
 		json.cm =parseInt(json.cm);
 		favlist[i] =json;
 	}
+	optdata.config = config,
+	optdata.favtypes = favtypes,
+	optdata.favlist = favlist,
+	//optdata.iconurls = iconurls,
+	//optdata.icondatas = icondatas,
+	//optdata.nohslist = nohslist
 	//console.log(favtypes);
 	//console.log(favlist);
 	//console.log(nohslist);
 	
-	chrome.storage.local.set(
-		{
-			search2_config : config,
-			search2_favtypes : favtypes,
-			search2_favlist : favlist,
-			search2_iconurls : iconurls,
-			search2_icondatas : icondatas,
-			search2_nohslist : nohslist
-		}
-	);
+	chrome.storage.local.set({ search2 : optdata });
 	
 	if (!config.cmenu) chrome.contextMenus.removeAll();
 	else chrome.runtime.sendMessage({action: "search2-createcm"});
 		
 	HTML.showTip(i18n.__op_tip_save_success);
+};
+
+HTML.exportOption =function(){
+	if(document.getElementById("search_att").getAttribute("locked")) {
+		HTML.showTip(i18n.__op_tip_notallow);
+		return;
+	}
+	chrome.storage.local.get(
+		function(storages){
+			let data = storages.search2 ? storages.search2 : OPT.data
+			UTIL.fileSaveAs(JSON.stringify(data),"search2-config.bak");
+		}
+	)
+};
+
+HTML.importOption =function(){
+	let file =document.getElementById("importfile");
+	file.onchange =function(){
+		const path =file.files[0];
+		if(!path) return;
+		const reader = new FileReader();
+		reader.onload = function (event) {
+			const content = event.target.result;
+			const BAKDATA = JSON.parse(content);
+			var need_reload =false;
+			if(typeof BAKDATA =="undefined") alert(i18n.__op_import_failed);
+			else if(typeof BAKDATA.config =="undefined" || typeof BAKDATA.favtypes =="undefined"
+							|| typeof BAKDATA.favlist =="undefined" || typeof BAKDATA.iconurls =="undefined"
+							|| typeof BAKDATA.icondatas =="undefined"// || typeof BAKDATA.search2_nohslist =="undefined"
+							) alert(i18n.__op_import_failed);
+			else{
+				chrome.storage.local.remove(
+					[
+						"search2",
+						"search2_config",
+						"search2_favtypes",
+						"search2_favlist",
+						"search2_iconurls",
+						"search2_icondatas",
+						"search2_nohslist"
+					]
+				);
+				let optdata = BAKDATA;
+				chrome.storage.local.set( { search2: optdata });
+				need_reload =true;
+				alert(i18n.__op_import_success);
+			}
+			if(!need_reload) return;
+			if(need_reload) document.location.reload();
+		};
+		reader.readAsText(path);
+	};
+	file.click();
 };
 
 HTML.initConfig =function(config) {
@@ -834,14 +901,6 @@ HTML.getConfig =function() {
 	return config;
 };
 
-HTML.searchListtiled =function() {
-	var intervaldistance =document.getElementById("intervaldistance").disabled =this.checked;
-};
-
-HTML.searchPositionRight =function() {
-	document.getElementById("right_indentdistance").disabled =!(this.value=="right")
-};
-
 HTML.initIcon =function() {
 	var mt =document.getElementsByName("minitipicon");
 	for (var i=0; i<mt.length; i++) mt[i].src =icondatas.minitip_icon;
@@ -849,228 +908,4 @@ HTML.initIcon =function() {
 	document.getElementById("tipimgdown").src=icondatas.opdown_icon;
 	document.getElementById("configicon").src=icondatas.search2_icon32;
 	//document.getElementById("moreicon").src=icondatas.more_icon;
-};
-
-HTML.cancelOp =function() {
-	var current_edit =document.getElementById("current_edit");
-	if (current_edit) {
-		current_edit.innerHTML =i18n.__op_search_edit;
-		current_edit.style.color ="#388F73";
-		current_edit.style.backgroundColor ="";
-		current_edit.id ="";
-	}
-	var addsearch =document.getElementById("__op_search_add");
-	if (addsearch.innerHTML !=i18n.__op_search_add)  
-	{
-		addsearch.innerHTML =i18n.__op_search_add;
-		addsearch.style.color ="#FFA500";
-		addsearch.style.backgroundColor ="";
-	}
-	HTML.searchAttEditable("c");
-	
-};
-
-HTML.googleIco =function() {
-	if(!document.getElementById("search_att").getAttribute("locked")) return;
-	var att_icon =document.getElementById("att_icon");
-	if (this.checked) {
-		att_icon.setAttribute("oico", att_icon.value);
-		var att_url =document.getElementById("att_url").value;
-		att_icon.value ="https://www.google.com/s2/favicons?domain=" +att_url.split("/")[2];
-	}
-	else {
-		att_icon.value =att_icon.getAttribute("oico");
-	}
-};
-
-HTML.showTip =function(msg, sec) {
-	var tip =document.getElementById("tip");
-	tip.innerText =msg;
-	tip.style.display ="block";
-	tip.style.marginLeft =(tip.parentNode.getBoundingClientRect().width -tip.getBoundingClientRect().width) /2 +"px";
-	//evt =setTimeout("tip.style.display ='none';tip.innerText='';clearTimeout(evt);", (sec?sec:2000));
-	setTimeout(() => {tip.style.display ='none';tip.innerText='';}, 1000);
-};
-
-HTML.showMiniTip =function(e, msg, sec) {
-	if(typeof evt !="undefined") clearTimeout(evt);
-	var tip =document.getElementById("minitip");
-	var tiptxt =document.getElementById("minitiptxt");
-	var x,y;
-	var rect =e.getBoundingClientRect();
-	if (rect) { /*client rect is not correct sometime*/
-		//console.log("browser support rect.");
-		x =rect.left;
-		y =rect.top +rect.height;
-	}
-	else {
-		//console.log("browser not support rect.");
-		x = e.offsetLeft;
-		y = e.offsetTop;
-		var current = e.offsetParent;
-		while (current !== null) {
-			x += current.offsetLeft;
-			y += current.offsetTop;
-			current = current.offsetParent;
-		}
-		y =y +e.offsetHeight;
-	}
-	//console.log(x +"," +y);
-	tip.style.left =(x -30)<0?0:(x-30)+"px";
-	tip.style.top =y +5 +"px";
-	tiptxt.innerText =msg;
-	tip.style.display ="block";
-	//evt =setTimeout("minitip.style.display ='none';minitiptxt.innerText='';clearTimeout(evt);", (sec?sec:2000));
-	setTimeout(() => {minitip.style.display ='none';minitiptxt.innerText='';}, 1000);
-};
-
-HTML.exportOption =function(){
-	if(document.getElementById("search_att").getAttribute("locked")) {
-		HTML.showTip(i18n.__op_tip_notallow);
-		return;
-	}
-	chrome.storage.local.get(
-		function(storages){
-			if(!storages.search2_config) storages =IDATA;
-			else if(!storages.search2_favtypes) {
-				IDATA.search2_config =storages.search2_config;
-				storages =IDATA;
-			}
-			UTIL.fileSaveAs(UTIL.option2str(storages,""),"search2-config.bak");
-		}
-	)
-};
-
-HTML.importOption =function(){
-	var file =document.getElementById("importfile");
-	file.onchange =function(){
-		var tscript =document.body.appendChild(document.createElement("script"));
-		var url =URL.createObjectURL(file.files[0]);
-		tscript.src =url;
-		tscript.onload =function(){
-			var need_reload =false;
-			if(typeof BAKDATA =="undefined") alert(i18n.__op_import_failed);
-			else if(typeof BAKDATA.search2_config =="undefined" || typeof BAKDATA.search2_favtypes =="undefined"
-							|| typeof BAKDATA.search2_favlist =="undefined" || typeof BAKDATA.search2_iconurls =="undefined"
-							|| typeof BAKDATA.search2_icondatas =="undefined" || typeof BAKDATA.search2_nohslist =="undefined"
-							) alert(i18n.__op_import_failed);
-			else{
-				chrome.storage.local.remove(
-					[
-						"search2_config",
-						"search2_favtypes",
-						"search2_favlist",
-						"search2_iconurls",
-						"search2_icondatas",
-						"search2_nohslist"
-					]
-				);
-				chrome.storage.local.set(
-					{
-						search2_config : BAKDATA.search2_config,
-						search2_favtypes : BAKDATA.search2_favtypes,
-						search2_favlist : BAKDATA.search2_favlist,
-						search2_iconurls : BAKDATA.search2_iconurls,
-						search2_icondatas : BAKDATA.search2_icondatas,
-						search2_nohslist : BAKDATA.search2_nohslist
-					}
-				);
-				need_reload =true;
-				alert(i18n.__op_import_success);
-			}
-			if(!need_reload) return;
-			file.value ="";
-			URL.revokeObjectURL(url);
-			document.body.removeChild(tscript);
-			if(need_reload) document.location.reload();
-		};
-	};
-	file.click();
-};
-
-HTML.initColorPane =function(){
-	var ColorHex=new Array('00','33','66','99','CC','FF');
-	var SpColorHex=new Array('FF0000','00FF00','0000FF','FFFF00','00FFFF','FF00FF');
-	var current=null;
-	var colorTable='<table border="0" cellspacing="0" cellpadding="0" '
-		+'style="border:1px #000000 solid;border-bottom:none;border-collapse:collapse;width:274px;" bordercolor="000000">'
-		+'<tr height=20>'
-		//+'<td><input disabled="true" type="input" id="vcolor" style="boder:0;background-color:transparent;outline:none"/></td>'
-		+'<td colspan=6 bgcolor=#ffffff style="font:12px tahoma;padding-left:2px;">'
-		+'<span id="colorpane_close" style="float:right;padding-right:3px;cursor:pointer;">×关闭</span>'
-		+'</td>'+
-		'</table>';
-	colorTable +='<table id="colortable" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse" bordercolor="000000" style="cursor:pointer;">';
-	for (i=0;i<2;i++){
-	  for (j=0;j<6;j++){
-	    colorTable=colorTable+'<tr height=12>';
-	    colorTable=colorTable+'<td width="12" style="background:#000000">';
-	    if (i==0){
-	      colorTable=colorTable+'<td width="12" style="cursor:pointer;background:#'+ColorHex[j]+ColorHex[j]+ColorHex[j]+'">';
-	    }else{
-	      colorTable=colorTable+'<td width="12" style="cursor:pointer;background:#'+SpColorHex[j]+'">';
-	    }
-	    colorTable=colorTable+'<td width="12" style="background:#000000">';
-	    for (k=0;k<3;k++){ 
-        for (l=0;l<6;l++){
-          colorTable=colorTable+'<td width="12" style="cursor:pointer;background:#'+ColorHex[k+i*3]+ColorHex[l]+ColorHex[j]+'">';
-        }
-	    }
-	  }
-	}
-	colorTable +='</table>';
-	var colorpane =document.getElementById("colorpane");
-	colorpane.style.display ="none";
-	colorpane.innerHTML =colorTable;
-};
-
-HTML.showColorPane =function(e){
-	var colorpane =document.getElementById("colorpane");
-	if(colorpane.style.display !="none") return;
-	colorpane_target =e;
-	var x,y;
-	var rect =e.getBoundingClientRect();
-	if (rect) {
-		x =rect.left;
-		y =rect.top +rect.height;
-	}
-	else {
-		x = e.offsetLeft;
-		y = e.offsetTop;
-		var current = e.offsetParent;
-		while (current !== null) {
-			x += current.offsetLeft;
-			y += current.offsetTop;
-			current = current.offsetParent;
-		}
-		y +=e.offsetHeight;
-	}
-	colorpane.style.left =x +"px";
-	colorpane.style.top =y +2 +"px";
-	colorpane.style.display ="block";
-	colorpane.focus();
-};
-
-HTML.closeColorPane =function(){
-	document.getElementById("colorpane").style.display="none";
-};
-
-HTML.changeColor =function(color){
-	colorpane_target.style.background =color;
-	document.getElementById(colorpane_target.getAttribute("input")).value=color.colorHex();
-};
-
-HTML.colorInputOnDblck =function(e){
-	e.setAttribute("lastvalue",e.value.toUpperCase());
-	e.removeAttribute("readonly");
-};
-
-HTML.colorInputOnblur =function(e){
-	e.value =e.value.isColorHex() ? e.value.toUpperCase() : e.getAttribute("lastvalue");
-	e.setAttribute("readonly","true");
-	document.getElementById(e.getAttribute("div")).style.background=e.value;
-};
-
-HTML.getInputColor =function(e){
-	return e.value.isColorHex() ? e.value.toUpperCase() : e.getAttribute("lastvalue");
 };

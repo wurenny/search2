@@ -26,7 +26,8 @@ MSBOX.popMoreSearchBox =function() {
 	}
 	COMM.loadCSS(morediv,"mod/more-search-box.css","search2MoreCSS",null);
 	
-	var w =favrect.rectw * 85, h =favrect.recth * 50 +65;
+	var w =favrect.rectw * 120, h =favrect.recth * 50 +65;
+	//console.log("==>width:", w, h);
 	var pbl =config.morecartoon;
 	var ctrd =config.morecartoonrandom;
 	var stxt =COMM.getSelectedText();
@@ -152,7 +153,7 @@ MSBOX.createMoreSearchBoxContent =function(kw) {
 	var trs =[];
 	//tr
 	for(tp in favtypes) trs[tp] =tbd.appendChild(document.createElement("tr"));
-	var searchItem;
+	let searchItem, searchItemImg, searchItemText;
 	for(var i =0; i<favlist.length; i++){
 		if(!favlist[i].on || favlist[i].url.indexOf("%s")==-1) continue;
 		td =trs[favlist[i].type].appendChild(document.createElement("td"));
@@ -167,7 +168,7 @@ MSBOX.createMoreSearchBoxContent =function(kw) {
 		searchItemImg.src =icondatas[favlist[i].icon];
 		searchItemText =searchItem.appendChild(document.createElement("span"));
 		searchItemText.innerText =favlist[i].name;
-		td.onclick =COMM.clickAslink;
+		td.onmousedown =COMM.clickAslink;
 	}
 	return t;
 };
@@ -198,15 +199,12 @@ MSBOX.loadBoxNOTUSE =function(){
 	
 	chrome.storage.local.get(
 		function(storages){
-			var favtypes =storages.search2_favtypes;
-			var favlist =storages.search2_favlist;
-			var icondatas =storages.search2_icondatas;
-			var nohslist =storages.search2_nohslist;
-			
-			if(!favtypes) favtypes =IDATA.search2_favtypes;
-			if(!favlist) favlist =IDATA.search2_favlist;
-			if(!icondatas) icondatas =IDATA.search2_icondatas;
-			if(!nohslist) nohslist =IDATA.search2_nohslist;
+			let optdata = storages.search2;
+			if(!optdata) optdata = OPT.data;
+			let favtypes =optdata.favtypes;
+			let favlist =optdata.favlist;
+			let icondatas =optdata.icondatas;
+			//let nohslist =optdata.nohslist;
 			
 			/*config */
 			chrome.runtime.sendRequest(
@@ -241,7 +239,7 @@ MSBOX.loadBoxNOTUSE =function(){
 					//console.log(utfkeywords_nhs);
 					var host =this.getAttribute("host");
 					var url =this.getAttribute("url");
-					var url =url.replace("%s", nohslist.containOf(host) ? utfkeywords_nhs : utfkeywords);
+					var url =url.replace("%s", ispathkw ? utfkeywords_nhs : utfkeywords);
 					//console.log(url);
 					window.open(url,target);
 				};

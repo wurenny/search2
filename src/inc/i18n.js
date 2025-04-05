@@ -27,13 +27,14 @@ CS.initI18n =function(){
 	i18n.__cts_config_tip =chrome.i18n.getMessage("cts_config_tip");
 	i18n.__more_title =chrome.i18n.getMessage("more_title");
 	
-	i18n.__com_typename_news =chrome.i18n.getMessage("com_typename_news");
 	i18n.__com_typename_web =chrome.i18n.getMessage("com_typename_web");
 	i18n.__com_typename_picture =chrome.i18n.getMessage("com_typename_picture");
 	i18n.__com_typename_video =chrome.i18n.getMessage("com_typename_video");
-	i18n.__com_typename_shot_video =chrome.i18n.getMessage("com_typename_tv");
-	i18n.__com_typename_music =chrome.i18n.getMessage("com_typename_music");
+	i18n.__com_typename_tv =chrome.i18n.getMessage("com_typename_tv");
 	i18n.__com_typename_shopping =chrome.i18n.getMessage("com_typename_shopping");
+	i18n.__com_typename_map =chrome.i18n.getMessage("com_typename_map");
+	i18n.__com_typename_music =chrome.i18n.getMessage("com_typename_music");
+	i18n.__com_typename_news =chrome.i18n.getMessage("com_typename_news");
 	
 	i18n.__more_autoclose =chrome.i18n.getMessage("more_autoclose");
 	i18n.__more_newwindow =chrome.i18n.getMessage("more_newwindow");

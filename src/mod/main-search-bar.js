@@ -29,7 +29,7 @@ SB.createBar =function(bgc){
 	document.documentElement.insertBefore(bar,document.head);
 	bar.id ="search2";
 	bar.className ="search2Skin search2_At" +pos +(ah && pos !="RIGHT" ? " search2AutoHide_At" +pos : "");
-	var barstyle ="display:none;background:" +bgc +" !important;";
+	var barstyle ="display:block;visibility:hidden;background:" +bgc +" !important;";
 	
 	if(pos=="left") barstyle +=(bl ? "border-right:1px solid " +bdc +" !important;" : "") +(ah ? "left:" +marginpx : "");
 	else if(pos=="top") barstyle +=(bl ? "border-bottom:1px solid " +bdc +" !important;" : "") +(ah ? "top:" +marginpx : "");
@@ -43,9 +43,10 @@ SB.createBar =function(bgc){
 	return bar;
 };
 
-SB.favMainLoop =function(stb,tr,sp,fn, palette){
-	var host,url,enc;
-	var pdcg,li,pullItem,searchItem;
+SB.createSearchItem =function(stb,tr,sp,fn, palette){
+	let host,url,enc;
+	let pdcg,li,pullItem
+	let searchItem,searchItemImg,searchItemText,originText,realText;
 	for (var i = 0; i < favlist.length; i++) {
 		host =favlist[i].host;
 		url =favlist[i].url;
@@ -67,7 +68,7 @@ SB.favMainLoop =function(stb,tr,sp,fn, palette){
 			/*mouse event*/
 			pullItem.onmouseover =function(){this.style.color = palette.fgh;this.setbg(palette.bgh)};
 			pullItem.onmouseout =function(){this.style.color = palette.fgc;this.style.background =palette.bgc2};
-			pullItem.onclick =COMM.clickAslink;
+			pullItem.onmousedown =COMM.clickAslink;
 		}
 		
 		/*search2 bar item*/
@@ -89,11 +90,36 @@ SB.favMainLoop =function(stb,tr,sp,fn, palette){
 		searchItemImg = searchItem.appendChild(document.createElement("img"));
 		searchItemImg.src =icondatas[favlist[i].icon];
 		searchItemText =searchItem.appendChild(document.createElement("span"));
-		searchItemText.innerText =(fn!="onlyicon")?(((fn=="auto" && pos!="left") || fn=="fullname") ? favlist[i].name : favtypes[stype]):"";
 		searchItemText.className="search2Text_At" +pos;
+		originText = ((fn=="auto" && pos!="left") || fn=="fullname") ? favlist[i].name : favtypes[stype];
+		realText = (fn!="onlyicon")?(((fn=="auto" && pos!="left") || fn=="fullname") ? favlist[i].name : favtypes[stype]):"";
+		searchItemText.setAttribute("originText", originText);
+		searchItemText.setAttribute("realText", realText);
+		searchItemText.innerText = realText;
 		/*add listener as same as url link*/
-		searchItem.onclick =COMM.clickAslink;
+		searchItem.onmousedown =COMM.clickAslink;
 	}
+};
+
+SB.flushSearchItem =function(bar, fn, no){
+	if (!bar || fn == "onlyicon") return;
+	let dw =document.documentElement.clientWidth;  // window width
+	let dh =document.documentElement.clientHeight; // window height
+	let rect =bar.querySelector("table").getBoundingClientRect();
+	let isOverflow = false;
+	if (pos == "left" || pos == "right") {
+		if (rect.height+12 > dh) isOverflow = true;
+	}
+	else if (pos == "top" || pos == "bottom") {
+		if (rect.width+12 > dw) isOverflow = true;
+	}
+	for (let e of bar.querySelectorAll("span[class^='search2Text']")) {
+		if (isOverflow) { e.innerText = ""; }
+		else { e.innerText = e.getAttribute("originText"); }
+	}
+	//need test once again if overflow when current bar is not display search text
+	if (no != 1) return;
+	if (!isOverflow) SB.flushSearchItem(bar, 2);
 };
 
 SB.createConfigButton =function(td){

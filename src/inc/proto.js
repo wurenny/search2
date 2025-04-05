@@ -194,6 +194,22 @@ Array.prototype.containOf =function(e){
 	return false;
 };
 
+String.prototype.encodeURI = function(enc) {
+	const bytes = window.iconv.encode(this, enc);
+	return Array.from(bytes).map(b => '%' + b.toString(16).toUpperCase().padStart(2, '0')).join('');
+}
+
+String.prototype.decodeURI = function(enc) {
+	const bytes = this.replace(/\%25([0-9A-Fa-f]{2})/g, "%$1").match(/%([0-9A-F]{2})/gi).map(s => parseInt(s.slice(1), 16));
+	return window.iconv.decode(bytes, enc);
+}
+
+String.prototype.decodeUTF = function() {
+		//keywords =(septr=="/")?decodeURIComponent(keywords).replace(/\%25(26|2B|2d|2E)/g, "%$1"):decodeURIComponent(keywords);
+		//return decodeURIComponent(ths.replace(/\%25([0-9A-Fa-f]{2})/g, "%$1"));
+		return decodeURIComponent(decodeURIComponent(this));
+};
+
 String.prototype.colorHex = function(){
 	var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
 	var that = this;

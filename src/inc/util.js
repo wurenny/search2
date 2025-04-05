@@ -48,6 +48,48 @@ UTIL.validateURL =function(url) {
 	else return false;  
 };
 
+UTIL.encodeURL = function(cb, charset, str){
+	let iframeId ="search2enc_iframe", formId ="search2enc_form", inputName ="search2enc_input";
+	let iframe = document.getElementById(iframeId);
+	if(!iframe){
+		iframe = document.createElement("iframe");
+		iframe.id =iframeId;
+		iframe.name =iframeId;
+		iframe.style.display ="none";
+		document.documentElement.appendChild(iframe);
+	}
+	
+	iframe.onload =function(){
+		console.log("==>enc url: " +iframe.contentWindow.location.search);
+		let enckw =iframe.contentWindow.location.search.split("=")[1];
+		cb({enckw:enckw});
+		document.documentElement.removeChild(iframe);
+		document.documentElement.removeChild(form);
+	}
+	
+	let form = document.getElementById(formId);
+	if(form){
+		document.getElementById("search2enc_textinput").value =str;
+		return form;
+	}
+	form = document.createElement("form");
+	form.acceptCharset =charset;
+	form.id =formId;
+	form.method = "get";
+	//form.action =chrome.runtime.getURL("/oth/blank.html");
+	form.target = iframeId;
+	form.style.display = "none";
+	let input = document.createElement("input");
+	input.id ="search2enc_textinput";
+	input.type = "hidden";
+	input.name = inputName;
+	input.value = str;
+	form.appendChild(input);
+	document.documentElement.appendChild(form);
+	
+	return form;
+};
+
 UTIL.decodeURL =function(cb, charset, str){
 	var script = document.documentElement.appendChild(document.createElement("script"));
 	var div = document.documentElement.appendChild(document.createElement("div"));
@@ -72,7 +114,7 @@ UTIL.getFavicon =function(img) {
 	return cv.toDataURL("image/x-icon");
 };
 
-UTIL.getFavicon2 =async function(hostname,url,mute) {
+UTIL.getIconBase64 =async function(hostname,url,mute) {
 	var img =document.getElementById("foricon").appendChild(document.createElement("img"));
 	var cv =document.createElement("canvas");
 	//var txt =document.getElementById("txt");
@@ -86,23 +128,26 @@ UTIL.getFavicon2 =async function(hostname,url,mute) {
 			cv.height =img.offsetHeight;
 			var ctx =cv.getContext("2d");
 			ctx.drawImage(img,0,0);
-			var imgstr = cv.toDataURL("image/x-icon").toString()
-			/*txt.innerHTML =txt.innerHTML +"," +hostname.replace(/\./g, "_") +" : '" +cv.toDataURL("image/x-icon").toString() +"'<br>";*/
-			if (!mute) console.log(hostname +": icon-width[" +img.offsetWidth +"],icon-height[" +img.offsetHeight + "], icon-strcode: " + imgstr);
+			var imgstr = cv.toDataURL("image/x-icon").toString();
+			if (!mute) console.log(hostname +": icon-width[" +img.offsetWidth +"],icon-height[" +img.offsetHeight + "], icon-data: " + imgstr);
 			this.parentNode.removeChild(this);
 			resolve(imgstr);
 		}
 	})
 };
 
-UTIL.genIconData =async function(iconurls) {
-	if (!iconurls) var iconurls = IDATA.search2_iconurls;
-	if (UTIL.isJson(iconurls)) {
+UTIL.genIconDatas =async function(iconurl) {
+	if (iconurl) {
+		try {
+			let url = new URL(iconurl);
+			await UTIL.getIconBase64(url.hostname, iconurl, false);
+		} catch(e) { console.log(e); }
+	} else {
 		var str ="";
-		for(let k in iconurls) {
-			//if (! (k == "s_taobao_com" || k == "y_qq_com")) continue;
-			str += ("  ," + k + " : '" + await UTIL.getFavicon2(null, iconurls[k], true) + "'\n");
-			//await new Promise(resolve => setTimeout(resolve, 1000));
+		for(let [k, v] of Object.entries(OPT.data.iconurls)) {
+			str += ("	," + k + " : '" + await UTIL.getIconBase64(k, v, true) + "'\n");
+			await new Promise(resolve => setTimeout(resolve, 200));
+			//if (k == "www_baidu_com") break;
 		}
 		console.log(str);
 	}
@@ -223,7 +268,7 @@ UTIL.json2str =function(o, br){
 UTIL.option2str =function(storages, br){
 	var str ="var BAKDATA ={};" +br +br;
 	for(o in storages){
-		if(!/^search2_\w+/.test(o)) continue;
+		//if(!/^search2_\w+/.test(o)) continue;
 		str +="BAKDATA." +o +" =" +UTIL.json2str(storages[o],br);
 		/*str =str.replace(new RegExp("," +br +"}","g"),br +"}");*/
 		str =str.replace(new RegExp("}," +br +"$"),"};" +br +br);

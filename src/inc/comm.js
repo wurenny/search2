@@ -20,13 +20,14 @@
 
 COMM.getTypeName =function(type){
 	switch (type) {
-		case 0 : return i18n.__com_typename_news;
-		case 1 : return i18n.__com_typename_web;
-		case 2 : return i18n.__com_typename_picture;
-		case 3 : return i18n.__com_typename_video;
-		case 4 : return i18n.__com_typename_tv;
-		case 5 : return i18n.__com_typename_music;
-		case 6 : return i18n.__com_typename_shopping;
+		case 0 : return i18n.__com_typename_web;
+		case 1 : return i18n.__com_typename_picture;
+		case 2 : return i18n.__com_typename_video;
+		case 3 : return i18n.__com_typename_tv;
+		case 4 : return i18n.__com_typename_shopping;
+		case 5 : return i18n.__com_typename_map;
+		case 6 : return i18n.__com_typename_music;
+		case 7 : return i18n.__com_typename_news;
 	}
 	
 };
@@ -110,42 +111,76 @@ COMM.getKeywords =function(hashSearch, septr){
 			let regex = new RegExp(prkw.replace(/\//g, '\\/'));
 			//console.log('==>', hashSearch, regex);
 			let match = hashSearch.match(regex);
-			if (match) keywords = match[1];
+			//console.log('==>', match);
+			if (match) keywords = match[match.length-1];
 		//}
 	}
 };
 
-COMM.urlChangeListener = function(thisurl, count, delay) {
-	//console.log(`===> url change time: ${count}， current delay：${delay}ms， septr=${septr}, keyword=${keywords}`);
-	if (count >= 30) return;
-	let url2 =document.location.href;
-	if (thisurl!=url2) { COMM.runUrlChange(); count++; }
-	if (count === 10) {
-			delay = 1000;
-	} else if (count === 20) {
-			delay = 2000;
+COMM.urlChangeListener = function(thisurl, count, changecount, delay) {
+	if (count == 30 || changecount === 10) delay = 1000;
+	else if (count == 60 || changecount === 20) delay = 2000;
+	//if (count >= 90 || changecount >= 30) return;
+
+	let url1 = new URL(thisurl);
+	let url2 = new URL(document.location.href);
+	/* debug url change
+	console.log(`===> count:${count} | changecount:${changecount} | delay：${delay}ms | septr:${septr} | keyword:${keywords}
+		origin:${url1.origin} | ${url2.origin}
+		path:${url1.pathname.replace(/\/@.*$/, "/")} ||| ${url2.pathname.replace(/\/@.*$/, "/")}
+		search:${url1.search} ||| ${url2.search}
+		hash:${url1.hash} ||| ${url2.hash}`);
+	*/
+	count++;
+	if (url1.origin != url2.origin || //origin
+		url1.pathname.replace(/\/@.*$/, "/") != url2.pathname.replace(/\/@.*$/, "/") || //path
+		url1.search != url2.search || //param
+		url1.hash != url2.hash //hash
+	){
+		changecount++;
+		COMM.runUrlChange();
 	}
-	setTimeout(() => COMM.urlChangeListener(url2, count, delay), delay);
+	setTimeout(() => COMM.urlChangeListener(url2, count, changecount, delay), delay);
+}
+
+COMM.startUrlChangeListener = function() {
+	window.addEventListener('popstate', COMM.runUrlChange);
+	window.addEventListener('hashchange', COMM.runUrlChange);
+	//not listen push state if bar has been created for maps search engine
+	if(stype == 5 && document.getElementById("search2")) return;
+
+	const originalPushState = history.pushState;
+	history.pushState = function () {
+		originalPushState.apply(this, arguments);
+		COMM.runUrlChange();
+	};
+
+	const originalReplaceState = history.replaceState;
+	history.replaceState = function () {
+		originalReplaceState.apply(this, arguments);
+		COMM.runUrlChange();
+	};
+	//console.log("==> listen url change:", document.location.href);
 }
 
 COMM.runUrlChange =function(){
-	var bar =document.getElementById("search2");
-	if(!bar) CS.main();
+	//console.log("---> change url current keyword: " +keywords);
+	if(!document.getElementById("search2")) CS.main();
 	else {
-		var kw =keywords;
+		let kw =keywords;
 		keywords =null;
-		COMM.getKeywords(document.location.hash.slice(1).replace(/\+/g, " "), septr);
-		if (!keywords) COMM.getKeywords(document.location.search.slice(1).replace(/\+/g, " "), septr);
-		if (!keywords) {
-			keywords =kw;
-			return;
-		}
-		//console.log("kw: " +keywords);
-		keywords =(septr=="/")?decodeURIComponent(keywords).replace(/\%25(26|2B|2d|2E)/g, "%$1"):decodeURIComponent(keywords);
+		COMM.getKeywords(document.location.href.replace(/\/@.*$/g, "/"), septr);
+		// no change and return history keywords
+		if (!keywords) { keywords =kw; return; }
+
+		if(enc) keywords = keywords.decodeURI(enc);
+		else keywords = keywords.decodeUTF();
+		//console.log("--->change keyword to: " + keywords);
 	}
 };
 
-COMM.clickAslink =function(){
+COMM.clickAslink =function(event){
+	if (event.button == 2) return;
 	var kw,nw;
 	var host =this.getAttribute("host");
 	var url =this.getAttribute("url");
@@ -160,26 +195,36 @@ COMM.clickAslink =function(){
 		kw =(config.searchselected && stxt!="")? stxt : (keywords?keywords:"");
 		nw =config.newwindow;
 	}
-	if(!enc) COMM.openURL(host,url,encodeURIComponent(kw),urltf,nw);
+	if (event.button == 1) nw = 1;
+	if(enc) kw = kw.encodeURI(enc);
+	else kw = encodeURIComponent(kw);
+	//COMM.openURL(host,url,encodeURIComponent(kw),urltf,nw);
+	COMM.openURL(host,url,kw,urltf,nw);
+	/*
 	else {
 		chrome.runtime.sendMessage(
 			{action:"search2-encode-keyword", enc:enc, kw:kw},
 			function(response) {COMM.openURL(host,url,response.enckw,urltf,nw)}
 		);
+		UTIL.encodeURL(function(response) {COMM.openURL(host,url,response.enckw,urltf,nw)}, enc, kw).submit();
 	}
+	*/
 };
 
 COMM.openURL =function(host,url,ekw,urltf,nw){
-	if(nohslist.containOf(host) && urltf!=".") ekw =ekw.replace(/\%(26|2B|2d|2E)/g,"%25$1").replace(/-/g, "%252d").replace(/\./g, "%252E");
+  //console.log("==> urltf=" + urltf + " url=" + url);
+	if(ispathkw && urltf!=".") ekw =ekw.replace(/\%(26|2B|2d|2E)/g,"%25$1")
+		.replace(/-/g, "%252d")
+		.replace(/\./g, "%252E");
 	url =url.replace("%s", ekw);
-    //console.log("urltf=" + urltf + " url=" + url);
 	window.open(url, (nw)?"_blank":"_top");
 };
 
 COMM.moreRemember =function() {
 	config.morenewwindow =document.getElementById("search2_more_newwindow").checked ? 1 : 0;
 	config.moreautoclose =document.getElementById("search2_more_autoclose").checked ? 1 : 0;
-	chrome.storage.local.set({search2_config : config});
+	optdata.config = config;
+	chrome.storage.local.set({search2 : optdata});
 	alert(i18n.__more_savesuccess);
 };
 
@@ -193,8 +238,9 @@ COMM.removeOverlay =function(){
 };
 
 COMM.setFavrect =function() {
-	var rectw =recth =0;
-	for(var i =0; i<favlist.length; i++){
+	let rectw = 0;
+	let recth = 0;
+	for(let i =0; i<favlist.length; i++){
 		if(favlist[i].on ==1 && favlist[i].url.indexOf("%s")!=-1) favnum[favlist[i].type] =favnum[favlist[i].type] ? favnum[favlist[i].type] +1 : 1;
 	}
 	/*calculate lines and columns*/

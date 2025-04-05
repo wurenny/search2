@@ -56,7 +56,8 @@ ul{
 	list-style:none;
 }
 #main{
-    width:850px;
+    width:950px;
+    min-width:850px;
     min-height:200px;
     margin:0px auto;
     background:rgba(255,255,255,1);
@@ -66,7 +67,8 @@ ul{
 #header{
 	position:fixed;
     top:0;
-    width:850px;
+    width:950px;
+    min-width:850px;
 	height:40px;
     border-bottom: 1px solid #DDD;
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#f3f3f3));
@@ -107,6 +109,9 @@ ul{
 #search_setting>tr>td{
     padding:0 10px 3px 0;
 }
+#search_setting>tr>td:first-child{
+    width: 40%;
+}
 
 #search_engine{
     margin: 0px 30px
@@ -122,7 +127,7 @@ ul{
 }
 #optionbtns>ul>li {
 	float:left;
-	margin:4px 26px;
+	margin:4px 32px;
 }
 #importfile {
 	display:none;
@@ -294,7 +299,7 @@ img.minitipicon {
 }
 #att_enc_div {
 	display:inline-block;
-	width:155px;
+	width:250px;
 	height:17px;
 	overflow:hidden;
 	margin-right:3px;
@@ -309,6 +314,7 @@ img.minitipicon {
 	color:#EBEBE4;
 	font-size:12px;
 	outline:none;
+	width: 250px;
 	height:19px;
 }
 #__op_search_form_googleico, #__op_search_form_pathkw {

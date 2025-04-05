@@ -19,16 +19,18 @@
  */
 
 // public vars
-var UTIL ={};
-var COMM ={};
-var i18n ={};
+var UTIL = {};
+var COMM = {};
+var i18n = {};
+var optdata = {};
 var config, favlist, favtypes;
-var iconurls, icondatas, nohslist;
+var iconurls, icondatas; //, nohslist;
 var favnum ={}, favrect ={};
 var hashSearch, septr;
 var keywords, enc, enckeywords;
-var favindex, pos, stype, prkw, urltf;
+var favindex, pos, stype, prkw, urltf, ispathkw;
 var whmargin, msovered =0;
+var thisurl, hostname;
 
 // content script vars
 var CS ={};

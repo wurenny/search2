@@ -135,9 +135,9 @@ MSMENU.popMoreSearchMenu =function(e) {
 	}
 	
 	pdiv.style.display ="block";
-	document.body.onclick =function(){
+	document.onclick =function(){
 		pdiv.style.display ="none";
-		document.body.onclick =undefined;
+		document.onclick =undefined;
 		msovered =0;
 	}
 };
