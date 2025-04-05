@@ -21,10 +21,10 @@
 #search2colorbox {
 	position:fixed;
 	z-index:999999999;
-	overflow-y:hidden;
+	overflow:hidden;
 }
 #search2colorbox>table>tr>td {
-	padding:0;
+	padding:2px;
 	margin:0;
 }
 #search2boxbody,#search2boxcontent,#search2boxiframe{
@@ -145,7 +145,7 @@ input[type=checkbox].search2morecheckbox:checked{
 }
 #search2_more_morelist>tr>td {
 	border:1px solid #c2c2c2;
-	max-width:85px;
+	max-width:150px;
 	padding:0 !important;
 	margin:0 !important;
 	vertical-align:middle !important;

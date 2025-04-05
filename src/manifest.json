@@ -2,7 +2,7 @@
 	"description": "__MSG_app_description__",
 	"author": "wurenny@gmail.com",
 
-	"version": "2.3.2",
+	"version": "2.4.0",
 	"minimum_chrome_version": "88",
 	"manifest_version": 3,
 	"name": "__MSG_app_title__",
@@ -22,7 +22,7 @@
 		"matches": ["http://*/*", "https://*/*", "file:///*"],
 		"include_globs": ["http:*", "https:*"],
 		"js": [
-			"opt/opt-data.js", "inc/proto.js",
+			"opt/data.js", "inc/proto.js", "inc/enc.js",
 			"inc/var.js", "inc/i18n.js", "inc/util.js", "inc/comm.js",
 			"mod/more-search-menu.js", "mod/more-search-box.js", "mod/main-search-bar.js",
 			"cs/cs.js"

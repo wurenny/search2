@@ -22,13 +22,14 @@
 
 ,"app_title": {"message": "search2"}
 ,"app_description": {"message": "Practical and extensible search assistant"}
-,"com_typename_news":{"message":"news"}
 ,"com_typename_web":{"message":"web"}
 ,"com_typename_picture":{"message":"pict"}
 ,"com_typename_video":{"message":"vido"}
 ,"com_typename_tv":{"message":"TV"}
-,"com_typename_music":{"message":"musc"}
 ,"com_typename_shopping":{"message":"shop"}
+,"com_typename_map":{"message":"map"}
+,"com_typename_music":{"message":"musc"}
+,"com_typename_news":{"message":"news"}
 ,"com_moresearch":{"message":"more"}
 ,"com_close":{"message":"close"}
 
@@ -153,10 +154,10 @@
 ,"op_mtip_borderline":{"message":"put color on searchbar's border so that looks more beautiful"}
 ,"op_mtip_form_url":{"message":"use %s replace the text keywords and %p replace the url address of a picture please"}
 ,"op_mtip_form_tf":{"message":"some search engine identifies the search-type use url parameter, but not hostname, such as google, bing. you must input a typeflag here,for example: &tbm=isch, &tbm=web and so on"}
-,"op_mtip_form_prkw":{"message":"keywords-ident is the key-name of %s, for example: q=; you should input regex expression when [use path keywods] is checked"}
+,"op_mtip_form_prkw":{"message":"keywords-ident is the key-name of %s, for example: q=; you should input regex expression when [use path keywods] is checked, you can refer to the douyin search in the video type"}
 ,"op_mtip_form_enc":{"message":"it's necessary only when the search engine is not supports utf-8 encoding. you can find the search engine's encoding with clicking: [chrome customize control menu]>[Tools]>[Encoding]"}
-,"op_mtip_form_googleico":{"message":"Google provides a icon service for most of website, you can use it if you can't find the icon of search engine, the serviice url is: https://www.google.com/s2\n/favicons?domain=website-domain"}
-,"op_mtip_form_pathkw":{"message":"this is a partiular option for compats few search engines, for example: https://search.suning.com/%s/；you should input [keywords ident] cooperatively if checked"}
+,"op_mtip_form_googleico":{"message":"Google provides a icon service for most of website, you can use it if you can't find the icon of search engine, the serviice url is: https://www.google.com/s2\n/favicons?domain=website-domain. Note that you must have access to the Google icon service on your local computer to use this option"}
+,"op_mtip_form_pathkw":{"message":"this is a partiular option for compats few search engines, for example: https://www.douyin.com/search/%s；you should input regex expression in [keywords ident] if checked"}
 
 ,"oth_readme":{"message":"about me"}
 ,"oth_readme1":{"message":"search2 follows four design principles: lightness, simplicity, ease of use, and scalability"}
@@ -166,8 +167,8 @@
 ,"oth_readme5":{"message":"search2 requires a Chrome webkit version greater than 21 to function properly. Starting from version v2.0.0, it supports manifest v3"}
 ,"oth_readme6":{"message":"The past mind is unattainable, The present mind is unattainable, The future mind is unattainable"}
 ,"oth_ipr1":{"message":"Copyright： the icon"}
-,"oth_ipr2":{"message":"and"}
-,"oth_ipr3":{"message":"source code of search2 are copyrighted by the author (wurenny@gmail.com). No individual or organization is allowed to plagiarize, modify or distribute it, including but not limited to the Chrome webstore or other browser extension markets. the author reserves the right to pursue legal action against any infringement"}
+,"oth_ipr2":{"message":""}
+,"oth_ipr3":{"message":"and source code of search2 are copyrighted by the author (wurenny@gmail.com). No individual or organization is allowed to plagiarize, modify or distribute it, including but not limited to the Chrome webstore or other browser extension markets. the author reserves the right to pursue legal action against any infringement"}
 ,"oth_reset_confirm":{"message":"you are reseting the configure to default, the previous config will be losed, you sure do it?"}
 ,"oth_tab_untitled":{"message":"untitled"}
 ,"oth_tab_rm_confirm":{"message":"you are removing this search category including all search engine in the category, you sure do it?"}

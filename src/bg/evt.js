@@ -47,14 +47,14 @@ EVT.msgListener =function(){
 EVT.createCM =function() {
 	chrome.storage.local.get(
 		function(storages){
-			let config =storages.search2_config;
-			if(!config) config =IDATA.search2_config;
+			let optdata = storages.search2;
+			if(!optdata) optdata = OPT.data;
+			let config = optdata.config;
 			if(!config.cmenu) {
 				chrome.contextMenus.removeAll();
 				return;
 			}
-			let favlist =storages.search2_favlist;
-			if(!favlist) favlist =IDATA.search2_favlist;
+			let favlist = optdata.favlist;
 			EVT.favlist = favlist;
 			
 			chrome.contextMenus.removeAll();
@@ -126,49 +126,6 @@ EVT.initCM =function() {
 		}
 	);
 	cmstate =1;
-};
-
-EVT.encodeURL = function(cb, charset, str){
-	let iframeId ="search2enc_iframe", formId ="search2enc_form", inputName ="search2enc_input";
-	let iframe = document.getElementById(iframeId);
-	if(!iframe){
-		iframe = document.createElement("iframe");
-		iframe.id =iframeId;
-		iframe.name =iframeId;
-		iframe.src ="/oth/blank.html";
-		iframe.style.display ="none";
-		document.documentElement.appendChild(iframe);
-	}
-	
-	iframe.onload =function(){
-		//console.log("url: " +iframe.contentWindow.location);
-		let enckw =iframe.contentWindow.location.search.split("=")[1];
-		cb({enckw:enckw});
-		document.documentElement.removeChild(iframe);
-		document.documentElement.removeChild(form);
-	}
-	
-	let form = document.getElementById(formId);
-	if(form){
-		document.getElementById("search2enc_textinput").value =str;
-		return form;
-	}
-	form = document.createElement("form");
-	form.acceptCharset =charset;
-	form.id =formId;
-	form.method = "get";
-	//form.action =chrome.runtime.getURL("/oth/blank.html");
-	form.target = iframeId;
-	form.style.display = "none";
-	let input = document.createElement("input");
-	input.id ="search2enc_textinput";
-	input.type = "hidden";
-	input.name = inputName;
-	input.value = str;
-	form.appendChild(input);
-	document.documentElement.appendChild(form);
-	
-	return form;
 };
 
 EVT.main =function() {

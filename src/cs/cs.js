@@ -19,6 +19,10 @@
  */
 
 CS.listen =function(){
+	// listen url change for inner push state
+	//COMM.startUrlChangeListener(); /* not work for some website eg: google earth */
+	COMM.urlChangeListener(thisurl, 0, 0, 100);
+
 	// right click build search2 context menu
 	if (config.cmenu) {
 		document.oncontextmenu =function(){
@@ -41,9 +45,12 @@ CS.listen =function(){
 };
 
 CS.initkw =function(){
-	let thisurl = document.location.href;
-	let hostname = document.location.host;
 	let prkwinurl = false;
+
+	/*transfer link?*/
+	if (thisurl.indexOf("/link?")!=-1) return;
+
+	/* match favlist? */
 	for (i = 0; i < favlist.length; i++) {
 		prkwinurl = thisurl.match(new RegExp(favlist[i].prkw.replace(/\//g, '\\/'))) ? true : false;
 		if (favlist[i].on != 1 || favlist[i].url.indexOf("%s")==-1 || !prkwinurl) continue;
@@ -64,14 +71,11 @@ CS.initkw =function(){
 			}
 		}
 	}
-		
-	/*transfer link?*/
-	if (thisurl.indexOf("/link?")!=-1) return;
+	//console.log(`==> ${favlist.length}, i=${i}, fav=${favlist[i]}, url=${thisurl}`);
 	if (!prkw) return;
 	
 	/*action for keywords*/
-	//if (nohslist.containOf(hostname)) {
-	let ispathkw = prkw.substr(-1) != "=";
+	ispathkw = prkw.substr(-1) != "=";
 	if (ispathkw) {
 		septr ="/";
 		var href =thisurl;
@@ -95,17 +99,8 @@ CS.initkw =function(){
 	}
 	if (!keywords) return;
 	
-	/*hash change listener ,but while history.pushState was invoked use ajax in HTML5, it will donot work*/
-	// window.addEventListener('hashchange', function () { COMM.runUrlChange(); }, false);
-	COMM.urlChangeListener(thisurl, 0, 500);
-	/*
-	const urlChangeListener = setInterval(
-		function(){
-			url2 =document.location.href;
-			if (thisurl!=url2) { thisurl=url2; COMM.runUrlChange(); }
-		}, 500
-	);
-	*/
+	/*url change listener, include history state change and hashchange*/
+	//COMM.startUrlChangeListener();
 };
 
 CS.ready =function(start){	
@@ -134,23 +129,24 @@ CS.ready =function(start){
 		}
 	}
 	COMM.loadCSS(cssdiv, "css/cs.css", "search2BarCss", start);
-
 };
 
 CS.start =function(){
 	enc =favlist[favindex].enc;
 	if (!enc) {
 		try{
-			keywords =decodeURIComponent(keywords);
+			//decode twice for '%25xx%25xx%25xx'
+			keywords = decodeURIComponent(decodeURIComponent(keywords));
 		}catch(e){
 			enc ='gbk';
 		}
 	}
-	if(!enc) CS.run();
-	else {
-		console.log("search2: url encoding is not utf-8 and change to :" +enc);
-		UTIL.decodeURL(CS.runNotUTF, enc, keywords);
+	if(enc) {
+		keywords = keywords.decodeURI(enc);
+		console.log(`search2: keywords decoding(${enc}) to: ${keywords}`);
 	}
+	CS.run();
+	//UTIL.decodeURL(CS.runNotUTF, enc, keywords);
 };
 
 CS.run =function(){
@@ -195,14 +191,22 @@ CS.run =function(){
 	MSMENU.createMoreSearchMenu(SB.palette);
 	
 	/*fill search engines and  L2 more search menu*/
-	SB.favMainLoop(stb,tr,sp,fn, SB.palette);
+	SB.createSearchItem(stb,tr,sp,fn, SB.palette);
 	
 	/*more search button: listen and display menu + box*/
 	if (pos =="left") tr =stb.appendChild(document.createElement("tr"));
 	SB.createMoreSearchButton(tr,sp,fn);
 	
 	/*now display the search2 bar*/
-	bar.style.display ="block";
+	SB.flushSearchItem(bar, fn, 1);
+	bar.style.visibility ="visible";
+
+	/* listen resize if hide the search text */
+	let resizeTimer;
+	window.addEventListener('resize', () => {
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(() => SB.flushSearchItem(bar, fn, 1), 500);
+	});
 };
 
 CS.runNotUTF =function(){
@@ -216,24 +220,21 @@ CS.main =function() {
 	if (!UTIL.chromeCompatible()) return;
 	chrome.storage.local.get(
 		function(storages){
-			config =storages.search2_config;
-			favtypes =storages.search2_favtypes;
-			favlist =storages.search2_favlist;
-			iconurls =storages.search2_iconurls;
-			icondatas =storages.search2_icondatas;
-			nohslist =storages.search2_nohslist;
+			optdata = storages.search2;
+			if(!optdata) optdata = OPT.data;
+			config =optdata.config;
+			favtypes =optdata.favtypes;
+			favlist =optdata.favlist;
+			iconurls =optdata.iconurls;
+			icondatas =optdata.icondatas;
+			//nohslist =optdata.nohslist; /* removed from v2.3.2 */
 			
-			if(!config) config =IDATA.search2_config;
-			if(!favtypes) favtypes =IDATA.search2_favtypes;
-			if(!favlist) favlist =IDATA.search2_favlist;
-			if(!iconurls) iconurls =IDATA.search2_iconurls;
-			if(!icondatas) icondatas =IDATA.search2_icondatas;
-			if(!nohslist) nohslist =IDATA.search2_nohslist;
-			
-			icondatas.search2_icon32 = IDATA.search2_icondatas.search2_icon32;
-			icondatas.more_icon = IDATA.search2_icondatas.more_icon;
+			icondatas.search2_icon32 = OPT.data.icondatas.search2_icon32;
+			icondatas.more_icon = OPT.data.icondatas.more_icon;
 			pos =config.searchposition.toLowerCase();
 			
+			thisurl = document.location.href;
+			hostname = document.location.host;
 			CS.listen();
 			CS.initkw();
 			if (!keywords) return;
